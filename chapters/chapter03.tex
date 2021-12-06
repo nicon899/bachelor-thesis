@@ -1,0 +1,35 @@
+\chapter{Konzeption eines Cloud BI-Systems}
+\label{ch:konzeption}
+Die in Abschnitt~\ref{sec:grundlagen:bi_in_der_cloud_mit_azure} beschriebenen Kategorien enthalten eine Vielzahl an Diensten und Ressourcen, die potenziell im neuen BI-System eingesetzt werden könnten. Durch eine Evaluation soll hieraus eine geeignete Auswahl getroffen werden. Anschließend wird aus den ausgewählten Komponenten eine vollständige BI-Architektur entworfen.
+
+\section{Anforderungen}
+\label{sec:anforderungen}
+Die Anforderungen an das Cloud-BI-System werden aus der Funktionalität des bestehenden Systems abgeleitet, aber auch um weitere ergänzt.
+
+\subsection{Funktionale Anforderungen}
+\label{subsec:funktionaleAnforderungen}
+Es sollen Daten aus verschiedenen Quellsystemen integriert werden können, unabhängig davon, ob diese on-premise oder in der Cloud betrieben werden. Die extrahierten Daten müssen langfristig gespeichert werden. Auf den gespeicherten Daten sollen automatisierte Analysen und Auswertungen durchgeführt werden können. Auch komplexere Analysen mit der Programmiersprache R sollen unterstützt werden. Die Ergebnisse der Auswertungen sollen visualisiert in Reports angezeigt werden. Neben den fest definierten Auswertungen soll auch Ad-hoc-Reporting unterstützt werden.
+
+\subsection{Nicht-Funktionale Anforderungen}
+\label{subsec:NichtfunktionaleAnforderungen}
+Zu den wichtigsten Anforderungen an Cloud-Systeme gehören die Sicherheit und der Datenschutz \cite{gurjar_cloud_2013}. Daher soll das neue System bestmöglich vor Angriffen geschützt sein. Daneben ist eine zuverlässige Authentifizierung und Autorisierung der Nutzer unumgänglich. Für alle Daten und Informationen muss sichergestellt werden, dass nur berechtigte Personen diese sehen können. Worauf ein Mitarbeiter Zugriff haben darf, ist abhängig von seiner Rolle im Unternehmen und seinem regionalen Standort.
+
+\section{Evaluation und Auswahl von BI-Komponenten}
+\label{sec:evaluationUndAuswahl}
+Im Folgenden wird entschieden, welche Komponenten der Azure Cloud im neuen BI-System eingesetzt werden sollten. Dazu wird für jede, der im vorherigen Abschnitt genannten funktionalen Anforderungen, evaluiert, welche der infrage kommenden Ressourcen eingesetzt werden sollten. Neben den nicht-funktionalen Anforderungen sind die wichtigsten Evaluationskriterien: Kosten, Performance, Benutzerfreundlichkeit und der voraussichtliche Wartungsaufwand.
+
+\section{Entwurf der neuen BI-Architektur}
+\label{sec:entwurfBIArchitektur}
+Basierend auf dem Ergebnis des vorherigen Abschnitts, wird ein Entwurf für eine vollständige BI-Architektur, in der Azure Cloud, vorgestellt. Dabei wird auf die Verbindung der einzelnen Komponenten, zu einem funktionierenden Gesamtsystem, eingegangen. Insbesondere auch auf die Kommunikation zwischen den einzelnen Komponenten und wie hierbei die Einhaltung von Sicherheit und Datenschutz gewährleistet wird.
+
+\subsection{Beschreibung einer möglichen Migrationsstrategie}
+\label{sec:entwurfBIArchitektur}
+Nachdem ein neues Konzept für die BI-Architektur vorliegt, stellt sich die Frage, wie das on-premise System in die Cloud migriert werden kann. In der Literatur wird zwischen drei Migrationsstrategien unterschieden \cite{juan-verdejo_moving_2014}:
+\begin{enumerate}
+\item \textbf{Teilweise nach Fachbereichen}: Die Migration wird nur für einzelne Fachbereiche durchgeführt. Zum Beispiel wird das BI-System für den Kundensupport migriert, während das BI-System für den Vertrieb weiterhin on-premise betrieben wird.
+\item \textbf{Teilweise nach Schichten}: Es werden nicht alle funktionalen Schichten in die Cloud migriert. Aus Sicherheitsbedenken könnte beispielsweise die Speicherung von Daten weiterhin on-premise erfolgen, während die Datenanalysen und Auswertungen mit Cloud Ressourcen durchgeführt werden.
+\item \textbf{Vollständig}: Das gesamte on-premise BI-System wird durch eine Cloud-Lösung ersetzt.
+\end{enumerate}
+Für das bestehende BI-System soll die vollständige Migrationsstrategie angewendet werden. \textit{1.} wäre nicht sinnvoll, da für das gesamte BI-System nur ein Team zuständig ist. \textit{2.} wird hauptsächlich aus Sicherheitsgründen angewendet, führt dabei aber oft zu Performance Einbußen. Da die Sicherheit bereits ein wichtiges Kriterium der neuen BI-Architektur ist, wird diese Strategie als nicht notwendig erachtet.
+
+Azure stellt einige Dienste bereit, die beim Migrationsprozess unterstützen sollen \cite{chilberto_building_2020}. Deswegen soll untersucht werden, welche dieser Dienste, bei der Migration von der on-premise zu der neu entworfenen Cloud BI-Architektur, nützlich sein könnten.

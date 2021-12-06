@@ -1,0 +1,13 @@
+\chapter{Praktische Umsetzung und Erprobung der Cloud BI}
+\label{ch:praktischeUmsetzung}
+Für Unternehmen hat es einen hohen Stellenwert, Entscheidungen auf Basis von aktuellen, korrekten und qualitativ hochwertigen Informationen treffen zu können. Denn so kann das Risiko für Fehlentscheidungen minimiert werden \cite{grunwald_business_2009}. Mit einem BI-System können diese wertvollen Informationen aus operativen Daten gewonnen werden \cite{muller_business_2013}.
+
+\section{Erstellen eines Prototyps in der Azure Cloud}
+\label{sec:intro:erstellenDesPrototyps}
+Auf Basis der theoretisch erarbeiteten BI-Architektur und Migrationsstrategie, wird ein Prototyp erstellt. Dieser muss kein vollwertiger Ersatz für das on-premise BI-System sein, soll jedoch die erforderten Funktionen abdecken. Das bedeutet unter anderem, dass nicht alle, sondern jeweils nur ein on-premise und ein Cloud Quellsystem integriert werden.
+
+Alle benötigten Ressourcen können über einen Webbrowser im Azure Portal erstellt und verwaltet werden \cite{chilberto_building_2020}. Zum Erstellen einer komplexeren Architektur ist jedoch der \textit{Azure Ressource Manager (ARM)} besser geeignet. Damit können beliebige Azure Komponenten zu einer logischen Einheit (Ressourcengruppe) zusammengefasst werden. Eine Ressourcengruppe kann mit ARM, flexibel über parametrisierbare Templates im JSON-Format, erstellt und verwaltet werden. Das macht ARM weniger fehleranfällig und zeitsparender als die Konfiguration aller einzelnen Komponenten über das Azure Portal \cite{monadjemi_azure-administration_2017}. Deswegen wird auch der Prototyp für das neue BI-System über ein ARM-Template erstellt.
+
+\section{Testen des Prototyps}
+\label{sec:intro:testenDesPrototyps}
+Mit Hilfe des Prototyps wird die neue BI-Architektur in der Praxis getestet. Zu den Testfällen gehört das Erstellen von Reports für die integrierten Quellsysteme. Die Reports sollen vergleichbar zu den aus dem on-premise BI-System sein. Es sollen berechnete Kennzahlen, Tabellen und Diagramme, die den zeitlichen Verlauf eines Werts darstellen, angezeigt werden. Durch das Validieren der Inhalte können gleichzeitig mehrere Anforderungen überprüft werden. Denn Fehler bei der Datenintegration oder der Auswertung würden auch zu fehlerhaften Reports führen.
