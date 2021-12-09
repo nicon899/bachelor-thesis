@@ -58,4 +58,10 @@ Der NoSQL-Dienste Azure Table Storage gehört zu den günstigsten Speichermögli
 Bei diesem Dienst handelt es sich um eine Datenbank, die mehrere Datenmodelle, wie Schlüssel-Wert, Dokument oder Graph, unterstützt. Eines der Features ist die automatisierbare Replikation über verschiedene Regionen. Dadurch können weltweit geringe Latenzzeiten gewährleistet werden. Die \acp{sla} sichern außerdem eine Verfügbarkeit von 99,99\% zu \cite{guay_paz_introduction_2018}. 
 
 \subsection{Azure Data Lake Gen 2} \label{sec:grundlagen:azure_dienste:dataLake}
-\acp{blob} sind unstrukturierte Dateien, die sich nicht zum Speichern in einer Datenbank eignen. Eine kostengünstige Möglichkeit, diese in der Cloud abzulegen, ist der Azure Blob Storage. Auf diesen Dienst baut auch der Azure Data Lake Gen 2 auf, welcher für die Analyse der gespeicherten Daten spezialisiert wurde \cite{soh_azure_2020}. 
+\acp{blob} sind unstrukturierte Dateien, die sich nicht zum Speichern in einer Datenbank eignen. Eine kostengünstige Möglichkeit, diese in der Cloud abzulegen, ist der Azure Blob Storage. Auf diesen Dienst baut auch der Azure Data Lake Gen 2 auf, welcher für die Analyse der gespeicherten Daten spezialisiert wurde \cite{soh_azure_2020}.
+
+\subsection{Azure Data Factory} \label{sec:grundlagen:azure_dienste:dataFactory}
+Azure Data Factory ist ein Datenintegrationsdienst, der für on-premise und Cloud Systeme genutzt werden kann. Der Dienst wurde speziell für den gemeinsamen Einsatz mit anderen Diensten entwickelt und übernimmt dabei die Bewegung, Transformation und Verarbeitung der Daten, zwischen den unterschiedlichen Systemen \cite{klein_azure_2017}.
+
+\subsection{Azure Synapse Analytics} \label{sec:grundlagen:azure_dienste:synapseAnalytics}
+Azure Synapse Analytics vereint die Datenintegration, Data Warehousing und Big Data Analysen zu einem Dienst. Die Datenintegration verwendet die Azure Data Factory, wird hier aber als \textit{Synapse Pipeline} bezeichnet. Die integrierten Daten können unabhängig von ihrer Struktur gespeichert werden. Durch die Unterstützung von Apache Spark wird die Analyse von großen Datenmengen ermöglicht \cite{shiyal_beginning_2021}. 
