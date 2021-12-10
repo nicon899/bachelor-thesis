@@ -61,7 +61,22 @@ Bei diesem Dienst handelt es sich um eine Datenbank, die mehrere Datenmodelle, w
 \acp{blob} sind unstrukturierte Dateien, die sich nicht zum Speichern in einer Datenbank eignen. Eine kostengünstige Möglichkeit, diese in der Cloud abzulegen, ist der Azure Blob Storage. Auf diesen Dienst baut auch der Azure Data Lake Gen 2 auf, welcher für die Analyse der gespeicherten Daten spezialisiert wurde \cite{soh_azure_2020}.
 
 \subsection{Azure Data Factory} \label{sec:grundlagen:azure_dienste:dataFactory}
-Azure Data Factory ist ein Datenintegrationsdienst, der für on-premise und Cloud Systeme genutzt werden kann. Der Dienst wurde speziell für den gemeinsamen Einsatz mit anderen Diensten entwickelt und übernimmt dabei die Bewegung, Transformation und Verarbeitung der Daten, zwischen den unterschiedlichen Systemen \cite{klein_azure_2017}.
+Azure Data Factory ist ein Datenintegrationsdienst, der für on-premise und Cloud Systeme genutzt werden kann. Der Dienst wurde speziell für den gemeinsamen Einsatz mit anderen Diensten entwickelt und übernimmt dabei die Bewegung, Transformation und Verarbeitung der Daten, zwischen den unterschiedlichen Systemen \cite{klein_iot_2017}.
+
+\subsection{Azure Data Lake Analytics} \label{sec:grundlagen:azure_dienste:dataLakeAnalytics}
+Dieser Dienst ist für eine möglichst einfache und kosteneffektive Big Data Anaylse ausgelegt. Für die Analysen wird die Abfragesprache U-SQL (Unified SQL) verwendet, welche die Stärken von SQL und C\# miteinander vereint \cite{klein_iot_2017}. 
+
+\subsection{Azure HDInsight}
+Bei Azure HDInsight handelt es sich um Apache Hadoop, als vollständig verwalteten Cloud-Dienst. Hadoop ist eine Sammlung von Open-Source-Komponenten, die für die verteilte Verarbeitung und Analyse großer Datensätze konzipiert wurden. Dieser Dienst ist vergleichsweise komplex, da individuelle Konfigurationen notwendig sind \cite{klein_iot_2017}.
+
+\subsection{Azure Databricks}
+Azure Databricks setzt Apache Spark als Cloud-Dienst um. Letzteres ist ein weiteres Open-Source Framework für die Big Data Analyse. Im Gegensatz zu Hadoop werden die Daten zur schnelleren Verarbeitung im Arbeitsspeicher vorgehalten. Ein weiteres Feature ist die mögliche Echtzeitverarbeitung von Streaming-Daten \cite{soh_apache_2020}.
 
 \subsection{Azure Synapse Analytics} \label{sec:grundlagen:azure_dienste:synapseAnalytics}
-Azure Synapse Analytics vereint die Datenintegration, Data Warehousing und Big Data Analysen zu einem Dienst. Die Datenintegration verwendet die Azure Data Factory, wird hier aber als \textit{Synapse Pipeline} bezeichnet. Die integrierten Daten können unabhängig von ihrer Struktur gespeichert werden. Durch die Unterstützung von Apache Spark wird die Analyse von großen Datenmengen ermöglicht \cite{shiyal_beginning_2021}. 
+Azure Synapse Analytics vereint die Datenintegration, Data Warehousing und Big Data Analysen zu einem Dienst. Die Datenintegration verwendet die Azure Data Factory, wird hier aber als \textit{Synapse Pipeline} bezeichnet. Die integrierten Daten können unabhängig von ihrer Struktur gespeichert werden. Durch die Unterstützung von Apache Spark wird die Analyse von großen Datenmengen ermöglicht \cite{shiyal_beginning_2021}.
+
+\subsection{Azure Analysis Services}
+Dieser Dienst kann als Semantik-Schicht zwischen \ac{dwh} und Endnutzer agieren. In dieser Funktion können beispielsweise Spalten umbenannt oder irrelevante Werte ausgeblendet werden, damit übersichtliche Reports entstehen. Auch eine granulare Implementierung von \ac{rbac} wird so vereinfacht. Der Dienst kann jedoch nur mit tabellarischen Datenmodellen umgehen, nicht mit multidimensionalen \cite{how_beyond_2020}.
+
+\subsection{Power BI}
+Power BI ist Microsofts Dienst zum Visualisieren von Daten. Es werden aber auch \ac{etl} Prozesse und Datenanalyse auf Basis von Analysis Services bereitgestellt. Mit Power BI können vorgefertigte und Self-Service Reports erstellt werden \cite{how_beyond_2020}.
