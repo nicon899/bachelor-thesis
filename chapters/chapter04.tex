@@ -1,23 +1,14 @@
 \chapter{Praktische Umsetzung und Erprobung der Cloud BI} \label{ch:praktischeUmsetzung}
 
-\section{Beschreibung einer möglichen Migrationsstrategie}
-\label{sec:beschreibungMigrationsstrategie}
-Nachdem ein neues Konzept für die BI-Architektur vorliegt, stellt sich die Frage, wie das on-premise System in die Cloud migriert werden kann. In der Literatur wird zwischen drei Migrationsstrategien unterschieden \cite{juan-verdejo_moving_2014}:
-\begin{enumerate}
-\item \textbf{Teilweise nach Fachbereichen}: Die Migration wird nur für einzelne Fachbereiche durchgeführt. Zum Beispiel wird das BI-System für den Kundensupport migriert, während das BI-System für den Vertrieb weiterhin on-premise betrieben wird.
-\item \textbf{Teilweise nach Schichten}: Es werden nicht alle funktionalen Schichten in die Cloud migriert. Aus Sicherheitsbedenken könnte beispielsweise die Speicherung von Daten weiterhin on-premise erfolgen, während die Datenanalysen und Auswertungen mit Cloud Ressourcen durchgeführt werden.
-\item \textbf{Vollständig}: Das gesamte on~=premise BI~=System wird durch eine Cloud~=Lösung ersetzt.
-\end{enumerate}
-Für das bestehende BI-System soll die vollständige Migrationsstrategie angewendet werden. \textit{1.} wäre nicht sinnvoll, da für das gesamte BI-System nur ein Team zuständig ist. \textit{2.} wird hauptsächlich aus Sicherheitsgründen angewendet, führt dabei aber oft zu Performance Einbußen. Da die Sicherheit bereits ein wichtiges Kriterium der neuen BI~=Architektur ist, wird diese Strategie als nicht notwendig erachtet.
-
-Azure stellt einige Dienste bereit, die beim Migrationsprozess unterstützen sollen \cite{chilberto_building_2020}. Deswegen soll untersucht werden, welche dieser Dienste, bei der Migration von der on-premise zu der neu entworfenen Cloud BI-Architektur, nützlich sein könnten.
-
-\section{Erstellen eines Prototyps in der Azure Cloud}
-\label{sec:intro:erstellenDesPrototyps}
+\section{Erstellen eines Prototyps} \label{sec:intro:erstellenDesPrototyps}
 Auf Basis der theoretisch erarbeiteten BI-Architektur und Migrationsstrategie, wird ein Prototyp erstellt. Dieser muss kein vollwertiger Ersatz für das on-premise BI-System sein, soll jedoch die erforderten Funktionen abdecken. Das bedeutet unter anderem, dass nicht alle, sondern jeweils nur ein on-premise und ein Cloud Quellsystem integriert werden.
 
 Alle benötigten Ressourcen können über einen Webbrowser im Azure Portal erstellt und verwaltet werden \cite{chilberto_building_2020}. Zum Erstellen einer komplexeren Architektur ist jedoch der \ac{arm} besser geeignet. Damit können beliebige Azure Komponenten zu einer logischen Einheit (Ressourcengruppe) zusammengefasst werden. Eine Ressourcengruppe kann mit ARM, flexibel über parametrisierbare Templates im JSON-Format, erstellt und verwaltet werden. Das macht ARM weniger fehleranfällig und zeitsparender als die Konfiguration aller einzelnen Komponenten über das Azure Portal \cite{monadjemi_azure-administration_2017}. Deswegen wird auch der Prototyp für das neue BI-System über ein ARM-Template erstellt.
 
-\section{Testen des Prototyps}
-\label{sec:intro:testenDesPrototyps}
+\section{Migration in die Azure Cloud} \label{sec:praktischeUmsetzung:Migration}
+Nachdem der Prototyp implementiert wurde, stellt sich die Frage, wie das on-premise System zu diesem migriert werden kann. Azure stellt hierzu einige Dienste bereit, die beim Migrationsprozess unterstützen können \cite{chilberto_building_2020}. 
+
+Ein mögliches Vorgehen für die Migration soll im Folgenden beschrieben werden.
+
+\section{Testen des Prototyps} \label{sec:intro:testenDesPrototyps}
 Mit Hilfe des Prototyps wird die neue BI-Architektur in der Praxis getestet. Zu den Testfällen gehört das Erstellen von Reports für die integrierten Quellsysteme. Die Reports sollen vergleichbar zu den aus dem on-premise BI-System sein. Es sollen berechnete Kennzahlen, Tabellen und Diagramme, die den zeitlichen Verlauf eines Werts darstellen, angezeigt werden. Durch das Validieren der Inhalte können gleichzeitig mehrere Anforderungen überprüft werden. Denn Fehler bei der Datenintegration oder der Auswertung würden auch zu fehlerhaften Reports führen.

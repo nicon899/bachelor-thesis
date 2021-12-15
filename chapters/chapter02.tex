@@ -31,10 +31,7 @@ Die einzelnen Schichten werden im Folgenden erläutert \cite{grunwald_business_2
 
 \section{Microsoft Azure Cloud} \label{sec:grundlagen:bi_in_der_cloud_mit_azure}
 
-\subsubsection{Sicherheit und Datenschutz} \label{subsec:grundlagen:azure:sicherheitUndDatenschutz}
-\textit{tbd}
-
-\subsubsection{Business Intelligence in der Cloud} \label{subsec:grundlagen:azure:bi}
+\subsection{Business Intelligence in der Cloud} \label{subsec:grundlagen:azure:bi}
 In der Cloud wird eine Vielzahl an Ressourcen, wie virtualisierte Hardware oder Dienste, zur Verfügung gestellt. Diese können dynamisch konfiguriert und skaliert werden, sodass immer die benötigte Leistung zur Verfügung steht. Microsoft Azure ist eine Sammlung an solchen Ressourcen, die sich aktuell in 22 Kategorien einteilen lassen. Manche Dienste können dabei zu mehreren Kategorien gehören. Für den Entwurf der neuen BI-Architektur werden Dienste aus den folgenden Kategorien in Betracht gezogen \cite{chilberto_building_2020}:
 \begin{itemize}
 \item \textbf{Integrations}~=Dienste können eingesetzt werden, um die Daten aus Cloud und on-premise Anwendungen zu laden.
@@ -49,6 +46,18 @@ In der Cloud wird eine Vielzahl an Ressourcen, wie virtualisierte Hardware oder 
 \item \textbf{Migrations}-Dienste sollen beim Umstieg von on-premise zu Cloud Ressourcen unterstützen. Sie könnten zum Beispiel eingesetzt werden, um Daten aus dem bestehenden \ac{dwh} in eine Cloud Alternative zu übertragen.
 \end{itemize}
 Beim Vergleich der Azure Kategorien mit den funktionalen Schichten des on-premise BI-Systems decken die \textit{Integrations-Dienste} die  Funktionalität der \textit{Datenintegration} ab. Das \ac{dwh} kann in Azure entweder mit den \textit{Datenbank-}, den \textit{Speicher-Diensten} oder einer Kombination von beiden ersetzt werden. Die \textit{Analyse-Dienste} entsprechen der \textit{auswertungsorientierten Schicht} und den \textit{BI-Anwendungen} des on-premise Systems. Zusätzlich neue Auswertungsmöglichkeiten bieten die Dienste aus \textit{KI und Machine Learning}. Die Kategorien \textit{Identität}, \textit{Netzwerk}, \textit{Sicherheit} und \textit{Verwaltung und Governance} sind vergleichbar mit dem \textit{Warehouse Management}.
+
+\subsection{Sicherheit und Datenschutz} \label{subsec:grundlagen:azure:sicherheitUndDatenschutz}
+\textit{tbd}
+
+\section{Migrationsstrategie} \label{sec:beschreibungMigrationsstrategie}
+In der Literatur wird zwischen drei Migrationsstrategien unterschieden \cite{juan-verdejo_moving_2014}:
+\begin{enumerate}
+\item \textbf{Teilweise nach Fachbereichen}: Die Migration wird nur für einzelne Fachbereiche durchgeführt. Zum Beispiel wird das BI-System für den Kundensupport migriert, während das BI-System für den Vertrieb weiterhin on-premise betrieben wird.
+\item \textbf{Teilweise nach Schichten}: Es werden nicht alle funktionalen Schichten in die Cloud migriert. Aus Sicherheitsbedenken könnte beispielsweise die Speicherung von Daten weiterhin on-premise erfolgen, während die Datenanalysen und Auswertungen mit Cloud Ressourcen durchgeführt werden.
+\item \textbf{Vollständig}: Das gesamte on~=premise BI~=System wird durch eine Cloud~=Lösung ersetzt.
+\end{enumerate}
+Für das bestehende BI-System soll die vollständige Migrationsstrategie angewendet werden. \textit{1.} wäre nicht sinnvoll, da für das gesamte BI-System nur ein Team zuständig ist. \textit{2.} wird hauptsächlich aus Sicherheitsgründen angewendet, führt dabei aber oft zu Performance Einbußen. Da die Sicherheit bereits ein wichtiges Kriterium der neuen BI~=Architektur ist, wird diese Strategie als nicht notwendig erachtet.
 
 \section{Spezifikation der Anforderungen}
 Die Anforderungen an die neue BI-Architektur werden in iterativen Meetings mit den Stakeholdern festgelegt. Eine besondere Herausforderung hierbei ist es, dass die Anforderungsanalyse unvoreingenommen durchgeführt wird. Die Anforderungen sollten weder aus der aktuellen BI-Lösung noch aus individuellen Lösungsideen abgeleitet werden. Stattdessen sollten sie sich auf die Essenz des Systems beziehen, also den geschäftlichen Grund für den Einsatz des BI-Systems \cite[vgl.][]{robertson_mastering_2013}.
