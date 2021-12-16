@@ -1,0 +1,75 @@
+\chapter{Anforderungsspezifikation}\label{ch:anforderungsspezifikation}
+\addtocontents{toc}{\protect\setcounter{tocdepth}{1}}
+
+\section{Rahmenbedingungen} 
+
+\subsection{Beschränkung auf die Microsoft Azure Cloud} \label{sec:anforderungsspezifikation:azureCloud}
+\textbf{Beschreibung}: Abgesehen von den Quellsystemen sollen ausschließlich Dienste der Azure Cloud verwendet werden.
+\newline \textbf{Begründung}: Microsoft Azure ist aktuell der einzige Cloud-Provider, der für die Speicherung und Verarbeitung unserer Unternehmensdaten verwendet werden darf.
+
+\subsection{Projektdauer von 3 Monaten} \label{sec:anforderungsspezifikation:projektDauer}
+\textbf{Beschreibung}: Die Projektdauer ist einen Zeitraum von drei Monaten(03.12.2021 bis 03.03.2022) begrenzt.
+\newline \textbf{Begründung}:  Da dieses Projekt im Rahmen einer Bachelorarbeit durchgeführt wird, ist die Bearbeitungszeit von der Hochschule vorgegeben.
+
+
+\section{Funktionale Anforderungen} 
+
+\subsection{Datenintegration von on-premise Quellsystemen über Datenbankabfragen} \label{sec:anforderungsspezifikation:datenintegrationOnPremDB}
+\textbf{Beschreibung}: In das BI-System sollen Daten aus on-premise Anwendungen/Datenbanken integriert werden können.
+\newline \textbf{Begründung}: Einige on-premise Anwendungen speichern ihre Daten in einer eigenen Datenbank. Die dort gespeicherten Daten sollen im BI-System verarbeitet werden können.
+\newline \textbf{Testkriterium}: Es ist mögliche eine Verbindung zu einem Quellsystem herzustellen, Daten abzufragen und zu speichern.
+\newline \textbf{Priorität}: 1
+
+\subsection{Datenintegration von Cloud Quellsystemen über Datenbankabfragen} \label{sec:anforderungsspezifikation:datenintegrationCloudDB}
+\textbf{Beschreibung}: In das BI-System sollen Daten aus Cloud Anwendungen/Datenbanken integriert werden können.  
+\newline \textbf{Begründung}: Einige Cloud Anwendungen speichern ihre Daten in einer eigenen Datenbank. Die dort gespeicherten Daten sollen im BI-System verarbeitet werden können.
+\newline \textbf{Testkriterium}: Es ist mögliche eine Verbindung zu einem Quellsystem herzustellen, Daten abzufragen und zu speichern.
+\newline \textbf{Priorität}: 1
+
+\subsection{Datenintegration von Quellsystemen über REST API} \label{sec:anforderungsspezifikation:datenintegrationREST}
+\textbf{Beschreibung}: Es müssen Daten über REST API integriert werden können. 
+\newline \textbf{Begründung}: Es gibt Anwendungen, deren Daten nur über REST API zugänglich sind. Auch diese sollen im BI-System verarbeitet werden können.
+\newline \textbf{Testkriterium}: Es ist mögliche eine Verbindung zu einem Quellsystem herzustellen, Daten abzufragen und zu speichern.
+\newline \textbf{Priorität}: 1
+
+\subsection{Dauerhaftes Speichern von Daten (Historische Daten)} \label{sec:anforderungsspezifikation:dauerhaftesSpeichern}
+\textbf{Beschreibung}: Die integrierten Daten sollen dauerhaft im BI-System gespeichert werden.
+\newline \textbf{Begründung}: Die Analyse/Auswertung von historischen Daten wird im Management benötigt.
+\newline \textbf{Testkriterium}: Die historischen Daten sind zu jedem zukünftigen Zeitpunkt abrufbar.
+\newline \textbf{Priorität}: 1
+
+\subsection{Datentransformation und -auswertung} \label{sec:anforderungsspezifikation:datentransformation}
+\textbf{Beschreibung}: Durch die Transformationen sollen Daten in die benötigte Form umgewandelt werden. Dazu gehört zum Beispiel die Berechnung von Aggregationen, oder das Runden einer Dezimalzahl auf 2 Nachkommastellen.
+\newline \textbf{Begründung}: Die Datentransformation ist für einige Auswertungen notwendig.
+\newline \textbf{Testkriterium}: Die Daten werden korrekt transformiert.
+\newline \textbf{Priorität}: 1
+
+\subsection{Datenanalyse mit Python/R} \label{sec:anforderungsspezifikation:datenanalysePythonUndR}
+\textbf{Beschreibung}: Es sollen fortgeschritten Datenanalysen mit den Programmiersprachen Python und R ermöglicht werden. 
+\newline \textbf{Begründung}: Durch Data Science können Erkenntnisse gewonnen werden, die mit normalen Analysen nicht möglich sind. Da intern bereits Kenntnisse und Skripte in den Programmiersprachen Python und R existieren, sollen diese eingesetzt werden können.
+\newline \textbf{Testkriterium}: Das Durchführen der Analysen führt zu plausiblen Ergebnissen.
+\newline \textbf{Priorität}: 2
+
+\subsection{Erstellen und Bereitstellen von Reports} \label{sec:anforderungsspezifikation:reports}
+\textbf{Beschreibung}: Die Daten und Analyseergebnisse sollen in Reports visualisiert dargestellt werden.
+\newline \textbf{Begründung}: Die Reports sind die Schnittstelle von dem Endnutzer zu dem BI-System. Der Endnutzer soll aus den Reports Erkenntnisse gewinnen können, ohne über technische Fähigkeiten zu verfügen.
+\newline \textbf{Testkriterium}: Das Erstellen und Betrachten von Reports ist möglich.
+\newline \textbf{Priorität}: 1
+
+\subsection{Erstellen und Bereitstellen von Self-Service Reports} \label{sec:anforderungsspezifikation:selfServiceReports}
+\textbf{Beschreibung}: Die Daten und Analyseergebnisse sollen in Self-Service Reports visualisiert dargestellt werden.
+\newline \textbf{Begründung}: Durch Self-Service Reports können detaillierte bzw. spezialisierte Daten und Analyseergebnisse betrachtet werden, ohne dass für jede Ausprägung einer neuer Report erstellt werden muss. So kann zum Beispiel ein Self-Service Report für die individuelle Auswertung jeder Produktlinie verwendet werden.
+\newline \textbf{Testkriterium}: Über die Benutzeroberfläche können die Reports nach spezifischen Anforderungen gefiltert/angepasst werden.
+\newline \textbf{Priorität}: 2
+
+\subsection{Automatische Dokumentation des Datenflusses (nach Art. 30 DSGVO)} \label{sec:anforderungsspezifikation:datenflussDokumentation}
+\textbf{Beschreibung}: Es soll eine automatische Dokumentation aller Verarbeitungstätigkeiten erfolgen, die die Anforderungen aus Art. 30 DSGVO erfüllt.
+\newline \textbf{Begründung}: Der Art. 30 DSGVO erfordert eine detaillierte Dokumentation aller Verarbeitungsschritte an Kundendaten. Dieser Prozess soll zur Zeit- und Kostenersparnis automatisiert werden.
+\newline \textbf{Testkriterium}: Für jeden (EU) Kunden kann eine Dokumentation gemäß Art. 30 DSGVO gefunden werden.
+\newline \textbf{Priorität}: 3
+
+\subsection{Klassifizierung von Daten} \label{sec:anforderungsspezifikation:DatenKlassifizierung}
+\textbf{Beschreibung}: Es soll möglich sein, die Daten nach festen Regeln zu klassifizieren. 
+\newline \textbf{Begründung}: Die Datenklassifizierung ist notwendig für die Einhaltung des Datenschutzes.
+\newline \textbf{Testkriterium}: Allen Daten im BI-System kann eine Klassifizierung zugeordnet werden.
+\newline \textbf{Priorität}: 1

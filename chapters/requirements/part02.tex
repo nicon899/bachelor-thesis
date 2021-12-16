@@ -1,0 +1,119 @@
+\section{Anforderungen an das Erscheinungsbild} 
+
+\subsection{Vielfältige Visualisierungsmöglichkeiten} \label{sec:anforderungsspezifikation:vielfältigeVisualisierungsmöglichkeiten}
+\textbf{Beschreibung}: Die Reports bieten eine Vielfalt an Visualisierungsmöglichkeiten. Darunter mind. : Tabellen, Achsendiagramme und Balkendiagramme
+\newline \textbf{Begründung}: Für verschiedene Auswertungen sind oft unterschiedliche Visualisierungen am besten geeignet.
+\newline \textbf{Testkriterium}: Es kann ein Report erstellt werden, der die oben genannten Visualisierungen enthält.
+\newline \textbf{Priorität}: 3
+
+\section{Leistungsanforderungen} 
+
+\subsection{Datenintegration in unter 60min} \label{sec:anforderungsspezifikation:SchnelleDatenintegration}
+\textbf{Beschreibung}: Die Datenintegration aus einem Quellsystem soll weniger als 60 Minuten dauern.
+\newline \textbf{Begründung}: Damit aktuelle Auswertungen möglich sind, dürfen die gespeicherten Daten nicht älter als 60 Minuten sein.
+\newline \textbf{Testkriterium}: Die Dauer für eine beliebige Datenintegration liegt unter 60 Minuten.
+\newline \textbf{Priorität}: 4
+
+\subsection{Schnelle Antwortzeiten der Reports} \label{sec:anforderungsspezifikation:schnelleAntwortzeitenDerReports}
+\textbf{Beschreibung}: Beim Öffnen, oder interagieren mit der Benutzeroberfläche (z.B. Filter auswählen) soll ein Report nicht länger als 30 Sekunden laden.
+\newline \textbf{Begründung}: Langsame Antwortzeiten führen zu einem negativen Benutzererlebnis.
+\newline \textbf{Testkriterium}: Alle Reports können in unter 30 Sekunden geöffnet werden.
+\newline \textbf{Priorität}: 3
+
+\subsection{Datenkonsistenz} \label{sec:anforderungsspezifikation:Datenkonsistenz}
+\textbf{Beschreibung}: Die Daten sollen im gesamten BI-System konsistent sein.
+\newline \textbf{Begründung}: Inkonsistente oder widersprüchliche Daten würden dazu führen, dass keine sinnvollen Auswertungen mehr möglich sind.
+\newline \textbf{Testkriterium}: Es können keine abweichenden Daten im System gefunden werden.
+\newline \textbf{Priorität}: 1
+
+\subsection{Das BI-System soll zu über 99,5\% verfügbar sein} \label{sec:anforderungsspezifikation:}
+\textbf{Beschreibung}:  Es soll eine Verfügbarkeit von mind. 99,5\% gewährleistet werden. 
+\newline \textbf{Begründung}: Einige Funktionen des BI-Systems werden im Tagesgeschäft benötigt und sollten somit möglichst immer zur Verfügung stehen.
+\newline \textbf{Testkriterium}: Alle verwendeten Azure Dienste gewährleisten in ihrer SLA eine Verfügbarkeit von über 99,5\%.
+\newline \textbf{Priorität}: 2
+
+\subsection{Automatische Fehlerbehandlung} \label{sec:anforderungsspezifikation:AutomatischeFehlerbehandlung}
+\textbf{Beschreibung}: Bei Eintreten eines Fehlers soll automatisch eine Benachrichtigung verschickt werden. 
+\newline \textbf{Begründung}: Damit das Auftreten eines Fehlers frühzeitig festgestellt wird, sollen zuständige Personen bei Fehlerauftritt benachrichtigt werden.
+\newline \textbf{Testkriterium}: Bei Auftreten eines Fehlers, wird automatisch eine Benachrichtigung versendet.
+\newline \textbf{Priorität}: 3
+
+\subsection{Mindestens 500 GB Speicherkapazität} \label{sec:anforderungsspezifikation:speicherkapazität}
+\textbf{Beschreibung}: Aus dem aktuellen BI-System sollen knapp 500 GB Daten in die Cloud-Lösung übertragen werden.
+\newline \textbf{Begründung}: Damit alle historischen Daten aus dem alten in das neue BI-System übertragen werden können, wird eine Speicherkapazität von mind. 500 GB benötigt.
+\newline \textbf{Testkriterium}: 
+\newline \textbf{Priorität}: 1
+
+\subsection{Es sollen jederzeit weitere Quellsysteme hinzugefügt/entfernt werden können} \label{sec:anforderungsspezifikation:QuellsystemeÄndern}
+\textbf{Beschreibung}: Das hinzufügen oder entfernen von Quellsystemen soll zu jedem Zeitpunkt möglich sein und darf keine unerwarteten Auswirkungen auf das restliche System haben.
+\newline \textbf{Begründung}: Die Quellsysteme, deren Daten ausgewertet werden sollen, können sich im Laufe der Zeit ändern.
+\newline \textbf{Testkriterium}: Das hinzufügen und entfernen von Quellsystemen ist möglich.
+\newline \textbf{Priorität}: 2
+
+\subsection{Automatische Skalierung der Speicherkapazität} \label{sec:anforderungsspezifikation:skalierungDerSpeicherkapazität}
+\textbf{Beschreibung}: Die Speicherkapazität der im BI-System gespeicherten Daten soll bei Bedarf automatisch erhöht werden.
+\newline \textbf{Begründung}: Die zu Speicherende Datenmenge wird im Laufe der Zeit immer größer. Durch eine skalierbare Speicherkapazität kann sich das BI-System dynamisch an diese wachsende Anforderung anpassen. Durch die nutzungsbasierten Kostenmodelle können so gleichzeitig Kosten gespart werden.
+\newline \textbf{Testkriterium}: Es ist möglich eine Datenmenge zu speichern, die ohne automatische Skalierung die aktuellen Kapazitätsgrenzen übersteigen würde.
+\newline \textbf{Priorität}: 2
+
+\subsection{Lebensdauer von mind. 5 Jahren} \label{sec:anforderungsspezifikation:langlebigkeit}
+\textbf{Beschreibung}: Die neue BI-Lösung soll in den nächsten 5 Jahren ohne grundlegende Veränderungen an der Architektur verwendet werden können. Es wird damit auch kein Feature verwendet, dass in den nächsten 5 Jahren abgestellt wird.
+\newline \textbf{Priorität}: 3
+
+\section{Anforderungen an die Wartbarkeit}
+
+\subsection{Fehlerquellen identifizieren} \label{sec:anforderungsspezifikation:fehlerquellenIdentifizieren}
+\textbf{Beschreibung}: Aufgetretene Fehler sollen nachvollziehbar sein. Die Fehlerursache sollte möglichst einfach zu identifizieren sein. Zum Beispiel durch das Lesen eines Logfiles.
+\newline \textbf{Begründung}: Damit Fehler möglichst schnell behoben werden können, sollen die Ursachen oder zumindest der Ort, an dem der Fehler aufgetreten ist, einfach auffindbar sein.
+\newline \textbf{Testkriterium}: Es gibt eine Möglichkeit aufgetretene Fehler nachzuvollziehen.
+\newline \textbf{Priorität}: 2
+
+\subsection{EinheitlicheTechnologie} \label{sec:anforderungsspezifikation:einheitlicheTechnologie}
+\textbf{Beschreibung}: Es sollen möglichst wenig unterschiedliche Technologien und Programmiersprachen verwendet werden.
+\newline \textbf{Begründung}: Um die Wartung zu vereinfachen, sollen sich die zuständigen Personen auf möglichst wenig unterschiedliche Technologien spezialisieren müssen.
+\newline \textbf{Priorität}: 3
+
+\section{Sicherheitsanforderungen}
+
+\subsection{Verwendung von RBAC für den Zugriff auf Daten/Ressourcen} \label{sec:anforderungsspezifikation:rbac}
+\textbf{Beschreibung}: Der Zugriff auf alle Ressourcen und Daten im BI-System soll über Role Based Access Control (RBAC) geregelt werden.
+\newline \textbf{Begründung}: Der Zugriff auf bestimmte Daten ist abhängig von der Rolle im Unternehmen und dem lokalen Standort des Nutzers. Mit RBAC soll sichergestellt werden, dass nur berechtigte Nutzer Zugriff auf kritische Daten erhalten.
+\newline \textbf{Testkriterium}: Daten, deren Zugriff beschränkt ist, können nur von einem Nutzer eingesehen werden, der eine berechtigte Rolle besitzt.
+\newline \textbf{Priorität}: 1
+
+\subsection{Authentifizierung mit Unternehmens Active Directory} \label{sec:anforderungsspezifikation:SAG_AD}
+\textbf{Beschreibung}: Für die Authentifizierung soll das vorhandene Active Directory verwendet werden.
+\newline \textbf{Begründung}: Die Verwendung einer eigenen Benutzerverwaltung wäre aufwändig und eine potenzielle Fehler-/Risikoquelle.
+\newline \textbf{Testkriterium}: Die Authentifizierung mit einem Unternehmensaccount ist möglich.
+\newline \textbf{Priorität}: 1
+
+\subsection{Standort von Mitarbeiter wird beim Zugriff berücksichtigt} \label{sec:anforderungsspezifikation:}
+\textbf{Beschreibung}: Für den Zugriff auf bestimmte Daten muss der Standort des Mitarbeiters berücksichtigt werden. Zum Beispiel fordern manche Kunden aus der EU, dass nur Mitarbeiter innerhalb der EU auf ihre Daten zugreifen dürfen.
+\newline \textbf{Begründung}: Es gibt Kundendaten die nur von Mitarbeitern an einem bestimmten Standort gelesen werden dürfen. 
+\newline \textbf{Testkriterium}: Wenn ein Mitarbeiter versucht auf Daten zuzugreifen, die er wegen seinem Standort nicht sehen darf, wird im stattdessen eine Fehlermeldung angezeigt.
+\newline \textbf{Priorität}: 1
+
+\subsection{Löschen aller Kundendaten auf Anfrage} \label{sec:anforderungsspezifikation:löschenKundendaten}
+\textbf{Beschreibung}: Es muss möglich sein alle Daten eines bestimmten Kunden aus dem System zu entfernen.
+\newline \textbf{Begründung}: Kunden haben das Recht auf die Löschung ihrer Daten.
+\newline \textbf{Testkriterium}: Nach der Durchführung der Löschung können keine Daten des Kunden mehr im System gefunden werden.
+\newline \textbf{Priorität}: 2
+
+\subsection{Zugriff auf bestimmte Personendaten nur über Betriebsrat möglich} \label{sec:anforderungsspezifikation:}
+\textbf{Beschreibung}: Das Einsehen von individuellen Mitarbeiterdaten, z.B. über die ebrachte Leistung, ist nur mit expliziter Zustimmung des Betriebsrates möglich.
+\newline \textbf{Begründung}: Der Betriebsrat erlaubt es im Allgemeinen nicht individuelle Leistungen auszuwerten.
+\newline \textbf{Testkriterium}: Der Zugriff auf individuelle Daten ist nur möglich, wenn dies explizit vom Betriebrat freigeschaltet wurde. 
+\newline \textbf{Priorität}: 2
+
+\subsection{Verschlüsselung der Daten} \label{sec:anforderungsspezifikation:}
+\textbf{Beschreibung}: Alle Daten werden verschlüsselt gespeichert und übertragen.
+\newline \textbf{Begründung}: Sollten Unbefugte auf das System erhalten, sollen die Daten durch Verschlüsselung weiterhin geschützt sein.
+\newline \textbf{Priorität}: 2
+
+\section{Rechtsvorschriften}
+
+\subsection{Einhaltung DSGVO} \label{sec:anforderungsspezifikation:}
+\textbf{Beschreibung}: Für alle Daten von Kunden aus der EU muss die Datenschutzgrundverordnung (DSGVO) eingehalten werden.
+\newline \textbf{Begründung}: Die DSGVO ist eine verpflichtende Verordnung der EU, die die Verarbeitung von personenbezogenen Daten regelt.
+\newline \textbf{Testkriterium}: Ein Datenschutzbeauftragter genehmigt die BI-Architektur.
+\newline \textbf{Priorität}: 1
