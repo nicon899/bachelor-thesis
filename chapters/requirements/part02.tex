@@ -68,7 +68,7 @@
 \newline \textbf{Testkriterium}: Es gibt eine Möglichkeit aufgetretene Fehler nachzuvollziehen.
 \newline \textbf{Priorität}: 2
 
-\subsection{EinheitlicheTechnologie} \label{sec:anforderungsspezifikation:einheitlicheTechnologie}
+\subsection{Einheitliche Technologie} \label{sec:anforderungsspezifikation:einheitlicheTechnologie}
 \textbf{Beschreibung}: Es sollen möglichst wenig unterschiedliche Technologien und Programmiersprachen verwendet werden.
 \newline \textbf{Begründung}: Um die Wartung zu vereinfachen, sollen sich die zuständigen Personen auf möglichst wenig unterschiedliche Technologien spezialisieren müssen.
 \newline \textbf{Priorität}: 3
@@ -87,7 +87,7 @@
 \newline \textbf{Testkriterium}: Die Authentifizierung mit einem Unternehmensaccount ist möglich.
 \newline \textbf{Priorität}: 1
 
-\subsection{Standort von Mitarbeiter wird beim Zugriff berücksichtigt} \label{sec:anforderungsspezifikation:}
+\subsection{Standort von Mitarbeiter wird beim Zugriff berücksichtigt} \label{sec:anforderungsspezifikation:zugriffStandort}
 \textbf{Beschreibung}: Für den Zugriff auf bestimmte Daten muss der Standort des Mitarbeiters berücksichtigt werden. Zum Beispiel fordern manche Kunden aus der EU, dass nur Mitarbeiter innerhalb der EU auf ihre Daten zugreifen dürfen.
 \newline \textbf{Begründung}: Es gibt Kundendaten die nur von Mitarbeitern an einem bestimmten Standort gelesen werden dürfen. 
 \newline \textbf{Testkriterium}: Wenn ein Mitarbeiter versucht auf Daten zuzugreifen, die er wegen seinem Standort nicht sehen darf, wird im stattdessen eine Fehlermeldung angezeigt.
@@ -99,20 +99,20 @@
 \newline \textbf{Testkriterium}: Nach der Durchführung der Löschung können keine Daten des Kunden mehr im System gefunden werden.
 \newline \textbf{Priorität}: 2
 
-\subsection{Zugriff auf bestimmte Personendaten nur über Betriebsrat möglich} \label{sec:anforderungsspezifikation:}
+\subsection{Zugriff auf bestimmte Personendaten nur über Betriebsrat möglich} \label{sec:anforderungsspezifikation:ZugriffMitBetriebsrat}
 \textbf{Beschreibung}: Das Einsehen von individuellen Mitarbeiterdaten, z.B. über die ebrachte Leistung, ist nur mit expliziter Zustimmung des Betriebsrates möglich.
 \newline \textbf{Begründung}: Der Betriebsrat erlaubt es im Allgemeinen nicht individuelle Leistungen auszuwerten.
 \newline \textbf{Testkriterium}: Der Zugriff auf individuelle Daten ist nur möglich, wenn dies explizit vom Betriebrat freigeschaltet wurde. 
 \newline \textbf{Priorität}: 2
 
-\subsection{Verschlüsselung der Daten} \label{sec:anforderungsspezifikation:}
+\subsection{Verschlüsselung der Daten} \label{sec:anforderungsspezifikation:verschlüsselung}
 \textbf{Beschreibung}: Alle Daten werden verschlüsselt gespeichert und übertragen.
 \newline \textbf{Begründung}: Sollten Unbefugte auf das System erhalten, sollen die Daten durch Verschlüsselung weiterhin geschützt sein.
 \newline \textbf{Priorität}: 2
 
 \section{Rechtsvorschriften}
 
-\subsection{Einhaltung DSGVO} \label{sec:anforderungsspezifikation:}
+\subsection{Einhaltung DSGVO} \label{sec:anforderungsspezifikation:dsgvo}
 \textbf{Beschreibung}: Für alle Daten von Kunden aus der EU muss die Datenschutzgrundverordnung (DSGVO) eingehalten werden.
 \newline \textbf{Begründung}: Die DSGVO ist eine verpflichtende Verordnung der EU, die die Verarbeitung von personenbezogenen Daten regelt.
 \newline \textbf{Testkriterium}: Ein Datenschutzbeauftragter genehmigt die BI-Architektur.
