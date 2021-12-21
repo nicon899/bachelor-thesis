@@ -21,19 +21,26 @@ Es gibt zwei Möglichkeiten, die Performance zu verbessern. Solange die oberste 
 
 \textbf{Fazit}: Der größte Vorteil von Azure SQL ist, dass alle zu migrierenden Daten bereits in einem relationalen Datenmodell vorliegen. Auch die festgelegten Leistungsanforderungen können mit einer einzigen Instanz abgedeckt werden. Daher sind die potenziellen Probleme und hohen Kosten, die beim Sharding entstehen könnten, hier irrelevant.
 
+\subsection{Azure Cosmos DB} \label{sec:grundlagen:azure_dienste:cosmosDB}
+Bei diesem Dienst handelt es sich um eine NoSQL-Datenbank, die mehrere Datenmodelle, wie Schlüssel-Wert, Dokument oder Graph, unterstützt. Intern werden die Daten als Dokumente im JSON-Format gespeichert.
+
+Dabei werden verschiedene APIs zum Zugriff auf die Daten angeboten, wie unter anderem DocumentDB SQL (bietet gängige SQL-Abfragefunktionen), MongoDB, Apache Casandra, Graph und Table (bietet gleiche Funktionalität wie Azure Table). Auch das Konsistenzniveau der Daten kann aus fünf Ebenen, von starker bis eventueller Konsistenz, gewählt werden.
+
+Das Feature \textit{Turnkey Global Distribution} beschreibt die automatisierbare Replikation über verschiedene Regionen. Dadurch können weltweit geringe Latenzzeiten gewährleistet werden. Die einzige notwendige Konfiguration ist dabei die Auswahl der gewünschten Regionen, alles andere wird automatisch von Azure übernommen. Gleichzeitig wird eine Verfügbarkeit von über 99,99\% in den \acp{sla} zugesichert.
+
+Sowohl der Durchsatz, der in \acp{ru} gemessen wird, als auch die Speicherkapazität kann dynamisch nach Bedarf skaliert werden. Davon sind auch die entstehenden Kosten abhängig.
+\cite{guay_paz_introduction_2018}\cite{mrzyglod_hands-azure_2018}
+
+\textbf{Fazit}: Besonders das gleichzeitige Verwenden mehrerer Datenmodelle macht aus Cosmos DB eine interessante Möglichkeit für ein BI-System. Für alle gespeicherten Daten, kann das Modell verwendet werden, dass für den benötigten Anwendungsfall optimal ist.
+
+\subsection{Azure Data Lake Gen 2} \label{sec:grundlagen:azure_dienste:dataLake}
+\acp{blob} sind unstrukturierte Dateien, die sich nicht zum Speichern in einer Datenbank eignen. Eine kostengünstige Möglichkeit, diese in der Cloud abzulegen, ist der Blob Storage. Auf diesen Dienst baut auch der Data Lake Gen 2 auf, welcher für die Analyse der gespeicherten Daten spezialisiert wurde \cite{soh_azure_2020}.
+
 \subsection{Azure Logic Apps} \label{sec:grundlagen:azure_dienste:logicApps}
 Mit diesem Dienst können automatisierte Workflows zur Datenintegration erstellt werden. Die Workflows sind sehr anpassungsfähig und es steht eine Vielzahl an vorgefertigten Konnektoren zur Verfügung \cite{kumar_serverless_2019}.
 
 \subsection{Azure Data Factory} \label{sec:grundlagen:azure_dienste:dataFactory}
 Data Factory ist ein Datenintegrationsdienst, der für on-premise und Cloud Systeme genutzt werden kann. Der Dienst wurde speziell für den gemeinsamen Einsatz mit anderen Diensten entwickelt und übernimmt dabei die Bewegung, Transformation und Verarbeitung der Daten, zwischen den unterschiedlichen Systemen \cite{klein_iot_2017}.
-
-\subsection{Azure Cosmos DB} \label{sec:grundlagen:azure_dienste:cosmosDB}
-Bei diesem Dienst handelt es sich um eine Datenbank, die mehrere Datenmodelle, wie Schlüssel-Wert, Dokument oder Graph, unterstützt. Eines der Features ist die automatisierbare Replikation über verschiedene Regionen. Dadurch können weltweit geringe Latenzzeiten gewährleistet werden. Die \acp{sla} sichern außerdem eine Verfügbarkeit von 99,99\% zu \cite{guay_paz_introduction_2018}. 
-
-\cite{reagan_azure_2018}
-
-\subsection{Azure Data Lake Gen 2} \label{sec:grundlagen:azure_dienste:dataLake}
-\acp{blob} sind unstrukturierte Dateien, die sich nicht zum Speichern in einer Datenbank eignen. Eine kostengünstige Möglichkeit, diese in der Cloud abzulegen, ist der Blob Storage. Auf diesen Dienst baut auch der Data Lake Gen 2 auf, welcher für die Analyse der gespeicherten Daten spezialisiert wurde \cite{soh_azure_2020}.
 
 \subsection{Azure Data Lake Analytics} \label{sec:grundlagen:azure_dienste:dataLakeAnalytics}
 Dieser Dienst ist für eine möglichst einfache und kosteneffektive Big Data Anaylse ausgelegt. Für die Analysen wird die Abfragesprache U-SQL (Unified SQL) verwendet, welche die Stärken von SQL und C\# miteinander vereint \cite{klein_iot_2017}. 
