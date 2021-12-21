@@ -1,22 +1,36 @@
 \section{Evaluation von Azure Diensten} \label{sec:evaluation}
 Anhand der im vorherigen Abschnitt beschriebenen Anforderungen sollen im Folgenden einige Azure Dienste evaluiert werden. Die Evaluation stellt die Grundlage für den Entwurf der Cloud BI-Architektur dar. Die untersuchten Dienste werden jeweils kurz vorgestellt und anschließend wird beschrieben, welche Anforderungen diese erfüllen können.
 
+\subsection{Azure Table Storage} \label{sec:grundlagen:azure_dienste:tableStorage}
+Der NoSQL-Dienst Table Storage gehört zu den günstigsten Speichermöglichkeiten in Azure. Die Daten werden als Schlüssel/Wert-Paare in Tabellen gespeichert, diese sind jedoch nicht relational und können nicht miteinander gejoint werden. Eine Tabelle besteht aus einer oder mehreren Partitionen und eine Partition besteht aus ein oder mehreren Zeilen. Auf jeden Tabelleneintrag kann über einen eindeutigen Schlüssel zugegriffen werden. Dieser ist eine Kombination aus Partitions- und Zeilen-Schlüssel. Die Partitionierung über mehrere Server ermöglicht es Datenmengen im dreistelligen Terabyte Bereich zu speichern.
+
+Zum Abfragen der Daten gibt es verschiedene Möglichkeiten. Am schnellsten ist die \textit{point query} bei der Partitions- und Zeilen-Schlüssel angegeben werden. Daneben gibt es verschiedene Bereichsabfragen, die entweder die Tabellen einer Partition, mehrerer oder aller Partitionen scannen. Innerhalb der gleichen Partition werden außerdem Transaktionen unterstützt. 
+
+Die größte Schwäche von Table Storage ist, dass nur auf den Partitions- und Zeilen-Schlüssel ein Index angelegt wird. Performante Abfragen auf andere Attribute als die Schlüssel sind daher nicht möglich \cite{reagan_azure_2018}.
+
+\textbf{Fazit}: Table Storage ist günstig, schnell und kann problemlos unsere Anforderungen an die zu speichernde Datenmenge erfüllen. Jedoch werden für die Auswertungen im aktuellen System sowohl Tabellen-Joins als auch Abfragen von Attributen, die nicht der indexierte Schlüssel sind, verwendet. Daher ist der Table Storage hier nicht geeignet, um als alleinstehende Speicherlösung genutzt zu werden. Er könnte jedoch als Ergänzung zum Kosten sparen eingesetzt werden. \cite[vgl.][]{reagan_azure_2018}
+
+\subsection{Azure SQL} \label{sec:grundlagen:azure_dienste:sql}
+Azure SQL ist eine relationale Datenbank, die vergleichbar mit dem on-premise Microsoft SQL Server, der im aktuellen BI-System genutzt wird, ist. Bei einer Migration hat dies den Vorteil, dass die meisten SQL-Queries zum Laden und Transformieren von Daten, ohne Anpassung verwendet werden können. Der Einsatz von Azure SQL empfiehlt sich besonders, wenn hochgradig relationale Daten vorliegen. Die alternativen relationalen Datenbanken in Azure, wie MySQL und PostgresSQL, werden in dieser Arbeit nicht betrachtet.
+
+Die Konsistenz der gespeicherten Daten kann durch die Wahl eines geeigneten Datenmodells erreicht werden. Für relationale Datenbanken wird die Normalisierung der Daten empfohlen. Das bedeutet, dass es keine doppelten Werte gibt und die Tabellen in einer angemessenen Beziehung zueinander stehen.
+
+Die Azure SQL Datenbank wird in einer virtualisierten Umgebung gehostet. Die Performance ist von DTUs abhängig, welche eine Kombination aus CPU, Speicher und der Anzahl an unterstützten Lese-/ und Schreib-Prozessen von Daten und auf dem Transaktionsprotokoll sind. Durch eine Drosselung schlagen Abfragen fehl, wenn die festgelegten Limits der SQL-Datenbank-Instanz überschritten werden. Es gibt jedoch Möglichkeiten dieses Problem durch eine automatische Wiederholungslogik bei den Abfragen zu lösen. Die DTUs sowie die Speicherkapazität sind abhängig von der gewählten Preisstufe.
+
+Es gibt zwei Möglichkeiten, die Performance zu verbessern. Solange die oberste Preisstufe noch nicht erreicht wurde, ist das Erhöhen dieser der einfachste Weg, Leistung und Speicherkapazität zu steigern. Azure führt dazu alle notwendigen Schritte zum Ändern der Datenbank automatisch im Hintergrund aus. Die zweite deutlich komplexere Option ist die horizontale Partitionierung der Daten auf mehrere SQL-Instanzen (Sharding). \cite{reagan_azure_2018}
+
+\textbf{Fazit}: Der größte Vorteil von Azure SQL ist, dass alle zu migrierenden Daten bereits in einem relationalen Datenmodell vorliegen. Auch die festgelegten Leistungsanforderungen können mit einer einzigen Instanz abgedeckt werden. Daher sind die potenziellen Probleme und hohen Kosten, die beim Sharding entstehen könnten, hier irrelevant.
+
 \subsection{Azure Logic Apps} \label{sec:grundlagen:azure_dienste:logicApps}
 Mit diesem Dienst können automatisierte Workflows zur Datenintegration erstellt werden. Die Workflows sind sehr anpassungsfähig und es steht eine Vielzahl an vorgefertigten Konnektoren zur Verfügung \cite{kumar_serverless_2019}.
 
 \subsection{Azure Data Factory} \label{sec:grundlagen:azure_dienste:dataFactory}
 Data Factory ist ein Datenintegrationsdienst, der für on-premise und Cloud Systeme genutzt werden kann. Der Dienst wurde speziell für den gemeinsamen Einsatz mit anderen Diensten entwickelt und übernimmt dabei die Bewegung, Transformation und Verarbeitung der Daten, zwischen den unterschiedlichen Systemen \cite{klein_iot_2017}.
 
-\subsection{Azure SQL} \label{sec:grundlagen:azure_dienste:sql}
-Azure SQL ist eine relationale Datenbank, die vergleichbar mit dem on-premise Microsoft SQL Server, der im aktuellen BI-System genutzt wird, ist. Bei einer Migration hat dies den Vorteil, dass die meisten SQL-Queries zum Laden und Transformieren von Daten, ohne Anpassung verwendet werden können. Der Einsatz von Azure SQL empfiehlt sich besonders, wenn hochgradig relationale Daten vorliegen \cite{reagan_azure_2018}. 
-
-Die alternativen relationalen Datenbanken in Azure, wie MySQL und PostgresSQL, werden in dieser Arbeit nicht betrachtet.
-
-\subsection{Table Storage} \label{sec:grundlagen:azure_dienste:tableStorage}
-Der NoSQL-Dienst Table Storage gehört zu den günstigsten Speichermöglichkeiten in Azure. Die Daten werden als Schlüssel/Wert-Paare in Tabellen gespeichert, diese sind jedoch nicht relational und können nicht miteinander gejoint werden. Eine Tabelle besteht aus einer oder mehreren Partitionen und eine Partition besteht aus ein oder mehreren Zeilen. Auf jeden Tabelleneintrag kann über einen eindeutigen Schlüssel zugegriffen werden. Dieser ist eine Kombination aus Partitions- und Zeilen-Schlüssel. Die Partitionierung über mehrere Server ermöglicht es Datenmengen im dreistelligen Terabyte Bereich zu speichern \cite{reagan_azure_2018}. 
-
 \subsection{Azure Cosmos DB} \label{sec:grundlagen:azure_dienste:cosmosDB}
 Bei diesem Dienst handelt es sich um eine Datenbank, die mehrere Datenmodelle, wie Schlüssel-Wert, Dokument oder Graph, unterstützt. Eines der Features ist die automatisierbare Replikation über verschiedene Regionen. Dadurch können weltweit geringe Latenzzeiten gewährleistet werden. Die \acp{sla} sichern außerdem eine Verfügbarkeit von 99,99\% zu \cite{guay_paz_introduction_2018}. 
+
+\cite{reagan_azure_2018}
 
 \subsection{Azure Data Lake Gen 2} \label{sec:grundlagen:azure_dienste:dataLake}
 \acp{blob} sind unstrukturierte Dateien, die sich nicht zum Speichern in einer Datenbank eignen. Eine kostengünstige Möglichkeit, diese in der Cloud abzulegen, ist der Blob Storage. Auf diesen Dienst baut auch der Data Lake Gen 2 auf, welcher für die Analyse der gespeicherten Daten spezialisiert wurde \cite{soh_azure_2020}.
