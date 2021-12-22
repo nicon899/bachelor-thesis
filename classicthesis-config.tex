@@ -305,3 +305,20 @@
 \defineshorthand{~=}{\hyp{}}
 
 \newcommand*{\fullref}[1]{\hyperref[{#1}]{\ref*{#1} \nameref*{#1}}}
+
+% table
+\usepackage{multirow}
+\usepackage{array}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
+\usepackage{longtable}
+
+\usepackage{diagbox}
+\usepackage{xltabular}
+\newcolumntype{Y}{>{\centering\arraybackslash}X}
+
+% symbols
+\usepackage{amssymb}% http://ctan.org/pkg/amssymb
+\usepackage{pifont}% http://ctan.org/pkg/pifont
+\newcommand{\cmark}{\ding{51}}
+\newcommand{\xmark}{\ding{55}}
+\newcommand{\nmark}{\ding{108}} %neutral
