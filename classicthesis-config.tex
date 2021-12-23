@@ -304,8 +304,6 @@
 \useshorthands{~}
 \defineshorthand{~=}{\hyp{}}
 
-\newcommand*{\fullref}[1]{\hyperref[{#1}]{\ref*{#1} \nameref*{#1}}}
-
 % table
 \usepackage{multirow}
 \usepackage{array}
@@ -314,6 +312,8 @@
 
 \usepackage{diagbox}
 \usepackage{xltabular}
+\usepackage{booktabs}
+
 \newcolumntype{Y}{>{\centering\arraybackslash}X}
 
 % symbols
@@ -322,3 +322,5 @@
 \newcommand{\cmark}{\ding{51}}
 \newcommand{\xmark}{\ding{55}}
 \newcommand{\nmark}{\ding{108}} %neutral
+
+\usepackage{multirow}
