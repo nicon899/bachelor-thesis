@@ -1,5 +1,5 @@
-\begin{xltabular}{\textwidth}{|p{.4\textwidth}|Y|Y|Y|Y|}
-\caption{Überblick der Azure Dienste in Bezug auf die Anforderungen (\cmark: Kann Anforderung erfüllen; \xmark: Kann Anforderung nicht erfüllen)} \label{table:eva} \\
+\begin{xltabular}{\textwidth}{|p{.3\textwidth}|Y|Y|Y|Y|}
+\caption{Überblick der Azure Dienste in Bezug auf die Anforderungen. Hinweis: Anforderungen und Dienste sind mit ihrer Beschreibung verlinkt. (\cmark: Kann Anforderung erfüllen; \xmark: Kann Anforderung voraussichtlich nicht erfüllen; \nmark: Kein direkter Bezug zu Anforderung)} \label{table:eva} \\
 
 \hline 
 \diagbox[innerwidth=\hsize]{{\textbf{Anforderung}}}{\textbf{Dienst}}
@@ -7,214 +7,203 @@
 & \rotatebox[origin=c]{90}{\textbf{SQL}}
 & \rotatebox[origin=c]{90}{\textbf{Cosmos DB}}
 & \rotatebox[origin=c]{90}{\textbf{ Data Lake Gen 2 }}
-\hline \endfirsthead
+\\ \hline
+\endfirsthead
 
-%\diagbox[width=10em]{Diag\\Column Head I}{Diag Column\\Head II} & \textbf{Table Storage} & \textbf{SQL} & \textbf{Cosmos DB} \\
-% \textbf{Anforderungen} & \textbf{Table Storage} & \textbf{SQL} & \textbf{Cosmos DB} \\
-% \hline
-
-\nameref{sec:anforderungsspezifikation:datenintegrationOnPremDB} 
+\hyperref[sec:anforderungsspezifikation:datenintegrationOnPremDB]{Datenintegration on-premise DB}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:datenintegrationCloudDB}
+\hyperref[sec:anforderungsspezifikation:datenintegrationCloudDB]{Datenintegration Cloud DB}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:datenintegrationREST}
+\hyperref[sec:anforderungsspezifikation:datenintegrationREST]{Datenintegration REST API}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:dauerhaftesSpeichern}
+\hyperref[sec:anforderungsspezifikation:dauerhaftesSpeichern]{Langfristige Datenspeicherung}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:datentransformation}
+\hyperref[sec:anforderungsspezifikation:datentransformation]{Datentransformation}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:datenanalysePythonUndR}
+\hyperref[sec:anforderungsspezifikation:datenAuswertung]{Auswertung der Daten}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:reports}
+\hyperref[sec:anforderungsspezifikation:datenanalysePythonUndR]{Analyse mit Python und R}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:selfServiceReports}
+\hyperref[sec:anforderungsspezifikation:reports]{Reporting}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:datenflussDokumentation} 
+\hyperref[sec:anforderungsspezifikation:selfServiceReports]{Self-Service Reporting}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:DatenKlassifizierung} 
+\hyperref[sec:anforderungsspezifikation:datenflussDokumentation]{Automatische Dokumentation des Datenflusses}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:vielfältigeVisualisierungsmöglichkeiten} 
+\hyperref[sec:anforderungsspezifikation:DatenKlassifizierung]{Datenklassifizierung}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:SchnelleDatenintegration} 
+\hyperref[sec:anforderungsspezifikation:vielfältigeVisualisierungsmöglichkeiten]{Vielfätlige Visualisierungmöglichkeiten}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:schnelleAntwortzeitenDerReports} 
+\hyperref[sec:anforderungsspezifikation:SchnelleDatenintegration]{Datenintegration in unter 60min}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:Datenkonsistenz} 
+\hyperref[sec:anforderungsspezifikation:schnelleAntwortzeitenDerReports]{Schnelle Antwortzeiten der Reports}
+& \nmark % Table Storage
+& ? % SQL
+& ? % Cosmos DB
+& ? % Data Lake Gen 2
+\\ \hline
+
+\hyperref[sec:anforderungsspezifikation:Datenkonsistenz]{Datenkonsistenz} 
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:verfügbarkeit} 
+\hyperref[sec:anforderungsspezifikation:verfügbarkeit]{Verfügbarkeit über 99,5\%}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:AutomatischeFehlerbehandlung} 
+\hyperref[sec:anforderungsspezifikation:AutomatischeFehlerbehandlung]{Automatischer Umgang mit Fehlern}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:speicherkapazität}
+\hyperref[sec:anforderungsspezifikation:speicherkapazität]{Speicherkapazität über 500GB}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:QuellsystemeÄndern} 
+\hyperref[sec:anforderungsspezifikation:QuellsystemeÄndern]{Hinzufügen/Entfernen von Quellsystemen}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:skalierungDerSpeicherkapazität} 
+\hyperref[sec:anforderungsspezifikation:skalierungDerSpeicherkapazität]{Automatische Skalierung der Speicherkapazität}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:langlebigkeit} 
+\hyperref[sec:anforderungsspezifikation:langlebigkeit]{Vorraussichtlich die nächsten 5 Jahre verfügbar}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:fehlerquellenIdentifizieren} 
+\hyperref[sec:anforderungsspezifikation:fehlerquellenIdentifizieren]{Unterstützung beim Fehler finden}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:einheitlicheTechnologie} 
+\hyperref[sec:anforderungsspezifikation:einheitlicheTechnologie]{Benötigte Technische Kenntnisse}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:rbac} 
+\hyperref[sec:anforderungsspezifikation:rbac]{Unterstützung von \ac{rbac}}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:SAG_AD} 
+\hyperref[sec:anforderungsspezifikation:SAG_AD]{Authentifizierung mit Active Directory}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:löschenKundendaten} 
+\hyperref[sec:anforderungsspezifikation:löschenKundendaten]{Alle Daten eines Kunden löschen}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:zugriffStandort} 
+\hyperref[sec:anforderungsspezifikation:verschlüsselung]{Verschlüsselung der Daten}
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:löschenKundendaten} 
+Geschätzte Kosten
 & ? % Table Storage
 & ? % SQL
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
-\nameref{sec:anforderungsspezifikation:verschlüsselung} 
-& ? % Table Storage
-& ? % SQL
-& ? % Cosmos DB
-& ? % Data Lake Gen 2
-\\ \hline
-
-\nameref{sec:anforderungsspezifikation:dsgvo} 
-& ? % Table Storage
-& ? % SQL
-& ? % Cosmos DB
-& ? % Data Lake Gen 2
-\\ \hline
-
-\hline
 \end{xltabular}
