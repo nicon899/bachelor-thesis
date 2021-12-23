@@ -31,35 +31,35 @@
 \hyperref[sec:anforderungsspezifikation:datenintegrationOnPremDB]{On-premise DB}
 & \xmark % Table Storage
 & \xmark % SQL
-& ? % Cosmos DB
+& \xmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:datenintegrationCloudDB]{Cloud DB}
 & \xmark  % Table Storage
 & \xmark % SQL
-& ? % Cosmos DB
+& \xmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:datenintegrationREST]{REST API}
 & \xmark % Table Storage
 & \xmark % SQL
-& ? % Cosmos DB
+& \xmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:QuellsystemeÄndern]{Hinzufügen/Entfernen}
 & \nmark  % Table Storage
 & \nmark  % SQL
-& ? % Cosmos DB
+& \nmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\ 
 
 \hyperref[sec:anforderungsspezifikation:SchnelleDatenintegration]{Dauer unter 60min}
 & \nmark  % Table Storage
 & \nmark % SQL
-& ? % Cosmos DB
+& \nmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
@@ -74,21 +74,21 @@
 \hyperref[sec:anforderungsspezifikation:dauerhaftesSpeichern]{Langfristige Speicherung}
 & \cmark % Table Storage
 & \cmark % SQL
-& ? % Cosmos DB
+& \cmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\ 
 
 \hyperref[sec:anforderungsspezifikation:speicherkapazität]{Kapazität >500GB}
 & \cmark % Table Storage
 & \cmark % SQL
-& ? % Cosmos DB
+& \cmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:skalierungDerSpeicherkapazität]{Automatische Skalierung}
 & \cmark % Table Storage
 & \xmark\footnote{Skalierung muss von außen gestartet werden, alles andere geschieht automatisch.} % SQL
-& ? % Cosmos DB
+& \cmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
@@ -103,21 +103,21 @@
 \hyperref[sec:anforderungsspezifikation:datentransformation]{Datentransformation}
 & \xmark  % Table Storage
 & \cmark \cite{kellenberger_beginning_2021} % SQL
-& ? % Cosmos DB
+& (\cmark)\footnote{\label{note1}Abhängig von ausgewählter API} % Cosmos DB
 & ? % Data Lake Gen 2
 \\ 
 
 \hyperref[sec:anforderungsspezifikation:datenAuswertung]{Auswertung der Daten}
 & \xmark  % Table Storage
 & \cmark \cite{kellenberger_beginning_2021} % SQL
-& ? % Cosmos DB
+& (\cmark)\footnoteref{note1} % Cosmos DB
 & ? % Data Lake Gen 2
 \\ 
 
 \hyperref[sec:anforderungsspezifikation:datenanalysePythonUndR]{Analyse mit Python und R}
 & \xmark  % Table Storage
 & \xmark % SQL
-& ? % Cosmos DB
+& \xmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
@@ -132,28 +132,28 @@
 \hyperref[sec:anforderungsspezifikation:reports]{Reports bereitstellen}
 & \xmark  % Table Storage
 & \xmark % SQL
-& ? % Cosmos DB
+& \xmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:selfServiceReports]{Self-Service Reports}
 & \xmark  % Table Storage
 & \xmark % SQL
-& ? % Cosmos DB
+& \xmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:vielfältigeVisualisierungsmöglichkeiten]{Vielfätlige Visualisierungen}
 & \nmark  % Table Storage
 & \nmark % SQL
-& ? % Cosmos DB
+& \nmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:schnelleAntwortzeitenDerReports]{Schnelle Antwortzeiten}
 & \nmark  % Table Storage
 & \nmark % SQL
-& ? % Cosmos DB
+& \nmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
@@ -168,42 +168,42 @@
 \hyperref[sec:anforderungsspezifikation:verschlüsselung]{Verschlüsselung der Daten}
 & \cmark % Table Storage
 & \cmark % SQL
-& ? % Cosmos DB
+& \cmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:SAG_AD]{Authentifizierung mit \ac{aad}}
 & \xmark % Table Storage
 & \cmark \cite{juliemsft_sicherheit_2021} % SQL
-& ? % Cosmos DB
+& \cmark \cite{weiss_informationen_2021} % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:rbac]{Verwendung von \ac{rbac}}
 & \xmark % Table Storage
 & \cmark \cite{juliemsft_sicherheit_2021} % SQL
-& ? % Cosmos DB
+& \cmark \cite{weiss_informationen_2021} % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:datenflussDokumentation]{Datenflussdokumentation}
 & \xmark % Table Storage
 & \xmark % SQL
-& ? % Cosmos DB
+& \xmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:DatenKlassifizierung]{Datenklassifizierung}
 & \xmark % Table Storage
 & \xmark % SQL
-& ? % Cosmos DB
+& \xmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:löschenKundendaten]{Recht auf Vergessenwerden}
 & (\cmark)\footnote{Wenn eindeutige Kundenkennzeichnung als Schlüssel verwendet wird} % Table Storage
 & \cmark % SQL
-& ? % Cosmos DB
+& \cmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
@@ -217,36 +217,36 @@
 
 \hyperref[sec:anforderungsspezifikation:verfügbarkeit]{Verfügbarkeit über 99,5\%}
 & \cmark \cite{soh_microsoft_2020} % Table Storage
-& \cmark \cite{mashamsft_what_2021} % SQL
-& ? % Cosmos DB
+& \cmark \cite{little_what_2021} % SQL
+& \cmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:langlebigkeit]{Nächsten 5 Jahre verfügbar}
 & \cmark % Table Storage
 & \cmark % SQL
-& ? % Cosmos DB
+& \cmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:Datenkonsistenz]{Erhaltung Datenkonsistenz}
 & \xmark % Table Storage
 & \cmark % SQL
-& ? % Cosmos DB
+& \cmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:fehlerquellenIdentifizieren]{Einfaches Fehler finden}
-& \cmark \cite{microsoft_azure_2021} % Table Storage
+& \cmark \cite{estabrook_azure_2021} % Table Storage
 & \xmark  % SQL
-& ? % Cosmos DB
+& \xmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\
 
 \hyperref[sec:anforderungsspezifikation:AutomatischeFehlerbehandlung]{Auto. Umgang mit Fehlern}
 & \cmark \cite{reagan_web_2018} % Table Storage
 & \cmark % SQL
-& ? % Cosmos DB
+& \xmark % Cosmos DB
 & ? % Data Lake Gen 2
 \\ \hline
 
