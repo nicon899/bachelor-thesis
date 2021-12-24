@@ -32,12 +32,21 @@ Dabei werden verschiedene APIs zum Zugriff auf die Daten angeboten, wie unter an
 Das Feature \textit{Turnkey Global Distribution} beschreibt die automatisierbare Replikation über verschiedene Regionen. Dadurch können weltweit geringe Latenzzeiten gewährleistet werden. Die einzige notwendige Konfiguration ist dabei die Auswahl der gewünschten Regionen, alles andere wird automatisch von Azure übernommen. Gleichzeitig wird eine Verfügbarkeit von über 99,99\% in den \acp{sla} zugesichert.
 
 Sowohl der Durchsatz, der in \acp{ru} gemessen wird, als auch die Speicherkapazität kann dynamisch nach Bedarf skaliert werden. Davon sind auch die entstehenden Kosten abhängig.
-\cite{guay_paz_learning_2018}\cite{mrzyglod_hands-azure_2018}
+\cite{guay_paz_microsoft_2018}\cite{mrzyglod_hands-azure_2018}
 
 \textbf{Fazit}: Besonders das gleichzeitige Verwenden mehrerer Datenmodelle macht aus Cosmos DB eine interessante Möglichkeit für ein BI-System. Für alle gespeicherten Daten, kann das Modell verwendet werden, dass für den benötigten Anwendungsfall optimal ist.
 
 \subsection{Azure Data Lake Gen 2} \label{sec:grundlagen:azure_dienste:dataLake}
-\acp{blob} sind unstrukturierte Dateien, die sich nicht zum Speichern in einer Datenbank eignen. Eine kostengünstige Möglichkeit, diese in der Cloud abzulegen, ist der Blob Storage. Auf diesen Dienst baut auch der Data Lake Gen 2 auf, welcher für die Analyse der gespeicherten Daten spezialisiert wurde \cite{soh_microsoft_2020}.
+\acp{blob} sind unstrukturierte Dateien, die sich nicht zum Speichern in einer Datenbank eignen. Eine kostengünstige Möglichkeit, diese in der Cloud abzulegen, ist der Blob Storage. Auf diesen Dienst baut auch der Data Lake Gen 2 auf, welcher für die Analyse der gespeicherten Daten spezialisiert wurde. Organisieren lassen sich die Dateien in einer hierarchischen Ordnerstruktur \cite{soh_microsoft_2020}.
+
+Der Data Lake ist in verschiedene Schichten eingeteilt. Die oberste Ebene bezieht sich auf die Umgebung, wie zum Beispiel Entwicklung, Test oder Produktion. Innerhalb einer Umgebung kann es einen oder mehrere Storage Accounts geben. In dieser Schicht können Einstellungen, wie die Leistungsstufe, oder die Replikationsmethode gesetzt werden. Die Leistungsstufe bestimmt unter anderem, ob ein günstiger Magnetspeicher oder Solid-State-Festplatten für schneller Lese-/Schreib-Prozesse, verwendet wird. Die nächste Schicht ist das Dateisystem in dem sich die Verzeichnisse und Dateien befinden.
+
+Azure Data Lake Gen 2 verschlüsselt die Daten, während sie sich in Ruhe befinden oder bewegt werden, automatisch.
+
+Der Zugriff auf den Data Lake kann auf der Storage Account Ebene über \ac{rbac} gesteuert werden. Für eine granulare Zugriffskontrolle können auf der Verzeichnis/Ordner-Ebene POSIX-Artige Zugriffssteuerungslisten (ACLs) konfiguriert werden \cite{lesteve_definitive_2021}.
+
+
+
 
 \subsection{Azure Logic Apps} \label{sec:grundlagen:azure_dienste:logicApps}
 Mit diesem Dienst können automatisierte Workflows zur Datenintegration erstellt werden. Die Workflows sind sehr anpassungsfähig und es steht eine Vielzahl an vorgefertigten Konnektoren zur Verfügung \cite{kumar_serverless_2019}.
@@ -67,4 +76,4 @@ Dieser Dienst kann als Semantik-Schicht zwischen \ac{dwh} und Endnutzer agieren.
 Power BI ist Microsofts Dienst zum Visualisieren von Daten. Es werden aber auch \ac{etl} Prozesse und Datenanalyse auf Basis von Analysis Services bereitgestellt. Mit Power BI können vorgefertigte und Self-Service Reports erstellt werden \cite{how_beyond_2020}.
 
 \subsection{Azure Purview} \label{sec:grundlagen:azure_dienste:purview}
-Purview dient der zentralen Verwaltung der Datengovernance, sowohl in Cloud- als auch on-premise Umgebungen. Dies ermöglichst beispielsweise, mit wenig Aufwand Datenquellen aufzufinden \cite{lesteve_purview_2021}.
+Purview dient der zentralen Verwaltung der Datengovernance, sowohl in Cloud- als auch on-premise Umgebungen. Dies ermöglichst beispielsweise, mit wenig Aufwand Datenquellen aufzufinden \cite{lesteve_definitive_2021}.
