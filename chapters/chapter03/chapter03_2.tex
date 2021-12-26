@@ -1,5 +1,7 @@
 \section{Evaluation von Azure Diensten} \label{sec:evaluation}
-Im Folgenden sollen einige Azure Dienste evaluiert werden, mit dem Ziel anschließend eine Auswahl zu treffen, aus der ein BI-System entworfen werden kann, dass die festgelegten Anforderungen erfüllt. Die untersuchten Dienste werden jeweils kurz vorgestellt und es wird auf die wichtigsten Funktionen, Vor- und Nachteile eingegangen, die im Rahmen einer Literaturrecherche gefunden werden konnten. Eine vollständige Bewertung der Dienste in Bezug auf die Anforderungen kann in Tabelle~\ref{table:eva} gefunden werden.
+Im Folgenden sollen einige Azure Dienste, die im Rahmen einer Literaturrecherche ausgewählt wurden, evaluiert werden, mit dem Ziel, aus den gewonnen Erkenntnissen ein BI-System zu entwerfen, dass die festgelegten Anforderungen erfüllt. Dienste, die innerhalb der nächsten fünf Jahre eingestellt werden, wurden vorab ausgeschlossen und Funktionen, die sich noch in der Preview befinden, werden als nicht existent betrachtet. 
+
+Die untersuchten Dienste werden jeweils kurz vorgestellt und es wird auf die wichtigsten Funktionen, Vor- und Nachteile eingegangen, die in bestehender Literatur und den jeweiligen Dokumentationen gefunden werden konnten. Eine Einschätzung der Dienste in Bezug auf die Anforderungen kann in Tabelle~\ref{table:eva} gefunden werden.
 
 \subsection{Azure Table Storage} \label{sec:grundlagen:azure_dienste:tableStorage}
 Der NoSQL-Dienst Table Storage gehört zu den günstigsten Speichermöglichkeiten in Azure. Die Daten werden als Schlüssel/Wert-Paare in Tabellen gespeichert, diese sind jedoch nicht relational und können nicht miteinander gejoint werden. Eine Tabelle besteht aus einer oder mehreren Partitionen und eine Partition besteht aus ein oder mehreren Zeilen. Auf jeden Tabelleneintrag kann über einen eindeutigen Schlüssel zugegriffen werden. Dieser ist eine Kombination aus Partitions- und Zeilen-Schlüssel. Die Partitionierung über mehrere Server ermöglicht es Datenmengen im dreistelligen Terabyte Bereich zu speichern \cite{reagan_web_2018}.
@@ -45,17 +47,21 @@ Azure Data Lake Gen 2 verschlüsselt die Daten, während sie sich in Ruhe befind
 
 Der Zugriff auf den Data Lake kann auf der Storage Account Ebene über \ac{rbac} gesteuert werden. Für eine granulare Zugriffskontrolle können auf der Verzeichnis/Ordner-Ebene POSIX-Artige Zugriffssteuerungslisten (ACLs) konfiguriert werden \cite{lesteve_definitive_2021}.
 
-
-
-
 \subsection{Azure Logic Apps} \label{sec:grundlagen:azure_dienste:logicApps}
 Mit diesem Dienst können automatisierte Workflows zur Datenintegration erstellt werden. Die Workflows sind sehr anpassungsfähig und es steht eine Vielzahl an vorgefertigten Konnektoren zur Verfügung \cite{kumar_serverless_2019}.
 
+Ein Logic Apps Workflow besteht aus zusammenhängenden Aktivitäten, in einer bestimmten Reihenfolge. Die erste Aktivität ist immer ein Trigger, der die Ausführung des Workflows startet. Alle weiteren Aktivitäten sind Aktionen, die jeweils eine einzige Aufgabe erfüllen und nacheinander abgearbeitet werden. Hier können auch die Konnektoren verwendet werden, mit denen eine Verbindung zu externen Ressourcen aufgebaut werden kann. Die Verbindung ist zu Cloud und on-premise Ressourcen möglich. Die Workflows können über eine Drag-and-Drop-Benutzeroberfläche erstellt werden \cite{modi_azure_2020}.
+
+Auch Datentransformationen, wie mathematische Berechnungen und Textmanipulationen, sind in einem Workflow mit möglich. Dazu werden \ac{dax} Funktionen verwendet, welche mit Excel Formeln vergleichbar sind \cite{bennett_enterprise_2021}.
+
+Beim Eintreten von Fehlern werden vorher festgelegte Wiederholungsrichtlinien ausgeführt. Es ist ebenfalls möglich, nach einem aufgetretenen Fehler, mit einer alternativen Aktion fortzufahren, um zum Beispiel eine zuständige Person per E-Mail zu informieren \cite{fan_handle_2021}. Die in den \acp{sla} zugesicherte Verfügbarkeit beträgt 99,99\% \cite{microsoft_sla_2016}.
+
+Für eine ausreichende Sicherheit werden die Daten während der Übertragung mit TLS und im Ruhezustand verschlüsselt. Auch die Authentifizierung mit \ac{aad} und Autorisierung durch \ac{rbac} wird unterstützt \cite{baldwin_azure_2021}. 
+
+\textbf{Fazit}: Mit den angebotenen Konnektoren von Logic Apps, können alle hier benötigten Quellsysteme integriert werden \cite[vgl.][]{fan_verwaltete_2021}. Vor dem Speichern können die Daten bei Bedarf verarbeitet werden. Dieser Dienst ist außerdem performant und benötigt für die meisten Ausführungen nur wenige Sekunden \cite{bennett_enterprise_2021}. Durch die Manipulationsmöglichkeiten wäre auch ein Verarbeitungsschritt möglich, in dem nach festen Regeln Attribute zur Datenklassifikation ergänzt werden.
+
 \subsection{Azure Data Factory} \label{sec:grundlagen:azure_dienste:dataFactory}
 Data Factory ist ein Datenintegrationsdienst, der für on-premise und Cloud Systeme genutzt werden kann. Der Dienst wurde speziell für den gemeinsamen Einsatz mit anderen Diensten entwickelt und übernimmt dabei die Bewegung, Transformation und Verarbeitung der Daten, zwischen den unterschiedlichen Systemen \cite{klein_iot_2017}.
-
-\subsection{Azure Data Lake Analytics} \label{sec:grundlagen:azure_dienste:dataLakeAnalytics}
-Dieser Dienst ist für eine möglichst einfache und kosteneffektive Big Data Anaylse ausgelegt. Für die Analysen wird die Abfragesprache U-SQL (Unified SQL) verwendet, welche die Stärken von SQL und C\# miteinander vereint \cite{klein_iot_2017}. 
 
 \subsection{Azure HDInsight} \label{sec:grundlagen:azure_dienste:hdInsight}
 Bei HDInsight handelt es sich um Apache Hadoop, als vollständig verwalteten Cloud Dienst. Hadoop ist eine Sammlung von Open~=Source Komponenten, die für die verteilte Verarbeitung und Analyse großer Datensätze konzipiert wurden. Dieser Dienst ist vergleichsweise komplex, da individuelle Konfigurationen notwendig sind \cite{klein_iot_2017}.
