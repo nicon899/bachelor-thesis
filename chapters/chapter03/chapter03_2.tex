@@ -31,7 +31,7 @@ Bei diesem Dienst handelt es sich um eine NoSQL-Datenbank, die mehrere Datenmode
 
 Dabei werden verschiedene APIs zum Zugriff auf die Daten angeboten, wie unter anderem DocumentDB SQL (bietet gängige SQL-Abfragefunktionen), MongoDB, Apache Casandra, Graph und Table (bietet gleiche Funktionalität wie Azure Table). Auch das Konsistenzniveau der Daten kann aus fünf Ebenen, von starker bis eventueller Konsistenz, gewählt werden.
 
-Das Feature \textit{Turnkey Global Distribution} beschreibt die automatisierbare Replikation über verschiedene Regionen. Dadurch können weltweit geringe Latenzzeiten gewährleistet werden. Die einzige notwendige Konfiguration ist dabei die Auswahl der gewünschten Regionen, alles andere wird automatisch von Azure übernommen. Gleichzeitig wird eine Verfügbarkeit von über 99,99\% in den \acp{sla} zugesichert.
+Das Feature \textit{Turnkey Global Distribution} beschreibt die automatisierbare Replikation über verschiedene Regionen. Dadurch können weltweit geringe Latenzzeiten gewährleistet werden. Die einzige notwendige Konfiguration ist dabei die Auswahl der gewünschten Regionen, alles andere wird automatisch von Azure übernommen.
 
 Sowohl der Durchsatz, der in \acp{ru} gemessen wird, als auch die Speicherkapazität kann dynamisch nach Bedarf skaliert werden. Davon sind auch die entstehenden Kosten abhängig.
 \cite{guay_paz_microsoft_2018}\cite{mrzyglod_hands-azure_2018}
@@ -54,14 +54,24 @@ Ein Logic Apps Workflow besteht aus zusammenhängenden Aktivitäten, in einer be
 
 Auch Datentransformationen, wie mathematische Berechnungen und Textmanipulationen, sind in einem Workflow mit möglich. Dazu werden \ac{dax} Funktionen verwendet, welche mit Excel Formeln vergleichbar sind \cite{bennett_enterprise_2021}.
 
-Beim Eintreten von Fehlern werden vorher festgelegte Wiederholungsrichtlinien ausgeführt. Es ist ebenfalls möglich, nach einem aufgetretenen Fehler, mit einer alternativen Aktion fortzufahren, um zum Beispiel eine zuständige Person per E-Mail zu informieren \cite{fan_handle_2021}. Die in den \acp{sla} zugesicherte Verfügbarkeit beträgt 99,99\% \cite{microsoft_sla_2016}.
+Beim Eintreten von Fehlern werden vorher festgelegte Wiederholungsrichtlinien ausgeführt. Es ist ebenfalls möglich, nach einem aufgetretenen Fehler, mit einer alternativen Aktion fortzufahren, um zum Beispiel eine zuständige Person per E-Mail zu informieren \cite{fan_handle_2021}.
 
 Für eine ausreichende Sicherheit werden die Daten während der Übertragung mit TLS und im Ruhezustand verschlüsselt. Auch die Authentifizierung mit \ac{aad} und Autorisierung durch \ac{rbac} wird unterstützt \cite{baldwin_azure_2021}. 
 
 \textbf{Fazit}: Mit den angebotenen Konnektoren von Logic Apps, können alle hier benötigten Quellsysteme integriert werden \cite[vgl.][]{fan_verwaltete_2021}. Vor dem Speichern können die Daten bei Bedarf verarbeitet werden. Dieser Dienst ist außerdem performant und benötigt für die meisten Ausführungen nur wenige Sekunden \cite{bennett_enterprise_2021}. Durch die Manipulationsmöglichkeiten wäre auch ein Verarbeitungsschritt möglich, in dem nach festen Regeln Attribute zur Datenklassifikation ergänzt werden.
 
 \subsection{Azure Data Factory} \label{sec:grundlagen:azure_dienste:dataFactory}
-Data Factory ist ein Datenintegrationsdienst, der für on-premise und Cloud Systeme genutzt werden kann. Der Dienst wurde speziell für den gemeinsamen Einsatz mit anderen Diensten entwickelt und übernimmt dabei die Bewegung, Transformation und Verarbeitung der Daten, zwischen den unterschiedlichen Systemen \cite{klein_iot_2017}.
+\ac{adf} ist ein Datenintegrationsdienst, der für on-premise und Cloud Systeme genutzt werden kann. Der Dienst wurde speziell für den gemeinsamen Einsatz mit anderen Diensten entwickelt und übernimmt dabei die Bewegung, Transformation und Verarbeitung der Daten, zwischen den unterschiedlichen Systemen \cite{klein_iot_2017}.
+
+Der ETL-Prozess wird als Pipeline implementiert. Eine Pipeline ist eine Sammlung von Aktivitäten zum Bewegen und Transformieren von Daten. 
+
+Die \textit{Azure Data Factory User Experience} bietet eine webbasierte IDE für die visuelle Erstellung, Planung und Überwachung von Pipelines. Das \textit{Copy Data tool} führt einen schrittweise durch die Erstellung einer neuen Pipeline, die Daten von einer Ressource zu einer anderen verschiebt. Dabei werden unter anderen Datenspeicher- und Computedienste mit der \ac{adf} verknüpft. Die Trennung dieser hat den Vorteil, dass beides unabhängig voneinander nach Bedarf skaliert werden kann.
+
+\ac{adf} besitzt keinen eigenen Speicher, sondern verwendet ausschließlich die verknüpften Dienste. Ein verknüpfter Dienst besteht aus den notwendigen Metadaten für eine Verbindung, beispielsweise die Verbindungszeichenfolge für eine Datenbank. Metadaten, die konkrete Objekte im verknüpften Speicherdienst beschreiben, werden als Dataset definiert. 
+
+Für die Verarbeitung der Daten können verknüpfte Dienste, wie Azure Databricks oder HDInsight verwendet werden. Alternativ bietet eine \textit{integration runtime} Zugang zu internen Rechenressourcen innerhalb von \ac{adf} \cite{swinbank_your_2021}.
+
+\textbf{Fazit}: \ac{adf} könnte im neuen BI-System für die Datenintegration genutzt werden. Im Gegensatz zu Logic Apps setzt dieser Dienst auf die Zusammenarbeit mit weiteren Azure Ressourcen, um den ETL-Prozess durchzuführen, was zu einem komplexeren Gesamtsystem führen könnte.
 
 \subsection{Azure HDInsight} \label{sec:grundlagen:azure_dienste:hdInsight}
 Bei HDInsight handelt es sich um Apache Hadoop, als vollständig verwalteten Cloud Dienst. Hadoop ist eine Sammlung von Open~=Source Komponenten, die für die verteilte Verarbeitung und Analyse großer Datensätze konzipiert wurden. Dieser Dienst ist vergleichsweise komplex, da individuelle Konfigurationen notwendig sind \cite{klein_iot_2017}.
