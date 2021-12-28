@@ -21,14 +21,17 @@ Daher ist der Table Storage hier nicht geeignet, um als alleinstehende Speicherl
 \subsection{Azure SQL} \label{sec:grundlagen:azure_dienste:sql}
 Azure SQL ist eine relationale Datenbank, die vergleichbar mit dem on-premise Microsoft SQL Server, der im aktuellen BI-System genutzt wird, ist. Bei einer Migration hat dies den Vorteil, dass die meisten SQL-Queries zum Laden und Transformieren von Daten, ohne Anpassung verwendet werden können. Der Einsatz von Azure SQL empfiehlt sich besonders, wenn hochgradig relationale Daten vorliegen. Die alternativen relationalen Datenbanken in Azure, wie MySQL und PostgresSQL, werden in dieser Arbeit nicht betrachtet.
 
-Ruhende Daten werden von Azure SQL automatisch verschlüsselt. Die Konsistenz der gespeicherten Daten kann durch die Wahl eines geeigneten Datenmodells erreicht werden. Für relationale Datenbanken wird die Normalisierung der Daten empfohlen. Das bedeutet, dass es keine doppelten Werte gibt und die Tabellen in einer angemessenen Beziehung zueinander stehen.
+Ruhende Daten werden von Azure SQL automatisch verschlüsselt. Die Konsistenz der gespeicherten Daten kann durch die Wahl eines geeigneten Datenmodells erreicht werden \cite{reagan_web_2018}.
+
+Die Autorisierung über das \ac{aad} und mit \ac{rbac} wird von der SQL-Datenbank unterstützt \cite{wolter_authorize_2021}.
 
 Die Azure SQL Datenbank wird in einer virtualisierten Umgebung gehostet. Die Performance ist von DTUs abhängig, welche eine Kombination aus CPU, Speicher und der Anzahl an unterstützten Lese-/ und Schreib-Prozessen von Daten und auf dem Transaktionsprotokoll sind. Durch eine Drosselung schlagen Abfragen fehl, wenn die festgelegten Limits der SQL-Datenbank-Instanz überschritten werden. Es gibt jedoch Möglichkeiten dieses Problem durch eine automatische Wiederholungslogik bei den Abfragen zu lösen. Die DTUs sowie die Speicherkapazität sind abhängig von der gewählten Preisstufe.
 
+Es gibt zwei Möglichkeiten, die Performance zu verbessern. Solange die oberste Preisstufe noch nicht erreicht wurde, ist das Erhöhen dieser der einfachste Weg, Leistung und Speicherkapazität zu steigern. Azure führt dazu alle notwendigen Schritte zum Ändern der Datenbank automatisch im Hintergrund aus. Eine automatische Skalierung nach Bedarf wird jedoch nicht unterstützt. Die zweite deutlich komplexere Option ist die horizontale Partitionierung der Daten auf mehrere SQL-Instanzen (Sharding) \cite{reagan_web_2018}.
 
-Es gibt zwei Möglichkeiten, die Performance zu verbessern. Solange die oberste Preisstufe noch nicht erreicht wurde, ist das Erhöhen dieser der einfachste Weg, Leistung und Speicherkapazität zu steigern. Azure führt dazu alle notwendigen Schritte zum Ändern der Datenbank automatisch im Hintergrund aus. Eine automatische Skalierung nach Bedarf wird jedoch nicht unterstützt. Die zweite deutlich komplexere Option ist die horizontale Partitionierung der Daten auf mehrere SQL-Instanzen (Sharding). \cite{reagan_web_2018}
+Die Abfragesprache T-SQL bietet einige Möglichkeiten zum Transformieren und Auswerten der Daten, wie zum Beispiel die Umwandlung in einen anderen Datentyp oder die Durchführung von mathematischen Berechnungen \cite[vgl.][]{kellenberger_beginning_2021}.
 
-\textbf{Fazit}: Der größte Vorteil von Azure SQL ist, dass alle zu migrierenden Daten bereits in einem relationalen Datenmodell vorliegen. Auch die festgelegten Leistungsanforderungen können mit einer einzigen Instanz abgedeckt werden. Daher sind die potenziellen Probleme und hohen Kosten, die beim Sharding entstehen könnten, hier irrelevant.
+\textbf{Fazit}: Der größte Vorteil von Azure SQL ist, dass alle zu migrierenden Daten bereits in einem relationalen Datenmodell vorliegen. Auch die festgelegten Leistungsanforderungen können mit einer einzigen Instanz abgedeckt werden. Daher sind die potenziellen Probleme und hohen Kosten, die beim Sharding entstehen könnten, hier irrelevant. Zusätzlich eignet sich die T-SQL für einfache Datenverarbeitungen, wobei auch hier die meisten Skripte aus dem Bestandssystem übernommen werden könnten.
 
 \subsection{Azure Cosmos DB} \label{sec:grundlagen:azure_dienste:cosmosDB}
 Bei diesem Dienst handelt es sich um eine NoSQL-Datenbank, die mehrere Datenmodelle, wie Schlüssel-Wert, Dokument oder Graph, unterstützt. Intern werden die Daten als Dokumente im JSON-Format gespeichert. Solange die Daten sich in Ruhe befinden, sind sie verschlüsselt.
@@ -40,16 +43,20 @@ Das Feature \textit{Turnkey Global Distribution} beschreibt die automatisierbare
 Sowohl der Durchsatz, der in \acp{ru} gemessen wird, als auch die Speicherkapazität kann dynamisch nach Bedarf skaliert werden. Davon sind auch die entstehenden Kosten abhängig.
 \cite{guay_paz_microsoft_2018}\cite{mrzyglod_hands-azure_2018}
 
-\textbf{Fazit}: Besonders das gleichzeitige Verwenden mehrerer Datenmodelle macht aus Cosmos DB eine interessante Möglichkeit für ein BI-System. Für alle gespeicherten Daten, kann das Modell verwendet werden, dass für den benötigten Anwendungsfall optimal ist.
+Der Zugriff auf Cosmos DB kann über \ac{aad} und \ac{rbac} kontrolliert werden \cite{weiss_azure_2021}.
+
+\textbf{Fazit}: Besonders das gleichzeitige Verwenden mehrerer Datenmodelle macht aus Cosmos DB eine interessante Möglichkeit für ein BI-System. Für alle gespeicherten Daten, kann das Modell verwendet werden, dass für den benötigten Anwendungsfall optimal ist. Von der gewählten API sind auch die Möglichkeiten zur Datenfernverarbeitung mit diesem Dienst abhängig. Während die Table API dafür ungeeignet ist, sind mit der SQL-Artigen DocumentDB Transformationen und Auswertungen möglich.
 
 \subsection{Azure Data Lake Gen 2} \label{sec:grundlagen:azure_dienste:dataLake}
 \acp{blob} sind unstrukturierte Dateien, die sich nicht zum Speichern in einer Datenbank eignen. Eine kostengünstige Möglichkeit, diese in der Cloud abzulegen, ist der Blob Storage. Auf diesen Dienst baut auch der Data Lake Gen 2 auf, welcher für die Analyse der gespeicherten Daten spezialisiert wurde. Organisieren lassen sich die Dateien in einer hierarchischen Ordnerstruktur \cite{soh_microsoft_2020}.
 
 Der Data Lake ist in verschiedene Schichten eingeteilt. Die oberste Ebene bezieht sich auf die Umgebung, wie zum Beispiel Entwicklung, Test oder Produktion. Innerhalb einer Umgebung kann es einen oder mehrere Storage Accounts geben. In dieser Schicht können Einstellungen, wie die Leistungsstufe, oder die Replikationsmethode gesetzt werden. Die Leistungsstufe bestimmt unter anderem, ob ein günstiger Magnetspeicher oder Solid-State-Festplatten für schneller Lese-/Schreib-Prozesse, verwendet wird. Die nächste Schicht ist das Dateisystem in dem sich die Verzeichnisse und Dateien befinden.
 
-Azure Data Lake Gen 2 verschlüsselt die Daten, während sie sich in Ruhe befinden oder bewegt werden, automatisch.
+Azure Data Lake Gen 2 verschlüsselt die Daten, während sie sich in Ruhe befinden oder bewegt werden, automatisch. Der Zugriff auf den Data Lake kann auf der Storage Account Ebene über \ac{rbac} gesteuert werden. Für eine granulare Zugriffskontrolle können auf der Verzeichnis/Ordner-Ebene POSIX-Artige Zugriffssteuerungslisten (ACLs) konfiguriert werden.
 
-Der Zugriff auf den Data Lake kann auf der Storage Account Ebene über \ac{rbac} gesteuert werden. Für eine granulare Zugriffskontrolle können auf der Verzeichnis/Ordner-Ebene POSIX-Artige Zugriffssteuerungslisten (ACLs) konfiguriert werden \cite{lesteve_definitive_2021}.
+Mit Hilfe der Dienste \ac{adf} oder Azure Databricks kann der Data Lake um das Open-Source-Layer \textit{Delta Lake} erweitert werden. Durch dieses wird aus dem Data Lake eine ACID-konforme Speicherlösung und die Atomarität, Konsistenz, Isolation und Dauerhaftigkeit der Daten kann garantiert werden \cite{lesteve_definitive_2021}. Der Delta Lake ermöglicht es außerdem deutlich effizienter Personendaten bei Bedarf zu löschen \cite{brown_best_2021}.
+
+\textbf{Fazit}: Die Verwendung von Azure Data Lake Gen 2 ist sinnvoll, wenn viele oder große \ac{blob}-Dateien gespeichert werden müssen. Dies ist zunächst kein Anwendungsfall, der im neuen BI-System benötigt wird. Sollten sich die Anforderungen in Zukunft ändern, könnte Data Lake jedoch eine gute Ergänzung zu einer Datenbank sein.
 
 \subsection{Azure Logic Apps} \label{sec:grundlagen:azure_dienste:logicApps}
 Mit diesem Dienst können automatisierte Workflows zur Datenintegration erstellt werden. Die Workflows sind sehr anpassungsfähig und es steht eine Vielzahl an vorgefertigten Konnektoren zur Verfügung \cite{kumar_serverless_2019}.
@@ -79,6 +86,21 @@ Für die Verarbeitung der Daten können verknüpfte Dienste, wie Azure Databrick
 
 \subsection{Azure HDInsight} \label{sec:grundlagen:azure_dienste:hdInsight}
 Bei HDInsight handelt es sich um Apache Hadoop, als vollständig verwalteten Cloud Dienst. Hadoop ist eine Sammlung von Open~=Source Komponenten, die für die verteilte Verarbeitung und Analyse großer Datensätze konzipiert wurden. Dieser Dienst ist vergleichsweise komplex, da individuelle Konfigurationen notwendig sind \cite{klein_iot_2017}.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Azure Databricks} \label{sec:grundlagen:azure_dienste:databricks}
 Databricks setzt Apache Spark als Cloud-Dienst um. Letzteres ist ein weiteres Open-Source Framework für die Big Data Analyse. Im Gegensatz zu Hadoop werden die Daten zur schnelleren Verarbeitung im Arbeitsspeicher vorgehalten. Ein weiteres Feature ist die mögliche Echtzeitverarbeitung von Streaming-Daten \cite{soh_data_2020}.

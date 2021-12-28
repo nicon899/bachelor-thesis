@@ -107,11 +107,11 @@
 & \xmark % Purview
 \\
 
-\hyperref[sec:anforderungsspezifikation:Datenkonsistenz]{Integrität}
+\hyperref[sec:anforderungsspezifikation:Datenkonsistenz]{Integrität und Konsistenz}
 & \xmark % Table Storage
 & \cmark % SQL
 & \cmark % Cosmos DB
-& (\cmark)\footnote{Open-Source-Layer \textit{Delta Lake} ermöglicht ACID-Konformität \cite[vgl.][]{lesteve_definitive_2021}} % Data Lake Gen 2
+& (\cmark) % Data Lake Gen 2
 & \nmark % Logic Apps
 & \nmark % Data Factory
 & \xmark % Purview
@@ -150,8 +150,8 @@
 
 \hyperref[sec:anforderungsspezifikation:datentransformation]{Datentransformation}
 & \xmark  % Table Storage
-& \cmark \cite{kellenberger_beginning_2021} % SQL
-& (\cmark)\footnote{\label{note1}Abhängig von ausgewählter API} % Cosmos DB
+& \cmark  % SQL
+& (\cmark) % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
 & \cmark % Data Factory
@@ -160,8 +160,8 @@
 
 \hyperref[sec:anforderungsspezifikation:datenAuswertung]{Auswertung der Daten}
 & \xmark  % Table Storage
-& \cmark \cite{kellenberger_beginning_2021} % SQL
-& (\cmark)\footnoteref{note1} % Cosmos DB
+& \cmark  % SQL
+& (\cmark) % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
 & \cmark % Data Factory
@@ -252,8 +252,8 @@
 
 \hyperref[sec:anforderungsspezifikation:SAG_AD]{Authentifizierung mit \ac{aad}}
 & \xmark % Table Storage
-& % SQL
-& \cmark \cite{weiss_informationen_2021} % Cosmos DB
+& \cmark % SQL
+& \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \cmark % Logic Apps
 & ? % Data Factory
@@ -262,8 +262,8 @@
 
 \hyperref[sec:anforderungsspezifikation:rbac]{Verwendung von \ac{rbac}}
 & \xmark % Table Storage
-& % SQL
-& \cmark \cite{weiss_informationen_2021} % Cosmos DB
+& \cmark % SQL
+& \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \cmark % Logic Apps
 & ? % Data Factory
@@ -294,7 +294,7 @@
 & (\cmark) % Table Storage
 & \cmark % SQL
 & \cmark % Cosmos DB
-& (\cmark)\footnote{Vorausgesetzt Delta Lake wird verwendet \cite{brown_best_2021}} % Data Lake Gen 2
+& \cmark % Data Lake Gen 2
 & \nmark % Logic Apps
 & \nmark % Data Factory
 & \cmark  % Purview
