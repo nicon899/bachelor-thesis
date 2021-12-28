@@ -18,10 +18,10 @@ Die größte Schwäche von Table Storage ist, dass nur auf den Partitions- und Z
 
 Daher ist der Table Storage hier nicht geeignet, um als alleinstehende Speicherlösung genutzt zu werden. Er könnte jedoch als Ergänzung zum Kosten sparen eingesetzt werden \cite[vgl.][]{reagan_web_2018}. 
 
-\subsection{Azure SQL} \label{sec:grundlagen:azure_dienste:sql}
-Azure SQL ist eine relationale Datenbank, die vergleichbar mit dem on-premise Microsoft SQL Server, der im aktuellen BI-System genutzt wird, ist. Bei einer Migration hat dies den Vorteil, dass die meisten SQL-Queries zum Laden und Transformieren von Daten, ohne Anpassung verwendet werden können. Der Einsatz von Azure SQL empfiehlt sich besonders, wenn hochgradig relationale Daten vorliegen. Die alternativen relationalen Datenbanken in Azure, wie MySQL und PostgresSQL, werden in dieser Arbeit nicht betrachtet.
+\subsection{Azure SQL} \label{sec:grundlagen:azure_dienste:sql} % Azure SQL Managed Instance
+Azure SQL-Datenbank ist eine relationale Datenbank, die vergleichbar mit dem on-premise Microsoft SQL Server, der im aktuellen BI-System genutzt wird, ist. Bei einer Migration hat dies den Vorteil, dass die meisten SQL-Queries zum Laden und Transformieren von Daten, ohne Anpassung verwendet werden können. Der Einsatz von Azure SQL empfiehlt sich besonders, wenn hochgradig relationale Daten vorliegen. Die alternativen relationalen Datenbanken in Azure, wie MySQL und PostgresSQL, werden in dieser Arbeit nicht betrachtet.
 
-Ruhende Daten werden von Azure SQL automatisch verschlüsselt. Die Konsistenz der gespeicherten Daten kann durch die Wahl eines geeigneten Datenmodells erreicht werden \cite{reagan_web_2018}.
+Ruhende Daten werden von Azure SQL-Datenbank automatisch verschlüsselt. Die Konsistenz der gespeicherten Daten kann durch die Wahl eines geeigneten Datenmodells erreicht werden \cite{reagan_web_2018}.
 
 Die Autorisierung über das \ac{aad} und mit \ac{rbac} wird von der SQL-Datenbank unterstützt \cite{wolter_authorize_2021}.
 
@@ -87,26 +87,15 @@ Für die Verarbeitung der Daten können verknüpfte Dienste, wie Azure Databrick
 \subsection{Azure HDInsight} \label{sec:grundlagen:azure_dienste:hdInsight}
 Bei HDInsight handelt es sich um Apache Hadoop, als vollständig verwalteten Cloud Dienst. Hadoop ist eine Sammlung von Open~=Source Komponenten, die für die verteilte Verarbeitung und Analyse großer Datensätze konzipiert wurden. Dieser Dienst ist vergleichsweise komplex, da individuelle Konfigurationen notwendig sind \cite{klein_iot_2017}.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 \subsection{Azure Databricks} \label{sec:grundlagen:azure_dienste:databricks}
 Databricks setzt Apache Spark als Cloud-Dienst um. Letzteres ist ein weiteres Open-Source Framework für die Big Data Analyse. Im Gegensatz zu Hadoop werden die Daten zur schnelleren Verarbeitung im Arbeitsspeicher vorgehalten. Ein weiteres Feature ist die mögliche Echtzeitverarbeitung von Streaming-Daten \cite{soh_data_2020}.
 
 \subsection{Azure Machine Learning} \label{sec:grundlagen:azure_dienste:machineLearning}
-Azure Machine Learning ist eine Sammlung von Diensten und Tools für maschinelles Lernen in der Cloud \cite{soh_data_2020}.
+\ac{aml} ist eine Sammlung von Funktionen und Tools zum Arbeiten mit ML-Modellen in einer skalierbaren Cloud-Umgebung. Dafür kann Python, R oder die zero/low code Option \textit{Azure ML designer} verwendet werden.
+
+Von den hier betrachteten Speichermöglichkeiten können entweder Azure SQL-Datenbank oder Data Lake Gen 2 an \ac{aml} angebunden werden \cite{soh_data_2020}.
+
+\textbf{Fazit}: \textit{...}
 
 \subsection{Azure Synapse Analytics} \label{sec:grundlagen:azure_dienste:synapseAnalytics}
 Synapse Analytics vereint die Datenintegration, Data Warehousing und Big Data Analysen zu einem Dienst. Die Datenintegration verwendet die Data Factory, wird hier aber als \textit{Synapse Pipeline} bezeichnet. Die integrierten Daten können unabhängig von ihrer Struktur gespeichert werden. Durch die Unterstützung von Apache Spark wird die Analyse von großen Datenmengen ermöglicht \cite{shiyal_beginning_2021}.
