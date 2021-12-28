@@ -8,11 +8,15 @@ Der NoSQL-Dienst Table Storage gehört zu den günstigsten Speichermöglichkeite
 
 Die gespeicherten Daten werden standardmäßig mit 256-AES verschlüsselt und sind dadurch ohne zusätzlichen Aufwand geschützt \cite{soh_microsoft_2020}. 
 
-Zum Abfragen der Daten gibt es verschiedene Möglichkeiten. Am schnellsten ist die \textit{point query} bei der Partitions- und Zeilen-Schlüssel angegeben werden. Daneben gibt es verschiedene Bereichsabfragen, die entweder die Tabellen einer Partition, mehrerer oder aller Partitionen scannen. Innerhalb der gleichen Partition werden außerdem Transaktionen unterstützt. 
+Zum Abfragen der Daten gibt es verschiedene Möglichkeiten. Am schnellsten ist die \textit{point query} bei der Partitions- und Zeilen-Schlüssel angegeben werden. Daneben gibt es verschiedene Bereichsabfragen, die entweder die Tabellen einer Partition, mehrerer oder aller Partitionen scannen. Innerhalb der gleichen Partition werden außerdem Transaktionen unterstützt.
+
+Die \textit{Azure Storage Client Library} bietet die Möglichkeit fehlgeschlagene Abfragen, zum Beispiel wegen eines Server-Timeouts, automatisch zu wiederholen. Alternativ kann beim Zugriff über REST API eine eigene Wiederholungslogik bei Fehlern implementiert werden.
 
 Die größte Schwäche von Table Storage ist, dass nur auf den Partitions- und Zeilen-Schlüssel ein Index angelegt wird. Performante Abfragen auf andere Attribute als die Schlüssel sind daher nicht möglich \cite{reagan_web_2018}.
 
-\textbf{Fazit}: Table Storage ist günstig, schnell und kann problemlos unsere Anforderungen an die zu speichernde Datenmenge erfüllen. Jedoch werden für die Auswertungen im aktuellen System sowohl Tabellen-Joins als auch Abfragen von Attributen, die nicht der indexierte Schlüssel sind, verwendet. Daher ist der Table Storage hier nicht geeignet, um als alleinstehende Speicherlösung genutzt zu werden. Er könnte jedoch als Ergänzung zum Kosten sparen eingesetzt werden. \cite[vgl.][]{reagan_web_2018}
+\textbf{Fazit}: Table Storage ist günstig, schnell und kann problemlos die Anforderungen an die zu speichernde Datenmenge erfüllen. Jedoch werden für die Auswertungen im aktuellen System sowohl Tabellen-Joins als auch Abfragen von Attributen, die nicht der indexierte Schlüssel sind, verwendet. Eine daraus folgende Einschränkung ist, dass das \textit{Recht auf Vergessenwerden} nur umgesetzt werden kann, wenn eine eindeutige Kunden- bzw. Personenkennzeichnung als Schlüssel verwendet wird.
+
+Daher ist der Table Storage hier nicht geeignet, um als alleinstehende Speicherlösung genutzt zu werden. Er könnte jedoch als Ergänzung zum Kosten sparen eingesetzt werden \cite[vgl.][]{reagan_web_2018}. 
 
 \subsection{Azure SQL} \label{sec:grundlagen:azure_dienste:sql}
 Azure SQL ist eine relationale Datenbank, die vergleichbar mit dem on-premise Microsoft SQL Server, der im aktuellen BI-System genutzt wird, ist. Bei einer Migration hat dies den Vorteil, dass die meisten SQL-Queries zum Laden und Transformieren von Daten, ohne Anpassung verwendet werden können. Der Einsatz von Azure SQL empfiehlt sich besonders, wenn hochgradig relationale Daten vorliegen. Die alternativen relationalen Datenbanken in Azure, wie MySQL und PostgresSQL, werden in dieser Arbeit nicht betrachtet.
