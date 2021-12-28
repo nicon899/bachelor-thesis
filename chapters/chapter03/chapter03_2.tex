@@ -56,7 +56,7 @@ Auch Datentransformationen, wie mathematische Berechnungen und Textmanipulatione
 
 Beim Eintreten von Fehlern werden vorher festgelegte Wiederholungsrichtlinien ausgeführt. Es ist ebenfalls möglich, nach einem aufgetretenen Fehler, mit einer alternativen Aktion fortzufahren, um zum Beispiel eine zuständige Person per E-Mail zu informieren \cite{fan_handle_2021}.
 
-Für eine ausreichende Sicherheit werden die Daten während der Übertragung mit TLS und im Ruhezustand verschlüsselt. Auch die Authentifizierung mit \ac{aad} und Autorisierung durch \ac{rbac} wird unterstützt \cite{baldwin_azure_2021}. 
+Für eine ausreichende Sicherheit werden die Daten während der Übertragung mit TLS und im Ruhezustand verschlüsselt. Auch die Authentifizierung mit \ac{aad} und Autorisierung durch \ac{rbac} wird unterstützt \cite{baldwin_azure_2021-1}. 
 
 \textbf{Fazit}: Mit den angebotenen Konnektoren von Logic Apps, können alle hier benötigten Quellsysteme integriert werden \cite[vgl.][]{fan_verwaltete_2021}. Vor dem Speichern können die Daten bei Bedarf verarbeitet werden. Dieser Dienst ist außerdem performant und benötigt für die meisten Ausführungen nur wenige Sekunden \cite{bennett_enterprise_2021}. Durch die Manipulationsmöglichkeiten wäre auch ein Verarbeitungsschritt möglich, in dem nach festen Regeln Attribute zur Datenklassifikation ergänzt werden.
 
@@ -92,4 +92,10 @@ Dieser Dienst kann als Semantik-Schicht zwischen \ac{dwh} und Endnutzer agieren.
 Power BI ist Microsofts Dienst zum Visualisieren von Daten. Es werden aber auch \ac{etl} Prozesse und Datenanalyse auf Basis von Analysis Services bereitgestellt. Mit Power BI können vorgefertigte und Self-Service Reports erstellt werden \cite{how_beyond_2020}.
 
 \subsection{Azure Purview} \label{sec:grundlagen:azure_dienste:purview}
-Purview dient der zentralen Verwaltung der Datengovernance, sowohl in Cloud- als auch on-premise Umgebungen. Dies ermöglichst beispielsweise, mit wenig Aufwand Datenquellen aufzufinden \cite{lesteve_definitive_2021}.
+Purview dient der zentralen Verwaltung der Datengovernance, für Cloud und on-premise Umgebungen. Dabei sollen Datenquellen leicht auffindbar und verständlich werden. Die Metadaten zu den Quellen können um Tags und Beschreibungen erweitert werden. Der Dienst kann über die Benutzeroberfläche Purview Studio verwaltet werden. 
+
+Im Purview Studio können Benutzer neue Datenquellen registriert werden, damit zusätzliche Metadaten zu diesen verwaltet werden können. Durch das Erstellen einer \textit{Scan Rule} können die Datenquellen gescannt werden, wobei die Daten nach vorher definierten Regeln klassifiziert werden. Der Scan kann einmalig oder wiederholt nach Zeitplan ausgeführt werden.
+
+Der Zugriff auf die Informationen wird über Rollen und das \ac{aad} kontrolliert \cite{lesteve_definitive_2021}. Auch die Übertragung und Speicherung der Daten geschieht in Purview verschlüsselt \cite{baldwin_azure_2021}. 
+
+\textbf{Fazit}: Purview bietet einige Funktionen, die helfen die Sicherheit und den Datenschutz der BI-Lösung zu verbessern. Purview kann verwendet werden, um den Datenfluss zu dokumentieren und die Daten in regelmäßigen Scans zu klassifizieren. Durch die Erweiterung der Metadaten um bestimmte Tags kann Purview zusätzlich dabei helfen, auf Anfrage alle Daten eines Kunden zu löschen.
