@@ -85,7 +85,19 @@ Für die Verarbeitung der Daten können verknüpfte Dienste, wie Azure Databrick
 \textbf{Fazit}: \ac{adf} könnte im neuen BI-System für die Datenintegration genutzt werden. Im Gegensatz zu Logic Apps setzt dieser Dienst auf die Zusammenarbeit mit weiteren Azure Ressourcen, um den ETL-Prozess durchzuführen, was zu einem komplexeren Gesamtsystem führen könnte.
 
 \subsection{Azure HDInsight} \label{sec:grundlagen:azure_dienste:hdInsight}
-Bei HDInsight handelt es sich um Apache Hadoop, als vollständig verwalteten Cloud Dienst. Hadoop ist eine Sammlung von Open~=Source Komponenten, die für die verteilte Verarbeitung und Analyse großer Datensätze konzipiert wurden. Dieser Dienst ist vergleichsweise komplex, da individuelle Konfigurationen notwendig sind \cite{klein_iot_2017}.
+Azure HDInsight realisiert Apache Hadoop, als vollständig verwalteten Cloud Dienst. Dazu wird von dem Dienst ein Cluster von virtuellen Maschinen, die das \textit{Hadoop Distributed File System} benutzen, verwaltet. Dieses verteilte Dateisystem ist auf Fehlertoleranz und einen hohen Durchsatz ausgelegt ist.
+
+Hadoop ist eine Sammlung von Open~=Source Komponenten, die für die verteilte Verarbeitung und Analyse großer Datensätze konzipiert wurden. Zum Abfragen, Transformieren und Analysieren von Daten stehen unter anderem folgende Funktionen zur Verfügung:
+\begin{itemize}
+\item \textit{Hive}: Stellt die SQL-artige Abfragesprache HiveQL zur Verfügung und verwendet ein dynamisches Schema, das erst beim Lesen der Daten angewendet wird. Damit kann HDInsight auch ETL-Prozesse durchführen.
+\item \textit{Storm}: Echtzeitverarbeitung von großen Datenströmen 
+\item \textit{Pig}: Die prozedurale Sprache Pig Latin ermöglicht es Schemata zu erstellen und Abfragen über Skripte durchzuführen.
+\item \textit{MapReduce}: Framework zur parallelen Verarbeitung von Daten auf mehreren Rechnern.
+\end{itemize}
+
+Hadoop kann eine hohe Verfügbarkeit bieten und kann je nach Bedarf skalieren, wie viele Rechner verwendet werden. Aufgetretene Fehler können selbständig erkannt werden und wenn notwendig wird die fehlgeschlagene Aufgabe an einen anderen Rechner weitergeben \cite{klein_iot_2017}.
+
+\textbf{Fazit}: Dieser Dienst ist vergleichsweise komplex, da individuelle Konfigurationen notwendig sind. Ein möglicher Anwendungsfall wäre ein ETL-Prozess zwischen einem unstrukturierten Speicher, wie dem Data Lake und einer relationalen Datenbank. \cite[vgl.][]{klein_iot_2017}.
 
 \subsection{Azure Databricks} \label{sec:grundlagen:azure_dienste:databricks}
 Databricks setzt Apache Spark als Cloud-Dienst um. Letzteres ist ein weiteres Open-Source Framework für die Big Data Analyse. Im Gegensatz zu Hadoop werden die Daten zur schnelleren Verarbeitung im Arbeitsspeicher vorgehalten. Ein weiteres Feature ist die mögliche Echtzeitverarbeitung von Streaming-Daten \cite{soh_data_2020}.
