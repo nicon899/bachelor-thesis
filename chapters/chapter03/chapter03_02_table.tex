@@ -1,17 +1,18 @@
-\begin{xltabular}{\textwidth}{|p{.4\textwidth}|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|}
-\caption{Überblick der Azure Dienste in Bezug auf die Anforderungen. Hinweis: Anforderungen und Dienste sind mit ihrer Beschreibung verlinkt. (\cmark: Kann Anforderung erfüllen; \xmark: Kann Anforderung voraussichtlich nicht erfüllen; \nmark: Kein direkter Bezug zu Anforderung)} \label{table:eva} \\
+\begin{xltabular}{\textwidth}{|p{.4\textwidth}|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|}
+\caption{Einschätzung der Azure Dienste in Bezug auf die Anforderungen. (\cmark: Erfüllt Anforderung; \xmark: Erfüllt Anforderung nicht; \nmark: Kein direkter Bezug zu Anforderung)} \label{table:eva} \\
 
 \hline 
 \diagbox[innerwidth=\hsize]{Anforderung}{Azure Dienst}
 & \rotatebox[origin=c]{90}{Table Storage}
 & \rotatebox[origin=c]{90}{SQL-Databank}
+& \rotatebox[origin=c]{90}{ Verwaltete SQL-Instanz }
 & \rotatebox[origin=c]{90}{Cosmos DB}
 & \rotatebox[origin=c]{90}{Data Lake Gen 2}
 & \rotatebox[origin=c]{90}{Logic Apps}
 & \rotatebox[origin=c]{90}{Data Factory}
 & \rotatebox[origin=c]{90}{HDInsight}
 & \rotatebox[origin=c]{90}{Databricks}
-& \rotatebox[origin=c]{90}{ Machine Learining }
+& \rotatebox[origin=c]{90}{Machine Learining}
 & \rotatebox[origin=c]{90}{Purview}
 \\ \hline
 \endfirsthead
@@ -20,13 +21,14 @@
 \diagbox[innerwidth=\hsize]{Anforderung}{Azure Dienst}
 & \rotatebox[origin=c]{90}{Table Storage}
 & \rotatebox[origin=c]{90}{SQL-Databank}
+& \rotatebox[origin=c]{90}{ Verwaltete SQL-Instanz }
 & \rotatebox[origin=c]{90}{Cosmos DB}
 & \rotatebox[origin=c]{90}{Data Lake Gen 2}
 & \rotatebox[origin=c]{90}{Logic Apps}
 & \rotatebox[origin=c]{90}{Data Factory}
 & \rotatebox[origin=c]{90}{HDInsight}
 & \rotatebox[origin=c]{90}{Databricks}
-& \rotatebox[origin=c]{90}{ Machine Learining }
+& \rotatebox[origin=c]{90}{Machine Learining}
 & \rotatebox[origin=c]{90}{Purview}
 \\ \hline
 \endhead
@@ -34,7 +36,8 @@
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Integration Quellsysteme}
 &  % Table Storage
-&  % SQL
+&  % SQL DB
+&  % SQL MI
 &  % Cosmos DB
 &  % Data Lake Gen 2
 &  % Logic Apps
@@ -48,6 +51,7 @@
 \hyperref[sec:anforderungsspezifikation:datenintegrationOnPremDB]{On-premise DB}
 & \xmark % Table Storage
 & \xmark % SQL
+& \xmark % SQL MI
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
@@ -61,6 +65,7 @@
 \hyperref[sec:anforderungsspezifikation:datenintegrationCloudDB]{Cloud DB}
 & \xmark % Table Storage
 & \xmark % SQL
+& \xmark % SQL MI
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
@@ -74,6 +79,7 @@
 \hyperref[sec:anforderungsspezifikation:datenintegrationREST]{REST API}
 & \xmark % Table Storage
 & \xmark % SQL
+& \xmark % SQL MI
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
@@ -87,6 +93,7 @@
 \hyperref[sec:anforderungsspezifikation:QuellsystemeÄndern]{Hinzufügen/Entfernen}
 & \nmark % Table Storage
 & \nmark % SQL
+& \nmark % SQL MI
 & \nmark % Cosmos DB
 & \nmark % Data Lake Gen 2
 & \cmark % Logic Apps
@@ -100,6 +107,7 @@
 \hyperref[sec:anforderungsspezifikation:SchnelleDatenintegration]{Dauer unter 60min}
 & \nmark % Table Storage
 & \nmark % SQL
+& \nmark % SQL MI
 & \nmark % Cosmos DB
 & \nmark % Data Lake Gen 2
 & \cmark % Logic Apps
@@ -114,6 +122,7 @@
 \textbf{Datenspeicherung}
 &  % Table Storage
 &  % SQL
+&  % SQL MI
 &  % Cosmos DB
 &  % Data Lake Gen 2
 &  % Logic Apps
@@ -127,6 +136,7 @@
 \hyperref[sec:anforderungsspezifikation:dauerhaftesSpeichern]{Langfristige Speicherung}
 & \cmark % Table Storage
 & \cmark % SQL
+& \cmark % SQL MI
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \xmark % Logic Apps
@@ -140,6 +150,7 @@
 \hyperref[sec:anforderungsspezifikation:Datenkonsistenz]{Integrität und Konsistenz}
 & \xmark % Table Storage
 & \cmark % SQL
+& \cmark % SQL MI
 & \cmark % Cosmos DB
 & (\cmark) % Data Lake Gen 2
 & \nmark % Logic Apps
@@ -153,6 +164,7 @@
 \hyperref[sec:anforderungsspezifikation:speicherkapazität]{Kapazität >500GB}
 & \cmark % Table Storage
 & \cmark % SQL
+& \cmark % SQL MI
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \nmark % Logic Apps
@@ -166,6 +178,7 @@
 \hyperref[sec:anforderungsspezifikation:skalierungDerSpeicherkapazität]{Automatische Skalierung}
 & \cmark % Table Storage
 & \xmark % SQL
+& \xmark % SQL MI
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \nmark % Logic Apps
@@ -180,6 +193,7 @@
 \textbf{Datenverarbeitung}
 &  % Table Storage
 &  % SQL
+&  % SQL MI
 &  % Cosmos DB
 &  % Data Lake Gen 2
 &  % Logic Apps
@@ -193,6 +207,7 @@
 \hyperref[sec:anforderungsspezifikation:datentransformation]{Datentransformation}
 & \xmark  % Table Storage
 & \cmark  % SQL
+& \cmark % SQL MI
 & (\cmark) % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
@@ -206,6 +221,7 @@
 \hyperref[sec:anforderungsspezifikation:datenAuswertung]{Auswertung der Daten}
 & \xmark  % Table Storage
 & \cmark  % SQL
+& \cmark % SQL MI
 & (\cmark) % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
@@ -219,6 +235,7 @@
 \hyperref[sec:anforderungsspezifikation:datenanalysePythonUndR]{Analyse mit Python und R}
 & \xmark  % Table Storage
 & \xmark % SQL
+& \cmark % SQL MI
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \xmark % Logic Apps
@@ -233,6 +250,7 @@
 \textbf{Reporting}
 &  % Table Storage
 &  % SQL
+&  % SQL MI
 &  % Cosmos DB
 &  % Data Lake Gen 2
 &  % Logic Apps
@@ -246,6 +264,7 @@
 \hyperref[sec:anforderungsspezifikation:reports]{Reports bereitstellen}
 & \xmark  % Table Storage
 & \xmark % SQL
+& \xmark % SQL MI
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \xmark % Logic Apps
@@ -259,6 +278,7 @@
 \hyperref[sec:anforderungsspezifikation:selfServiceReports]{Self-Service Reports}
 & \xmark  % Table Storage
 & \xmark % SQL
+& \xmark % SQL MI
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \xmark % Logic Apps
@@ -272,6 +292,7 @@
 \hyperref[sec:anforderungsspezifikation:vielfältigeVisualisierungsmöglichkeiten]{Vielfätlige Visualisierungen}
 & \nmark  % Table Storage
 & \nmark % SQL
+& \nmark % SQL MI
 & \nmark % Cosmos DB
 & \nmark % Data Lake Gen 2
 & \nmark % Logic Apps
@@ -285,6 +306,7 @@
 \hyperref[sec:anforderungsspezifikation:schnelleAntwortzeitenDerReports]{Schnelle Antwortzeiten}
 & \nmark  % Table Storage
 & \nmark % SQL
+& \nmark % SQL MI
 & \nmark % Cosmos DB
 & \nmark % Data Lake Gen 2
 & \nmark % Logic Apps
@@ -299,6 +321,7 @@
 \textbf{Sicherheit und Datenschutz}
 &  % Table Storage
 &  % SQL
+&  % SQL MI
 &  % Cosmos DB
 &  % Data Lake Gen 2
 &  % Logic Apps
@@ -312,6 +335,7 @@
 \hyperref[sec:anforderungsspezifikation:verschlüsselung]{Verschlüsselung der Daten}
 & \cmark % Table Storage
 & \cmark % SQL
+& \cmark % SQL MI
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \cmark % Logic Apps
@@ -325,6 +349,7 @@
 \hyperref[sec:anforderungsspezifikation:SAG_AD]{Authentifizierung mit \ac{aad}}
 & \xmark % Table Storage
 & \cmark % SQL
+& \cmark % SQL MI
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \cmark % Logic Apps
@@ -338,6 +363,7 @@
 \hyperref[sec:anforderungsspezifikation:rbac]{Verwendung von \ac{rbac}}
 & \xmark % Table Storage
 & \cmark % SQL
+& \cmark % SQL MI
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \cmark % Logic Apps
@@ -351,6 +377,7 @@
 \hyperref[sec:anforderungsspezifikation:datenflussDokumentation]{Datenflussdokumentation}
 & \xmark % Table Storage
 & \xmark % SQL
+& \xmark % SQL MI
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \xmark % Logic Apps
@@ -364,6 +391,7 @@
 \hyperref[sec:anforderungsspezifikation:DatenKlassifizierung]{Datenklassifizierung}
 & \xmark % Table Storage
 & \xmark % SQL
+& \xmark % SQL MI
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
@@ -377,6 +405,7 @@
 \hyperref[sec:anforderungsspezifikation:löschenKundendaten]{Recht auf Vergessenwerden}
 & (\cmark) % Table Storage
 & \cmark % SQL
+& \cmark % SQL MI
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \nmark % Logic Apps
@@ -391,6 +420,7 @@
 \textbf{Zuverlässigkeit und Wartung}
 &  % Table Storage
 &  % SQL
+&  % SQL MI
 &  % Cosmos DB
 &  % Data Lake Gen 2
 &  % Logic Apps
@@ -404,6 +434,7 @@
 \hyperref[sec:anforderungsspezifikation:verfügbarkeit]{Verfügbarkeit über 99.5\% \cite{microsoft_ubersicht_2021}}
 & \cmark % Table Storage
 & \cmark % SQL
+& \cmark % SQL MI
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \cmark % Logic Apps
@@ -416,7 +447,8 @@
 
 \hyperref[sec:anforderungsspezifikation:fehlerquellenIdentifizieren]{Einfaches Fehler finden}
 & \xmark % Table Storage
-& \xmark % SQL
+&  % SQL
+&  % SQL MI
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \xmark % Logic Apps
@@ -429,7 +461,8 @@
 
 \hyperref[sec:anforderungsspezifikation:AutomatischeFehlerbehandlung]{Auto. Umgang mit Fehlern}
 & \cmark % Table Storage
-& \cmark % SQL
+&  % SQL
+&  % SQL MI
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
@@ -443,6 +476,7 @@
 Geschätzte Kosten
 & ? % Table Storage
 & ? % SQL
+& ? % SQL MI
 & ? % Cosmos DB
 & ? % Data Lake Gen 2
 & ? % Logic Apps

@@ -18,20 +18,25 @@ Die größte Schwäche von Table Storage ist, dass nur auf den Partitions- und Z
 
 Daher ist der Table Storage hier nicht geeignet, um als alleinstehende Speicherlösung genutzt zu werden. Er könnte jedoch als Ergänzung zum Kosten sparen eingesetzt werden \cite[vgl.][]{reagan_web_2018}. 
 
-\subsection{Azure SQL} \label{sec:grundlagen:azure_dienste:sql} % Azure SQL Managed Instance
-Azure SQL-Datenbank ist eine relationale Datenbank, die vergleichbar mit dem on-premise Microsoft SQL Server, der im aktuellen BI-System genutzt wird, ist. Bei einer Migration hat dies den Vorteil, dass die meisten SQL-Queries zum Laden und Transformieren von Daten, ohne Anpassung verwendet werden können. Der Einsatz von Azure SQL empfiehlt sich besonders, wenn hochgradig relationale Daten vorliegen. Die alternativen relationalen Datenbanken in Azure, wie MySQL und PostgresSQL, werden in dieser Arbeit nicht betrachtet.
+\subsection{Azure SQL} \label{sec:grundlagen:azure_dienste:sql}
+Azure SQL ist eine Produktfamilie von relationalen Datenbanken, die basierend auf Abstraktion und Zugriff in Betriebssystem-, Server- und Datenbankebene eingeteilt werden kann:
 
-Ruhende Daten werden von Azure SQL-Datenbank automatisch verschlüsselt. Die Konsistenz der gespeicherten Daten kann durch die Wahl eines geeigneten Datenmodells erreicht werden \cite{reagan_web_2018}.
-
-Die Autorisierung über das \ac{aad} und mit \ac{rbac} wird von der SQL-Datenbank unterstützt \cite{wolter_authorize_2021}.
-
-Die Azure SQL Datenbank wird in einer virtualisierten Umgebung gehostet. Die Performance ist von DTUs abhängig, welche eine Kombination aus CPU, Speicher und der Anzahl an unterstützten Lese-/ und Schreib-Prozessen von Daten und auf dem Transaktionsprotokoll sind. Durch eine Drosselung schlagen Abfragen fehl, wenn die festgelegten Limits der SQL-Datenbank-Instanz überschritten werden. Es gibt jedoch Möglichkeiten dieses Problem durch eine automatische Wiederholungslogik bei den Abfragen zu lösen. Die DTUs sowie die Speicherkapazität sind abhängig von der gewählten Preisstufe.
-
-Es gibt zwei Möglichkeiten, die Performance zu verbessern. Solange die oberste Preisstufe noch nicht erreicht wurde, ist das Erhöhen dieser der einfachste Weg, Leistung und Speicherkapazität zu steigern. Azure führt dazu alle notwendigen Schritte zum Ändern der Datenbank automatisch im Hintergrund aus. Eine automatische Skalierung nach Bedarf wird jedoch nicht unterstützt. Die zweite deutlich komplexere Option ist die horizontale Partitionierung der Daten auf mehrere SQL-Instanzen (Sharding) \cite{reagan_web_2018}.
+\begin{itemize}
+\item \textbf{SQL Server auf Azure-VMs} stellt einen Microsoft SQL Server auf Betriebssystemebene bereit. Es handelt sich um eine virtuelle Maschine, auf der ein SQL Server installiert ist. Dadurch hat der Nutzer auf der einen Seite mehr Kontrolle, auf der anderen aber auch mehr Verantwortung und Konfigurationsaufwand. 
+\item Wird nur die Kontrolle über den SQL-Server, aber nicht über das Betriebssystem benötigt, eignet sich die \textbf{Verwaltete Azure SQL-Instanz}. Diese bietet nahezu alle Features einer normalen SQL-Server-Instanz. Eines dieser Features ist zum Beispiel Machine Learning mit R oder Python auf die Daten anzuwenden \cite{ericson_was_2021}.
+\item Die \textbf{Azure SQL-Datenbank} ist eine relationale Datenbank in der Cloud die ohne Verwaltungsaufwand genutzt werden kann. Es handelt sich damit um die höchste Abstraktionsebene, die dann eingesetzt werden kann, wenn weder Kontrolle über die Instanz noch Features auf Serverebene benötigt werden.
+\end{itemize}
+\cite{mauri_azure_2021}
 
 Die Abfragesprache T-SQL bietet einige Möglichkeiten zum Transformieren und Auswerten der Daten, wie zum Beispiel die Umwandlung in einen anderen Datentyp oder die Durchführung von mathematischen Berechnungen \cite[vgl.][]{kellenberger_beginning_2021}.
 
-\textbf{Fazit}: Der größte Vorteil von Azure SQL ist, dass alle zu migrierenden Daten bereits in einem relationalen Datenmodell vorliegen. Auch die festgelegten Leistungsanforderungen können mit einer einzigen Instanz abgedeckt werden. Daher sind die potenziellen Probleme und hohen Kosten, die beim Sharding entstehen könnten, hier irrelevant. Zusätzlich eignet sich die T-SQL für einfache Datenverarbeitungen, wobei auch hier die meisten Skripte aus dem Bestandssystem übernommen werden könnten.
+Ruhende Daten werden von Azure SQL-Datenbank automatisch verschlüsselt. Die Konsistenz der gespeicherten Daten kann durch die Wahl eines geeigneten Datenmodells erreicht werden \cite{reagan_web_2018}. Auch die Autorisierung über das \ac{aad} mit \ac{rbac} wird von Azure SQL unterstützt \cite{wolter_authorize_2021}.
+
+Es gibt zwei Möglichkeiten, die Performance bei Bedarf zu verbessern. Solange die oberste Preisstufe noch nicht erreicht wurde, ist das Erhöhen dieser der einfachste Weg, Leistung und Speicherkapazität zu steigern. Azure führt dazu alle notwendigen Schritte zum Ändern der Datenbank automatisch im Hintergrund aus. Eine automatische Skalierung nach Bedarf wird jedoch nicht unterstützt. Die zweite deutlich komplexere Option ist die horizontale Partitionierung der Daten auf mehrere SQL-Instanzen (Sharding) \cite{reagan_web_2018}.
+
+\textbf{Fazit}: Der größte Vorteil von Azure SQL ist, dass alle zu migrierenden Daten bereits in einem relationalen Datenmodell vorliegen. Zusätzlich eignet sich die T-SQL für einfache Datenverarbeitungen, wobei auch hier die meisten Skripte aus dem Bestandssystem übernommen werden könnten.
+
+Von den drei Azure SQL Diensten werden nur die verwaltete SQL-Instanz und die SQL-Datenbank für das neue BI-System in Erwägung gezogen, da die Kontrolle auf Betriebssystemebene nicht benötigt wird. Welcher dieser beiden Dienste besser geeignet ist, hängt besonders davon ab, wie die zusätzlichen Funktionen der verwalteten SQL-Instanz gegenüber der SQL-Datenbank in Verbindung mit zusätzlichen Diensten zu werten sind. 
 
 \subsection{Azure Cosmos DB} \label{sec:grundlagen:azure_dienste:cosmosDB}
 Bei diesem Dienst handelt es sich um eine NoSQL-Datenbank, die mehrere Datenmodelle, wie Schlüssel-Wert, Dokument oder Graph, unterstützt. Intern werden die Daten als Dokumente im JSON-Format gespeichert. Solange die Daten sich in Ruhe befinden, sind sie verschlüsselt.
@@ -100,7 +105,7 @@ Hadoop kann eine hohe Verfügbarkeit bieten und kann je nach Bedarf skalieren, w
 \textbf{Fazit}: Dieser Dienst ist vergleichsweise komplex, da individuelle Konfigurationen notwendig sind. Ein möglicher Anwendungsfall wäre ein ETL-Prozess zwischen einem unstrukturierten Speicher, wie dem Data Lake und einer relationalen Datenbank. \cite[vgl.][]{klein_iot_2017}.
 
 \subsection{Azure Databricks} \label{sec:grundlagen:azure_dienste:databricks}
-Databricks setzt Apache Spark als Cloud-Dienst um. Letzteres ist ein weiteres Open-Source Framework für die Big Data Analyse. Im Gegensatz zu Hadoop werden die Daten zur schnelleren Verarbeitung im Arbeitsspeicher vorgehalten. Ein weiteres Feature ist die mögliche Echtzeitverarbeitung von Streaming-Daten \cite{soh_data_2020}.
+Azure Databricks setzt Apache Spark als Cloud-Dienst um. Spark ist ein Open-Source Framework für die Big Data Analyse. Im Gegensatz zu Hadoop werden die Daten zur schnelleren Verarbeitung im Arbeitsspeicher vorgehalten \cite{soh_data_2020}.
 
 \subsection{Azure Machine Learning} \label{sec:grundlagen:azure_dienste:machineLearning}
 \ac{aml} ist eine Sammlung von Funktionen und Tools zum Arbeiten mit ML-Modellen in einer skalierbaren Cloud-Umgebung. Dafür kann Python, R oder die zero/low code Option \textit{Azure ML designer} verwendet werden.
