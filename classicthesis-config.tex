@@ -307,14 +307,11 @@
 % table
 \usepackage{multirow}
 \usepackage{array}
-\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 \usepackage{longtable}
-
 \usepackage{diagbox}
-\usepackage{xltabular}
-\usepackage{booktabs}
+\usepackage{multirow}
 
-\newcolumntype{Y}{>{\centering\arraybackslash}X}
+\newcolumntype{P}[1]{>{\centering\arraybackslash}p{#1}}
 
 % symbols
 \usepackage{amssymb}% http://ctan.org/pkg/amssymb
@@ -323,10 +320,7 @@
 \newcommand{\xmark}{\ding{55}}
 \newcommand{\nmark}{\ding{109}} %neutral
 
-\usepackage{multirow}
 
-\makeatletter
-\newcommand\footnoteref[1]{\protected@xdef\@thefnmark{\ref{#1}}\@footnotemark}
-\makeatother
 
-\usepackage{threeparttablex}
+
+

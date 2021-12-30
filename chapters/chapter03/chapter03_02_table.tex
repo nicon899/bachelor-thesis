@@ -1,5 +1,22 @@
-\begin{xltabular}{\textwidth}{|p{.33\textwidth}|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|Y|}
-\caption{Einschätzung der Azure Dienste in Bezug auf die Anforderungen. (\cmark: Erfüllt Anforderung; \xmark: Erfüllt Anforderung nicht; \nmark: Kein direkter Bezug zu Anforderung)} \label{table:eva} \\
+\begin{scriptsize}
+\begin{longtable}{
+|p{.3\textwidth   - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|}
+\caption{Einschätzung der Azure Dienste in Bezug auf die Anforderungen. (\cmark: Erfüllt Anforderung; \cmark\textsuperscript{*}: Erfüllt Anforderung unter bestimmten Voraussetzungen; \xmark: Erfüllt Anforderung nicht; \nmark: Kein direkter Bezug zu Anforderung)} \label{table:eva} \\
 
 \hline 
 \diagbox[innerwidth=\hsize]{Anforderung}{Azure Dienst}
@@ -15,6 +32,7 @@
 & \rotatebox[origin=c]{90}{Machine Learining}
 & \rotatebox[origin=c]{90}{Analysis Services}
 & \rotatebox[origin=c]{90}{Power BI}
+& \rotatebox[origin=c]{90}{Synapse Analytics}
 & \rotatebox[origin=c]{90}{Purview}
 \\ \hline
 \endfirsthead
@@ -33,6 +51,7 @@
 & \rotatebox[origin=c]{90}{Machine Learining}
 & \rotatebox[origin=c]{90}{Analysis Services}
 & \rotatebox[origin=c]{90}{Power BI}
+& \rotatebox[origin=c]{90}{Synapse Analytics}
 & \rotatebox[origin=c]{90}{Purview}
 \\ \hline
 \endhead
@@ -51,6 +70,7 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 &  % Purview
 \\ \hline
 
@@ -67,6 +87,7 @@
 & \xmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \xmark % Purview
 \\
 
@@ -83,6 +104,7 @@
 & \xmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \xmark% Purview
 \\
 
@@ -99,6 +121,7 @@
 & \xmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \xmark % Purview
 \\
 
@@ -115,6 +138,7 @@
 & \nmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \nmark % Purview
 \\ 
 
@@ -131,6 +155,7 @@
 & \nmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \nmark % Purview
 \\ \hline
 
@@ -148,6 +173,7 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 &  % Purview
 \\ \hline
 
@@ -164,6 +190,7 @@
 & \xmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \xmark % Purview
 \\
 
@@ -172,7 +199,7 @@
 & \cmark % SQL
 & \cmark % SQL MI
 & \cmark % Cosmos DB
-& (\cmark) % Data Lake Gen 2
+& \cmark\textsuperscript{*} % Data Lake Gen 2
 & \nmark % Logic Apps
 & \nmark % Data Factory
 & \nmark % HDInsight
@@ -180,6 +207,7 @@
 & \nmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \nmark % Purview
 \\
 
@@ -196,6 +224,7 @@
 & \nmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \nmark % Purview
 \\
 
@@ -212,6 +241,7 @@
 & \nmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \nmark % Purview
 \\ \hline
 
@@ -229,6 +259,7 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 &  % Purview
 \\ \hline
 
@@ -236,7 +267,7 @@
 & \xmark  % Table Storage
 & \cmark  % SQL
 & \cmark % SQL MI
-& (\cmark) % Cosmos DB
+& \cmark\textsuperscript{*} % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
 & \cmark % Data Factory
@@ -245,6 +276,7 @@
 & \xmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \xmark % Purview
 \\ 
 
@@ -252,7 +284,7 @@
 & \xmark  % Table Storage
 & \cmark  % SQL
 & \cmark % SQL MI
-& (\cmark) % Cosmos DB
+& \cmark\textsuperscript{*} % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
 & \cmark % Data Factory
@@ -261,6 +293,7 @@
 & \xmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \xmark % Purview
 \\ 
 
@@ -277,6 +310,7 @@
 & \cmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \xmark % Purview
 \\ \hline
 
@@ -294,6 +328,7 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 &  % Purview
 \\ \hline
 
@@ -310,6 +345,7 @@
 & \xmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \xmark % Purview
 \\
 
@@ -326,6 +362,7 @@
 & \xmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \xmark % Purview
 \\
 
@@ -342,6 +379,7 @@
 & \nmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \nmark % Purview
 \\
 
@@ -358,11 +396,12 @@
 & \nmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \nmark % Purview
 \\ \hline
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textbf{Sicherheit und Datenschutz}
+\textbf{Sicherheit/Datenschutz}
 &  % Table Storage
 &  % SQL
 &  % SQL MI
@@ -375,6 +414,7 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 &  % Purview
 \\ \hline
 
@@ -391,6 +431,7 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \cmark % Purview
 \\
 
@@ -401,10 +442,13 @@
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \cmark % Logic Apps
-&  % Data Factor
+&  % Data Factory
 &  % HDInsighty
 &  % Databricks
 &  % Machine Learning
+&  % Analysis Services
+&  % Power BI
+&  % Synapse Analytics
 & \cmark % Purview
 \\
 
@@ -421,6 +465,7 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \cmark % Purview
 \\
 
@@ -437,6 +482,7 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \cmark % Purview
 \\
 
@@ -453,11 +499,12 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \cmark % Purview
 \\
 
 \hyperref[sec:anforderungsspezifikation:löschenKundendaten]{Recht auf Vergessenwerden}
-& (\cmark) % Table Storage
+& \cmark\textsuperscript{*} % Table Storage
 & \cmark % SQL
 & \cmark % SQL MI
 & \cmark % Cosmos DB
@@ -469,11 +516,12 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \cmark  % Purview
 \\ \hline
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textbf{Zuverlässigkeit und Wartung}
+\textbf{Zuverlässigkeit/Wartung}
 &  % Table Storage
 &  % SQL
 &  % SQL MI
@@ -486,10 +534,11 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 &  % Purview
 \\ \hline
 
-\hyperref[sec:anforderungsspezifikation:verfügbarkeit]{Verfügbarkeit über 99.5\% \cite{microsoft_ubersicht_2021}}
+\hyperref[sec:anforderungsspezifikation:verfügbarkeit]{Verfügbarkeit >99.5\% \cite{microsoft_ubersicht_2021}}
 & \cmark % Table Storage
 & \cmark % SQL
 & \cmark % SQL MI
@@ -502,6 +551,7 @@
 & \cmark % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \cmark % Purview
 \\
 
@@ -518,6 +568,7 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \xmark % Purview
 \\
 
@@ -534,23 +585,9 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
+&  % Synapse Analytics
 & \xmark % Purview
 \\ \hline
 
-Geschätzte Kosten
-& ? % Table Storage
-& ? % SQL
-& ? % SQL MI
-& ? % Cosmos DB
-& ? % Data Lake Gen 2
-& ? % Logic Apps
-& ? % Data Factory
-& ? % HDInsight
-& ? % Databricks
-& ? % Machine Learning
-&  % Analysis Services
-&  % Power BI
-& ? % Purview
-\\ \hline
-
-\end{xltabular}
+\end{longtable}
+\end{scriptsize}
