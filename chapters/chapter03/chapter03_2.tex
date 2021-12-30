@@ -117,11 +117,42 @@ Von den hier betrachteten Speichermöglichkeiten können entweder Azure SQL-Date
 \subsection{Azure Synapse Analytics} \label{sec:grundlagen:azure_dienste:synapseAnalytics}
 Synapse Analytics vereint die Datenintegration, Data Warehousing und Big Data Analysen zu einem Dienst. Die Datenintegration verwendet die Data Factory, wird hier aber als \textit{Synapse Pipeline} bezeichnet. Die integrierten Daten können unabhängig von ihrer Struktur gespeichert werden. Durch die Unterstützung von Apache Spark wird die Analyse von großen Datenmengen ermöglicht \cite{shiyal_beginning_2021}.
 
+
+
+
+
+
+
+
+
+
+
 \subsection{Azure Analysis Services} \label{sec:grundlagen:azure_dienste:analysisServices}
 Dieser Dienst kann als Semantik-Schicht zwischen \ac{dwh} und Endnutzer agieren. In dieser Funktion können beispielsweise Spalten umbenannt oder irrelevante Werte ausgeblendet werden, damit übersichtliche Reports entstehen. Auch eine granulare Implementierung von \ac{rbac} wird so vereinfacht. Der Dienst kann jedoch nur mit tabellarischen Datenmodellen umgehen, nicht mit multidimensionalen \cite{how_beyond_2020}.
 
+
+
+
+
 \subsection{Power BI} \label{sec:grundlagen:azure_dienste:powerBI}
-Power BI ist Microsofts Dienst zum Visualisieren von Daten. Gleichzeitig werden \ac{etl} Prozesse und Datenanalyse auf Basis von Analysis Services bereitgestellt. Mit Power BI können vorgefertigte und Self-Service Reports erstellt werden \cite{how_beyond_2020}.
+Power BI ist Microsofts Dienst zum Visualisieren von Daten. Gleichzeitig können \ac{etl}-Prozesse und Auswertungen auf Basis von Analysis Services durchgeführt werden. Mit Power BI können vorgefertigte und Self-Service Reports erstellt werden.
+
+Power BI besteht aus mehreren Kernkomponenten wie die Entwicklungsumgebung für Reports \textit{Power BI desktop}, oder das webbasierte Portal \textit{Power BI servcice}, wo die veröffentlichten Reports betrachtet werden können.
+
+Zum Erstellen eines Reports wird zunächst eine Datenquelle verknüpft. Hier werden einige Konnektoren angeboten, mit denen unter anderem mit allen hier vorgestellten Speicherlösungen eine Verbindung aufgebaut werden kann. Anschließend kann das dazugehörige Datenmodell in bearbeitet werden. Relationen werden automatisch von Power BI erkannt, es können jedoch manuell weitere hinzugefügt werden. Mit einem vollständigen Datenmodell können anschließend Reports mit Visualisierungen, wie Balkendiagramme, in einer grafischen Benutzeroberfläche erstellt werden. Abschließend wird der Report veröffentlicht und wird in Power BI service angezeigt.
+
+Power BI kann auch eine Liveverbindung zu Azure Anaylsis Services aufbauen und Abfragen an diesen Dienst weitergeben, wodurch auf einen vorherigen Import der Daten verzichtet werden kann.
+\cite{how_beyond_2020}.
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Azure Purview} \label{sec:grundlagen:azure_dienste:purview}
 Purview dient der zentralen Verwaltung der Datengovernance, für Cloud und on-premise Umgebungen. Dabei soll die Datenherkunft leicht nachvollziehbar werden. Die Metadaten zu den Quellen können um Tags und Beschreibungen erweitert werden. Der Dienst kann über die Benutzeroberfläche Purview Studio verwaltet werden. Der Zugriff auf dieses und die Informationen wird über Rollen und das \ac{aad} kontrolliert.
