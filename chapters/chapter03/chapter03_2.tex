@@ -118,40 +118,30 @@ Von den hier betrachteten Speichermöglichkeiten können entweder Azure SQL-Date
 Synapse Analytics vereint die Datenintegration, Data Warehousing und Big Data Analysen zu einem Dienst. Die Datenintegration verwendet die Data Factory, wird hier aber als \textit{Synapse Pipeline} bezeichnet. Die integrierten Daten können unabhängig von ihrer Struktur gespeichert werden. Durch die Unterstützung von Apache Spark wird die Analyse von großen Datenmengen ermöglicht \cite{shiyal_beginning_2021}.
 
 
-
-
-
-
-
-
-
-
-
 \subsection{Azure Analysis Services} \label{sec:grundlagen:azure_dienste:analysisServices}
-Dieser Dienst kann als Semantik-Schicht zwischen \ac{dwh} und Endnutzer agieren. In dieser Funktion können beispielsweise Spalten umbenannt oder irrelevante Werte ausgeblendet werden, damit übersichtliche Reports entstehen. Auch eine granulare Implementierung von \ac{rbac} wird so vereinfacht. Der Dienst kann jedoch nur mit tabellarischen Datenmodellen umgehen, nicht mit multidimensionalen \cite{how_beyond_2020}.
+\ac{aas} ist eine Cloud Implementierung des Tools \textit{Microsoft SQL Server Analysis Services}. Der Dienst kann als Semantik-Schicht zwischen \ac{dwh} und Endnutzer agieren. In dieser Funktion können beispielsweise Spalten umbenannt oder irrelevante Werte ausgeblendet werden, damit übersichtliche Reports entstehen. Der Dienst kann jedoch nur mit tabellarischen Datenmodellen umgehen, nicht mit multidimensionalen.
 
+Obwohl ein Data Warehouse die gleichen analytischen Möglichkeiten bietet, kann es sinnvoll sein, Speicher- und Analyseschicht für mehr Flexibilität und weniger Komplexität voneinander zu trennen.
 
+\ac{aas} ermöglicht außerdem die Implementierung von granularen Zugriffsrichtlinie auf Zeilenniveau mit \ac{rbac} in Verbindung mit dem \ac{aad}.
 
+Für effiziente Analysen wird das \textit{Vertipaq Engine} genutzt, welches alle Daten im Arbeitsspeicher ablegt. Um den benötigten Speicher zu reduzieren, werden außerdem verschiedene Algorithmen zum Komprimieren der Daten verwendet.
 
+Ein Analysis Services Modell enthält die Daten und weitere Objekte, wie die daraus berechneten \acp{kpi} \cite{how_beyond_2020}.
+
+\textbf{Fazit}: \ac{aas} könnte als Semantik-Schicht zwischen Daten und Reports genutzt werden. Ob der Dienst einen Mehrwert für die Cloud-BI bieten könnte, hängt besonders von der gewählten Speicherlösung und den damit zur Verfügung stehenden Funktionen zur Datenverarbeitung ab.
 
 \subsection{Power BI} \label{sec:grundlagen:azure_dienste:powerBI}
-Power BI ist Microsofts Dienst zum Visualisieren von Daten. Gleichzeitig können \ac{etl}-Prozesse und Auswertungen auf Basis von Analysis Services durchgeführt werden. Mit Power BI können vorgefertigte und Self-Service Reports erstellt werden.
+Power BI ist Microsofts Dienst zum Visualisieren von Daten. Gleichzeitig können \ac{etl}-Prozesse und Auswertungen durchgeführt werden, die auf der gleichen Power Query Engine, wie bei \ac{aas} basieren. Mit Power BI können vorgefertigte und Self-Service Reports erstellt werden.
 
 Power BI besteht aus mehreren Kernkomponenten wie die Entwicklungsumgebung für Reports \textit{Power BI desktop}, oder das webbasierte Portal \textit{Power BI servcice}, wo die veröffentlichten Reports betrachtet werden können.
 
 Zum Erstellen eines Reports wird zunächst eine Datenquelle verknüpft. Hier werden einige Konnektoren angeboten, mit denen unter anderem mit allen hier vorgestellten Speicherlösungen eine Verbindung aufgebaut werden kann. Anschließend kann das dazugehörige Datenmodell in bearbeitet werden. Relationen werden automatisch von Power BI erkannt, es können jedoch manuell weitere hinzugefügt werden. Mit einem vollständigen Datenmodell können anschließend Reports mit Visualisierungen, wie Balkendiagramme, in einer grafischen Benutzeroberfläche erstellt werden. Abschließend wird der Report veröffentlicht und wird in Power BI service angezeigt.
 
-Power BI kann auch eine Liveverbindung zu Azure Anaylsis Services aufbauen und Abfragen an diesen Dienst weitergeben, wodurch auf einen vorherigen Import der Daten verzichtet werden kann.
+Power BI kann auch eine Liveverbindung zu \ac{aas} aufbauen und Abfragen an diesen Dienst weitergeben, wodurch auf einen vorherigen Import der Daten verzichtet werden kann.
 \cite{how_beyond_2020}.
 
-
-
-
-
-
-
-
-
+\textbf{Fazit}: Mit Power BI können alle hier benötigten Reporting-Funktionalitäten umgesetzte werden, damit ist es eine geeignete Option für das neue BI-System, um als Schnittstelle zu dem Endnutzer zu fungieren.  
 
 
 \subsection{Azure Purview} \label{sec:grundlagen:azure_dienste:purview}
