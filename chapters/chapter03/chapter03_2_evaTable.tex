@@ -16,7 +16,7 @@
 |P{0.05\textwidth - 2.0\tabcolsep}
 |P{0.05\textwidth - 2.0\tabcolsep}
 |}
-\caption{Einschätzung der Azure Dienste in Bezug auf die Anforderungen. (\cmark: Erfüllt Anforderung; \cmark\textsuperscript{*}: Erfüllt Anforderung unter bestimmten Voraussetzungen; \xmark: Erfüllt Anforderung nicht; \nmark: Kein direkter Bezug zu Anforderung)} \label{table:eva} \\
+\caption{Einschätzung der Azure Dienste in Bezug auf die Anforderungen. (\cmark: Erfüllt Anforderung; \xmark: Erfüllt Anforderung nicht; \nmark: Kein direkter Bezug zu Anforderung)} \label{table:eva} \\
 
 \hline 
 \diagbox[height=3.2cm,innerwidth=.3\textwidth-2.0\tabcolsep]{Anforderung}{Azure Dienst}
@@ -87,7 +87,7 @@
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \xmark % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \xmark % Purview
 \\
 
@@ -104,7 +104,7 @@
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \xmark % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \xmark% Purview
 \\
 
@@ -121,7 +121,7 @@
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \xmark % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \xmark % Purview
 \\
 
@@ -138,7 +138,7 @@
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \nmark % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \nmark % Purview
 \\ 
 
@@ -190,7 +190,7 @@
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \xmark % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \xmark % Purview
 \\
 
@@ -199,7 +199,7 @@
 & \cmark % SQL
 & \cmark % SQL MI
 & \cmark % Cosmos DB
-& \cmark\textsuperscript{*} % Data Lake Gen 2
+& \cmark\textsuperscript{1} % Data Lake Gen 2
 & \nmark % Logic Apps
 & \nmark % Data Factory
 & \nmark % HDInsight
@@ -207,7 +207,7 @@
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \nmark % Power BI
-&  % Synapse Analytics
+& \cmark\textsuperscript{1} % Synapse Analytics
 & \nmark % Purview
 \\
 
@@ -224,7 +224,7 @@
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \nmark % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \nmark % Purview
 \\
 
@@ -241,7 +241,7 @@
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \nmark % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \nmark % Purview
 \\ \hline
 
@@ -267,7 +267,7 @@
 & \xmark  % Table Storage
 & \cmark  % SQL
 & \cmark % SQL MI
-& \cmark\textsuperscript{*} % Cosmos DB
+& \cmark\textsuperscript{1} % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
 & \cmark % Data Factory
@@ -276,7 +276,7 @@
 & \xmark % Machine Learning
 & \cmark % Analysis Services
 & \cmark % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \xmark % Purview
 \\ 
 
@@ -284,7 +284,7 @@
 & \xmark  % Table Storage
 & \cmark  % SQL
 & \cmark % SQL MI
-& \cmark\textsuperscript{*} % Cosmos DB
+& \cmark\textsuperscript{1} % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
 & \cmark % Data Factory
@@ -293,7 +293,7 @@
 & \xmark % Machine Learning
 & \cmark % Analysis Services
 & \cmark % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \xmark % Purview
 \\ 
 
@@ -310,7 +310,7 @@
 & \cmark % Machine Learning
 & \xmark % Analysis Services
 &  % Power BI
-&  % Synapse Analytics
+& \cmark\textsuperscript{2} % Synapse Analytics
 & \xmark % Purview
 \\ \hline
 
@@ -345,7 +345,7 @@
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \cmark % Power BI
-&  % Synapse Analytics
+& \xmark % Synapse Analytics
 & \xmark % Purview
 \\
 
@@ -362,7 +362,7 @@
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \cmark % Power BI
-&  % Synapse Analytics
+& \xmark % Synapse Analytics
 & \xmark % Purview
 \\
 
@@ -379,7 +379,7 @@
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \cmark % Power BI
-&  % Synapse Analytics
+& \nmark % Synapse Analytics
 & \nmark % Purview
 \\
 
@@ -396,7 +396,7 @@
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 &  % Power BI
-&  % Synapse Analytics
+& \nmark % Synapse Analytics
 & \nmark % Purview
 \\ \hline
 
@@ -431,7 +431,7 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \cmark % Purview
 \\
 
@@ -448,7 +448,7 @@
 &  % Machine Learning
 & \cmark % Analysis Services
 &  % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \cmark % Purview
 \\
 
@@ -465,7 +465,7 @@
 &  % Machine Learning
 & \cmark % Analysis Services
 &  % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \cmark % Purview
 \\
 
@@ -476,13 +476,13 @@
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \xmark % Logic Apps
-&  % Data Factory
+& \xmark % Data Factory
 &  % HDInsight
 &  % Databricks
 &  % Machine Learning
 & \xmark % Analysis Services
 & \xmark % Power BI
-&  % Synapse Analytics
+& \xmark % Synapse Analytics
 & \cmark % Purview
 \\
 
@@ -499,12 +499,12 @@
 &  % Machine Learning
 & \xmark % Analysis Services
 & \xmark % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \cmark % Purview
 \\
 
 \hyperref[sec:anforderungsspezifikation:löschenKundendaten]{Recht auf Vergessenwerden}
-& \cmark\textsuperscript{*} % Table Storage
+& \cmark\textsuperscript{1} % Table Storage
 & \cmark % SQL
 & \cmark % SQL MI
 & \cmark % Cosmos DB
@@ -516,7 +516,7 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \cmark  % Purview
 \\ \hline
 
@@ -551,7 +551,7 @@
 & \cmark % Machine Learning
 & \cmark % Analysis Services
 & \cmark % Power BI
-&  % Synapse Analytics
+& \cmark % Synapse Analytics
 & \cmark % Purview
 \\
 
@@ -568,7 +568,7 @@
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
-&  % Synapse Analytics
+& \xmark % Synapse Analytics
 & \xmark % Purview
 \\
 
@@ -588,6 +588,9 @@
 &  % Synapse Analytics
 & \xmark % Purview
 \\ \hline
+
+\multicolumn{15}{l}{\textsuperscript{1}Erfüllt Anforderung nur unter bestimmten Voraussetzungen}
+\multicolumn{15}{l}{\textsuperscript{2}Nur Python, nicht mit R}
 
 \end{longtable}
 \end{scriptsize}

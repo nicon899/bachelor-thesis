@@ -114,10 +114,6 @@ Von den hier betrachteten Speichermöglichkeiten können entweder Azure SQL-Date
 
 \textbf{Fazit}: \textit{...}
 
-\subsection{Azure Synapse Analytics} \label{sec:grundlagen:azure_dienste:synapseAnalytics}
-Synapse Analytics vereint die Datenintegration, Data Warehousing und Big Data Analysen zu einem Dienst. Die Datenintegration verwendet die Data Factory, wird hier aber als \textit{Synapse Pipeline} bezeichnet. Die integrierten Daten können unabhängig von ihrer Struktur gespeichert werden. Durch die Unterstützung von Apache Spark wird die Analyse von großen Datenmengen ermöglicht \cite{shiyal_beginning_2021}.
-
-
 \subsection{Azure Analysis Services} \label{sec:grundlagen:azure_dienste:analysisServices}
 \ac{aas} ist eine Cloud Implementierung des Tools \textit{Microsoft SQL Server Analysis Services}. Der Dienst kann als Semantik-Schicht zwischen \ac{dwh} und Endnutzer agieren. In dieser Funktion können beispielsweise Spalten umbenannt oder irrelevante Werte ausgeblendet werden, damit übersichtliche Reports entstehen. Der Dienst kann jedoch nur mit tabellarischen Datenmodellen umgehen, nicht mit multidimensionalen.
 
@@ -141,8 +137,21 @@ Zum Erstellen eines Reports wird zunächst eine Datenquelle verknüpft. Hier wer
 Power BI kann auch eine Liveverbindung zu \ac{aas} aufbauen und Abfragen an diesen Dienst weitergeben, wodurch auf einen vorherigen Import der Daten verzichtet werden kann.
 \cite{how_beyond_2020}.
 
-\textbf{Fazit}: Mit Power BI können alle hier benötigten Reporting-Funktionalitäten umgesetzte werden, damit ist es eine geeignete Option für das neue BI-System, um als Schnittstelle zu dem Endnutzer zu fungieren.  
+\textbf{Fazit}: Mit Power BI können alle hier benötigten Reporting-Funktionalitäten umgesetzte werden, damit ist es eine geeignete Option für das neue BI-System, um als Schnittstelle zu dem Endnutzer zu fungieren.
 
+\subsection{Azure Synapse Analytics} \label{sec:grundlagen:azure_dienste:synapseAnalytics}
+Azure Synapse Analytics (ehemals Azure SQL Data Warehouse) vereint Datenintegration, Data Warehouse und Big Data Funktionalität in einem Dienst. Der Dienst enthält eine SQL-Engine und unterstützt weitere Speicherdienste wie den Azure Data Lake. Dadurch können Daten jeglicher Struktur gespeichert und verarbeitet werden. Durch eine unbeschränkte Skalierbarkeit ist dies für mehrere Petabyte möglich.
+
+Die Weboberfläche \textit{Synapse Studio} ist eine einheitliche Verwaltungsschnittstelle, damit Daten über aufgenommen, untersucht, aufbereitet und für BI- und Machine Learining Anwendungen bereitgestellt werden können. Hier sind beispielsweise SQL-Abfragen möglich, die direkte Verwendung von \nameref{sec:grundlagen:azure_dienste:machineLearning}, oder auch die Erstellung von PowerBI Visualisierungen und Reports.
+
+Für die Datenintegration wird die auf \ac{adf} basierende \textit{Synapse Pipeline} angeboten. Dadurch ist eine einfache Verbindung zu einer Vielzahl von Quellsystemen möglich.
+
+Durch Synapse Spark, welches auf Grundlage von Apache Spark entwickelt wurde, wird die Analyse von großen Datenmengen ermöglicht. Hierfür kann Python, Scala, C\# oder Spark SQL verwendet werden.
+
+Azure Synapse Analytics bietet einige Sicherheitsfunktionen, darunter die automatische Erkennung von Bedrohungen und eine immer aktive Verschlüsselung. Der Zugriff kann auf Spalten- oder Zeilenlevel geregelt werden.
+\cite{shiyal_beginning_2021}
+
+\textbf{Fazit}: Azure Synapse Analytics vereint mehrere Technologien und andere Azure Dienste in einem, wodurch die meisten funktionalen Anforderungen an das Cloud-BI-System erfüllt werden könnten. Jedoch ist dieser Dienst vergleichsweise komplex. Es werden einige Funktionalitäten geboten, die besonders für Big Data Anwendungsfälle attraktiv sind, jedoch hier nicht benötigt werden.
 
 \subsection{Azure Purview} \label{sec:grundlagen:azure_dienste:purview}
 Purview dient der zentralen Verwaltung der Datengovernance, für Cloud und on-premise Umgebungen. Dabei soll die Datenherkunft leicht nachvollziehbar werden. Die Metadaten zu den Quellen können um Tags und Beschreibungen erweitert werden. Der Dienst kann über die Benutzeroberfläche Purview Studio verwaltet werden. Der Zugriff auf dieses und die Informationen wird über Rollen und das \ac{aad} kontrolliert.
