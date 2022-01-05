@@ -1,7 +1,7 @@
 \section{Evaluation von Azure Diensten} \label{sec:evaluation}
 Im Folgenden sollen einige Azure Dienste, die im Rahmen einer Literaturrecherche ausgewählt wurden, evaluiert werden, mit dem Ziel, aus den gewonnen Erkenntnissen ein BI-System zu entwerfen, dass die festgelegten Anforderungen erfüllt. Dienste, die innerhalb der nächsten fünf Jahre eingestellt werden, wurden vorab ausgeschlossen und Funktionen, die sich noch in der Preview befinden, werden als nicht existent betrachtet. 
 
-Die untersuchten Dienste werden jeweils kurz vorgestellt und es wird auf die wichtigsten Funktionen, Vor- und Nachteile eingegangen, die in bestehender Literatur und den jeweiligen Dokumentationen gefunden werden konnten. Eine Einschätzung der Dienste in Bezug auf die Anforderungen kann in Tabelle~\ref{table:eva} gefunden werden.
+Die untersuchten Dienste werden jeweils kurz vorgestellt und es wird auf die wichtigsten Funktionen, Vor- und Nachteile eingegangen, die in bestehender Literatur und den jeweiligen Dokumentationen gefunden werden konnten.
 
 \subsection{Azure Table Storage} \label{sec:grundlagen:azure_dienste:tableStorage}
 Der NoSQL-Dienst Table Storage gehört zu den günstigsten Speichermöglichkeiten in Azure. Die Daten werden als Schlüssel/Wert-Paare in Tabellen gespeichert, diese sind jedoch nicht relational und können nicht miteinander gejoint werden. Eine Tabelle besteht aus einer oder mehreren Partitionen und eine Partition besteht aus ein oder mehreren Zeilen. Auf jeden Tabelleneintrag kann über einen eindeutigen Schlüssel zugegriffen werden. Dieser ist eine Kombination aus Partitions- und Zeilen-Schlüssel. Die Partitionierung über mehrere Server ermöglicht es Datenmengen im dreistelligen Terabyte Bereich zu speichern \cite{reagan_web_2018}.

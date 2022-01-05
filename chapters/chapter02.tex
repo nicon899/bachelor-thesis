@@ -53,7 +53,7 @@ In der Cloud wird eine Vielzahl an Ressourcen, wie virtualisierte Hardware oder 
 \end{itemize}
 Beim Vergleich der Azure Kategorien mit den funktionalen Schichten des on-premise BI-Systems decken die \textit{Integrations-Dienste} die Funktionalität der \textit{Datenintegration} ab. Das \ac{dwh} kann in Azure entweder mit den \textit{Datenbank-}, den \textit{Speicher-Diensten} oder einer Kombination von beiden ersetzt werden. Die \textit{Analyse-Dienste} entsprechen der \textit{auswertungsorientierten Schicht} und den \textit{BI-Anwendungen} des on-premise Systems. Zusätzlich neue Auswertungsmöglichkeiten bieten die Dienste aus \textit{KI und Machine Learning}. Die Kategorien \textit{Identität}, \textit{Netzwerk}, \textit{Sicherheit} und \textit{Verwaltung und Governance} sind vergleichbar mit dem \textit{Warehouse Management}.
 
-\subsection{Sicherheit und Datenschutz} \label{subsec:grundlagen:azure:sicherheitUndDatenschutz}
+\subsection{Dienste für Sicherheit und Datenschutz} \label{subsec:grundlagen:azure:sicherheitUndDatenschutz}
 Neben den Azure Diensten zur Erfüllung der funktionalen Anforderungen, die erst in Abschnitt~\ref{sec:konzeption:evaAuswertung} festgelegt werden, sollen weitere Dienste für die Sicherheit und den Datenschutz beim Entwurf der neuen BI-Architektur berücksichtigt werden.
 
 \subsubsection{Azure Active Directory} \label{subsec:grundlagen:azure:sicherheitUndDatenschutz:aad}
@@ -65,7 +65,7 @@ Neben den Azure Diensten zur Erfüllung der funktionalen Anforderungen, die erst
 Mit Azure Policy kann die Einhaltung bestimmter Compliance Anforderungen für alle Azure Ressourcen erzwungen werden. Dies wird für das System regelmäßig überprüft. Dazu werden zunächst die einzuhaltenden Parameter, wie beispielsweise der Serverstandort, festgelegt. Dann kann zum Beispiel auch der Versuch eine Ressource zu erstellen, die gegen die festgelegten Compliance Standards verstößt, verhindert werden. Durch Azure Policy kann also eine konsistente Einhaltung der Compliance im gesamten BI-System sichergestellt werden \cite{stefanovic_azure_2021}.
 
 \subsubsection{Microsoft Defender for Cloud} \label{subsec:grundlagen:azure:sicherheitUndDatenschutz:asc}
-Der Microsoft Defender for Cloud (ehemals Azure Security Center) soll einen Überblick über die Sicherheit der gesamten Infrastruktur geben. Dazu gibt es unter anderem ein Sicherheitsrating, das als Maßstab für die Bewertung der Systemsicherheit verwendet werden kann \cite{buchanan_azure_2022}. 
+Der Microsoft Defender for Cloud (ehemals Azure Security Center) soll einen Überblick über die Sicherheit der gesamten Infrastruktur geben. Dazu gibt es unter anderem ein Sicherheitsrating, das als Maßstab für die Bewertung der Systemsicherheit verwendet werden kann \cite{buchanan_azure_2022}.
 
 \section{Migrationsstrategie} \label{sec:beschreibungMigrationsstrategie}
 In der Literatur wird zwischen drei Migrationsstrategien unterschieden \cite{juan-verdejo_moving_2014}:
