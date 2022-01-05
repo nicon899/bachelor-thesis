@@ -8,10 +8,10 @@
 
 \section{Leistungsanforderungen} 
 
-\subsection{Datenintegration in unter 60min} \label{sec:anforderungsspezifikation:SchnelleDatenintegration}
-\textbf{Beschreibung}: Die Datenintegration aus einem Quellsystem soll weniger als 60 Minuten dauern.
-\newline \textbf{Begründung}: Damit aktuelle Auswertungen möglich sind, dürfen die gespeicherten Daten nicht älter als 60 Minuten sein.
-\newline \textbf{Testkriterium}: Die Dauer für eine beliebige Datenintegration liegt unter 60 Minuten.
+\subsection{Aktuelles Reporting} \label{sec:anforderungsspezifikation:SchnelleDatenintegration}
+\textbf{Beschreibung}: Es soll möglich sein, Reports zu erstellen, die einen Stand, der nicht älter als 60 Minuten ist, wiedergeben. Datenintegration, Verarbeitung und Visualisierung dürfen dementsprechend maximal 60 Minuten benötigen.
+\newline \textbf{Begründung}: Damit Auswertungen auf möglichst aktuellen Daten basieren können, müssen die Daten regelmäßig mit ausreichender Geschwindigkeit aktualisiert werden. 
+\newline \textbf{Testkriterium}: Eine Veränderung der Daten in einem Quellsystem ist innerhalb von einer Stunde in einem abhängigen Report zu finden.
 \newline \textbf{Priorität}: 4
 
 \subsection{Schnelle Antwortzeiten der Reports} \label{sec:anforderungsspezifikation:schnelleAntwortzeitenDerReports}

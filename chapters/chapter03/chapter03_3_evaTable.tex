@@ -140,23 +140,6 @@
 & \nmark % Power BI
 & \cmark % Synapse Analytics
 & \nmark % Purview
-\\ 
-
-\hyperref[sec:anforderungsspezifikation:SchnelleDatenintegration]{Dauer unter 60min}
-& \nmark % Table Storage
-& \nmark % SQL
-& \nmark % SQL MI
-& \nmark % Cosmos DB
-& \nmark % Data Lake Gen 2
-& \cmark % Logic Apps
-&  % Data Factory
-& \nmark % HDInsight
-&  % Databricks
-& \nmark % Machine Learning
-& \nmark % Analysis Services
-& \nmark % Power BI
-&  % Synapse Analytics
-& \nmark % Purview
 \\ \hline
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
@@ -401,126 +384,6 @@
 \\ \hline
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textbf{Sicherheit/Datenschutz}
-&  % Table Storage
-&  % SQL
-&  % SQL MI
-&  % Cosmos DB
-&  % Data Lake Gen 2
-&  % Logic Apps
-&  % Data Factory
-&  % HDInsight
-&  % Databricks
-&  % Machine Learning
-&  % Analysis Services
-&  % Power BI
-&  % Synapse Analytics
-&  % Purview
-\\ \hline
-
-\hyperref[sec:anforderungsspezifikation:verschlüsselung]{Verschlüsselung der Daten}
-& \cmark % Table Storage
-& \cmark % SQL
-& \cmark % SQL MI
-& \cmark % Cosmos DB
-& \cmark % Data Lake Gen 2
-& \cmark % Logic Apps
-&  % Data Factory
-&  % HDInsight
-&  % Databricks
-&  % Machine Learning
-&  % Analysis Services
-&  % Power BI
-& \cmark % Synapse Analytics
-& \cmark % Purview
-\\
-
-\hyperref[sec:anforderungsspezifikation:SAG_AD]{Authentifizierung mit \ac{aad}}
-& \xmark % Table Storage
-& \cmark % SQL
-& \cmark % SQL MI
-& \cmark % Cosmos DB
-& \cmark % Data Lake Gen 2
-& \cmark % Logic Apps
-&  % Data Factory
-&  % HDInsighty
-&  % Databricks
-&  % Machine Learning
-& \cmark % Analysis Services
-&  % Power BI
-& \cmark % Synapse Analytics
-& \cmark % Purview
-\\
-
-\hyperref[sec:anforderungsspezifikation:rbac]{Verwendung von \ac{rbac}}
-& \xmark % Table Storage
-& \cmark % SQL
-& \cmark % SQL MI
-& \cmark % Cosmos DB
-& \cmark % Data Lake Gen 2
-& \cmark % Logic Apps
-&  % Data Factory
-&  % HDInsight
-&  % Databricks
-&  % Machine Learning
-& \cmark % Analysis Services
-&  % Power BI
-& \cmark % Synapse Analytics
-& \cmark % Purview
-\\
-
-\hyperref[sec:anforderungsspezifikation:datenflussDokumentation]{Datenflussdokumentation}
-& \xmark % Table Storage
-& \xmark % SQL
-& \xmark % SQL MI
-& \xmark % Cosmos DB
-& \xmark % Data Lake Gen 2
-& \xmark % Logic Apps
-& \xmark % Data Factory
-&  % HDInsight
-&  % Databricks
-&  % Machine Learning
-& \xmark % Analysis Services
-& \xmark % Power BI
-& \xmark % Synapse Analytics
-& \cmark % Purview
-\\
-
-\hyperref[sec:anforderungsspezifikation:DatenKlassifizierung]{Datenklassifizierung}
-& \xmark % Table Storage
-& \xmark % SQL
-& \xmark % SQL MI
-& \xmark % Cosmos DB
-& \xmark % Data Lake Gen 2
-& \cmark % Logic Apps
-& \cmark % Data Factory
-&  % HDInsight
-&  % Databricks
-&  % Machine Learning
-& \xmark % Analysis Services
-& \xmark % Power BI
-& \cmark % Synapse Analytics
-& \cmark % Purview
-\\
-
-\hyperref[sec:anforderungsspezifikation:löschenKundendaten]{Recht auf Vergessenwerden}
-& \cmark\textsuperscript{1} % Table Storage
-& \cmark % SQL
-& \cmark % SQL MI
-& \cmark % Cosmos DB
-& \cmark % Data Lake Gen 2
-& \nmark % Logic Apps
-& \nmark % Data Factory
-&  % HDInsight
-&  % Databricks
-&  % Machine Learning
-&  % Analysis Services
-&  % Power BI
-& \cmark % Synapse Analytics
-& \cmark  % Purview
-\\ \hline
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 \textbf{Zuverlässigkeit/Wartung}
 &  % Table Storage
 &  % SQL
@@ -579,7 +442,7 @@
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
-&  % Data Factory
+& \cmark % Data Factory
 &  % HDInsight
 &  % Databricks
 &  % Machine Learning
@@ -587,6 +450,126 @@
 &  % Power BI
 &  % Synapse Analytics
 & \xmark % Purview
+\\ \hline
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Sicherheit/Datenschutz}
+&  % Table Storage
+&  % SQL
+&  % SQL MI
+&  % Cosmos DB
+&  % Data Lake Gen 2
+&  % Logic Apps
+&  % Data Factory
+&  % HDInsight
+&  % Databricks
+&  % Machine Learning
+&  % Analysis Services
+&  % Power BI
+&  % Synapse Analytics
+&  % Purview
+\\ \hline
+
+\hyperref[sec:anforderungsspezifikation:datenflussDokumentation]{Datenflussdokumentation}
+& \xmark % Table Storage
+& \xmark % SQL
+& \xmark % SQL MI
+& \xmark % Cosmos DB
+& \xmark % Data Lake Gen 2
+& \xmark % Logic Apps
+& \xmark % Data Factory
+&  % HDInsight
+&  % Databricks
+&  % Machine Learning
+& \xmark % Analysis Services
+& \xmark % Power BI
+& \xmark % Synapse Analytics
+& \cmark % Purview
+\\
+
+\hyperref[sec:anforderungsspezifikation:DatenKlassifizierung]{Datenklassifizierung}
+& \xmark % Table Storage
+& \xmark % SQL
+& \xmark % SQL MI
+& \xmark % Cosmos DB
+& \xmark % Data Lake Gen 2
+& \cmark % Logic Apps
+& \cmark % Data Factory
+&  % HDInsight
+&  % Databricks
+&  % Machine Learning
+& \xmark % Analysis Services
+& \xmark % Power BI
+& \cmark % Synapse Analytics
+& \cmark % Purview
+\\
+
+\hyperref[sec:anforderungsspezifikation:löschenKundendaten]{Recht auf Vergessenwerden}
+& \cmark\textsuperscript{1} % Table Storage
+& \cmark % SQL
+& \cmark % SQL MI
+& \cmark % Cosmos DB
+& \cmark % Data Lake Gen 2
+& \nmark % Logic Apps
+& \nmark % Data Factory
+&  % HDInsight
+&  % Databricks
+&  % Machine Learning
+&  % Analysis Services
+&  % Power BI
+& \cmark % Synapse Analytics
+& \cmark  % Purview
+\\
+
+\hyperref[sec:anforderungsspezifikation:SAG_AD]{Authentifizierung mit \ac{aad}}
+& \xmark % Table Storage
+& \cmark % SQL
+& \cmark % SQL MI
+& \cmark % Cosmos DB
+& \cmark % Data Lake Gen 2
+& \cmark % Logic Apps
+& \cmark % Data Factory
+&  % HDInsighty
+&  % Databricks
+&  % Machine Learning
+& \cmark % Analysis Services
+&  % Power BI
+& \cmark % Synapse Analytics
+& \cmark % Purview
+\\
+
+\hyperref[sec:anforderungsspezifikation:rbac]{Verwendung von \ac{rbac}}
+& \xmark % Table Storage
+& \cmark % SQL
+& \cmark % SQL MI
+& \cmark % Cosmos DB
+& \cmark % Data Lake Gen 2
+& \cmark % Logic Apps
+& \cmark % Data Factory
+&  % HDInsight
+&  % Databricks
+&  % Machine Learning
+& \cmark % Analysis Services
+&  % Power BI
+& \cmark % Synapse Analytics
+& \cmark % Purview
+\\
+
+\hyperref[sec:anforderungsspezifikation:verschlüsselung]{Verschlüsselung der Daten}
+& \cmark % Table Storage
+& \cmark % SQL
+& \cmark % SQL MI
+& \cmark % Cosmos DB
+& \cmark % Data Lake Gen 2
+& \cmark % Logic Apps
+& \cmark % Data Factory
+&  % HDInsight
+&  % Databricks
+&  % Machine Learning
+&  % Analysis Services
+&  % Power BI
+& \cmark % Synapse Analytics
+& \cmark % Purview
 \\ \hline
 
 \multicolumn{15}{l}{\textsuperscript{1}Erfüllt Anforderung nur unter bestimmten Voraussetzungen}

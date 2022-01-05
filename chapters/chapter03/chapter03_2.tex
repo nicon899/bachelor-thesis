@@ -72,20 +72,22 @@ Auch Datentransformationen, wie mathematische Berechnungen und Textmanipulatione
 
 Beim Eintreten von Fehlern werden vorher festgelegte Wiederholungsrichtlinien ausgeführt. Es ist ebenfalls möglich, nach einem aufgetretenen Fehler, mit einer alternativen Aktion fortzufahren, um zum Beispiel eine zuständige Person per E-Mail zu informieren \cite{fan_handle_2021}.
 
-Für eine ausreichende Sicherheit werden die Daten während der Übertragung mit TLS und im Ruhezustand verschlüsselt. Auch die Authentifizierung mit \ac{aad} und Autorisierung durch \ac{rbac} wird unterstützt \cite{baldwin_azure_2021-1}. 
+Für eine ausreichende Sicherheit werden die Daten während der Übertragung mit TLS und im Ruhezustand verschlüsselt. Auch die Authentifizierung mit \ac{aad} und Autorisierung durch \ac{rbac} wird unterstützt \cite{baldwin_azure_logicApps_2021}. 
 
 \textbf{Fazit}: Mit den angebotenen Konnektoren von Logic Apps, können alle hier benötigten Quellsysteme integriert werden \cite[vgl.][]{fan_verwaltete_2021}. Vor dem Speichern können die Daten bei Bedarf verarbeitet werden. Dieser Dienst ist außerdem performant und benötigt für die meisten Ausführungen nur wenige Sekunden \cite{bennett_enterprise_2021}. Durch die Manipulationsmöglichkeiten wäre auch ein Verarbeitungsschritt möglich, in dem nach festen Regeln Attribute zur Datenklassifikation ergänzt werden.
 
 \subsection{Azure Data Factory} \label{sec:grundlagen:azure_dienste:dataFactory}
 \ac{adf} ist ein Datenintegrationsdienst, der für on-premise und Cloud Systeme genutzt werden kann. Der Dienst wurde speziell für den gemeinsamen Einsatz mit anderen Diensten entwickelt und übernimmt dabei die Bewegung, Transformation und Verarbeitung der Daten, zwischen den unterschiedlichen Systemen \cite{klein_iot_2017}.
 
-Der ETL-Prozess wird als Pipeline implementiert. Eine Pipeline ist eine Sammlung von Aktivitäten zum Bewegen und Transformieren von Daten. 
+Der ETL-Prozess wird als Pipeline implementiert. Eine Pipeline ist eine Abfolge von Aktivitäten zum Bewegen und Transformieren von Daten. Es werden außerdem logische Unterscheidungen unterstützt, mit denen auch auf mögliche Fehler reagiert werden kann \cite{zhu_pipeline_2021}.
 
 Die \textit{Azure Data Factory User Experience} bietet eine webbasierte IDE für die visuelle Erstellung, Planung und Überwachung von Pipelines. Das \textit{Copy Data tool} führt einen schrittweise durch die Erstellung einer neuen Pipeline, die Daten von einer Ressource zu einer anderen verschiebt. Dabei werden unter anderen Datenspeicher- und Computedienste mit der \ac{adf} verknüpft. Die Trennung dieser hat den Vorteil, dass beides unabhängig voneinander nach Bedarf skaliert werden kann.
 
 \ac{adf} besitzt keinen eigenen Speicher, sondern verwendet ausschließlich die verknüpften Dienste. Ein verknüpfter Dienst besteht aus den notwendigen Metadaten für eine Verbindung, beispielsweise die Verbindungszeichenfolge für eine Datenbank. Metadaten, die konkrete Objekte im verknüpften Speicherdienst beschreiben, werden als Dataset definiert. 
 
 Für die Verarbeitung der Daten können verknüpfte Dienste, wie Azure Databricks oder HDInsight verwendet werden. Alternativ bietet eine \textit{integration runtime} Zugang zu internen Rechenressourcen innerhalb von \ac{adf} \cite{swinbank_your_2021}.
+
+Der Zugriff in \ac{adf} kann mit \ac{rbac} beschränkt werden \cite{sabat_security_2021} und die Datenübertragung geschieht verschlüsselt, vorausgesetzt der verbundene Speicherdienst unterstützt TLS oder HTTPS \cite{baldwin_azure_adf_2021}.
 
 \textbf{Fazit}: \ac{adf} könnte im neuen BI-System für die Datenintegration genutzt werden. Im Gegensatz zu Logic Apps setzt dieser Dienst auf die Zusammenarbeit mit weiteren Azure Ressourcen, um den ETL-Prozess durchzuführen, was zu einem komplexeren Gesamtsystem führen könnte.
 
@@ -158,6 +160,6 @@ Purview dient der zentralen Verwaltung der Datengovernance, für Cloud und on-pr
 
 Im Purview Studio können Benutzer neue Datenquellen registriert werden, damit zusätzliche Metadaten zu diesen verwaltet werden können. Durch das Erstellen einer \textit{Scan Rule} können die Datenquellen gescannt werden, wobei die Daten nach vorher definierten Regeln klassifiziert werden. Der Scan kann einmalig oder wiederholt nach Zeitplan ausgeführt werden \cite{lesteve_definitive_2021}. Dadurch wird die Nachvollziehbarkeit der Datenherkunft ermöglicht. Diese umfasst den Ursprung, aber auch alle Verarbeitungen und Bewegungen der Daten \cite{riscutia_data_2021}.
 
-Auch die Übertragung und Speicherung der Daten geschieht in Purview verschlüsselt \cite{baldwin_azure_2021}. 
+Auch die Übertragung und Speicherung der Daten geschieht in Purview verschlüsselt \cite{baldwin_azure_purview_2021}. 
 
 \textbf{Fazit}: Purview bietet einige Funktionen, die helfen, die Sicherheit und den Datenschutz der BI-Lösung zu verbessern. Purview kann verwendet werden, um die Daten in regelmäßigen Scans zu klassifizieren und dabei den vollständigen Datenfluss zu dokumentieren. Durch die Erweiterung der Metadaten um bestimmte Tags kann Purview zusätzlich dabei helfen, auf Anfrage alle Daten eines Kunden zu löschen.
