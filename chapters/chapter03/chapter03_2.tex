@@ -3,6 +3,8 @@ Im Folgenden sollen einige Azure Dienste, die im Rahmen einer Literaturrecherche
 
 Die untersuchten Dienste werden jeweils kurz vorgestellt und es wird auf die wichtigsten Funktionen, Vor- und Nachteile eingegangen, die in bestehender Literatur und den jeweiligen Dokumentationen gefunden werden konnten.
 
+
+%===========================================================================================================================
 \subsection{Azure Table Storage} \label{sec:grundlagen:azure_dienste:tableStorage}
 Der NoSQL-Dienst Table Storage gehört zu den günstigsten Speichermöglichkeiten in Azure. Die Daten werden als Schlüssel/Wert-Paare in Tabellen gespeichert, diese sind jedoch nicht relational und können nicht miteinander gejoint werden. Eine Tabelle besteht aus einer oder mehreren Partitionen und eine Partition besteht aus ein oder mehreren Zeilen. Auf jeden Tabelleneintrag kann über einen eindeutigen Schlüssel zugegriffen werden. Dieser ist eine Kombination aus Partitions- und Zeilen-Schlüssel. Die Partitionierung über mehrere Server ermöglicht es Datenmengen im dreistelligen Terabyte Bereich zu speichern \cite{reagan_web_2018}.
 
@@ -18,6 +20,8 @@ Die größte Schwäche von Table Storage ist, dass nur auf den Partitions- und Z
 
 Daher ist der Table Storage hier nicht geeignet, um als alleinstehende Speicherlösung genutzt zu werden. Er könnte jedoch als Ergänzung zum Kosten sparen eingesetzt werden \cite[vgl.][]{reagan_web_2018}. 
 
+
+%===========================================================================================================================
 \subsection{Azure SQL} \label{sec:grundlagen:azure_dienste:sql}
 Azure SQL ist eine Produktfamilie von relationalen Datenbanken, die basierend auf Abstraktion und Zugriff in Betriebssystem-, Server- und Datenbankebene eingeteilt werden kann:
 
@@ -38,6 +42,8 @@ Es gibt zwei Möglichkeiten, die Performance bei Bedarf zu verbessern. Solange d
 
 Von den drei Azure SQL Diensten werden nur die verwaltete SQL-Instanz und die SQL-Datenbank für das neue BI-System in Erwägung gezogen, da die Kontrolle auf Betriebssystemebene nicht benötigt wird. Welcher dieser beiden Dienste besser geeignet ist, hängt besonders davon ab, wie die zusätzlichen Funktionen der verwalteten SQL-Instanz gegenüber der SQL-Datenbank in Verbindung mit zusätzlichen Diensten zu werten sind. 
 
+
+%===========================================================================================================================
 \subsection{Azure Cosmos DB} \label{sec:grundlagen:azure_dienste:cosmosDB}
 Bei diesem Dienst handelt es sich um eine NoSQL-Datenbank, die mehrere Datenmodelle, wie Schlüssel-Wert, Dokument oder Graph, unterstützt. Intern werden die Daten als Dokumente im JSON-Format gespeichert. Solange die Daten sich in Ruhe befinden, sind sie verschlüsselt.
 
@@ -52,6 +58,8 @@ Der Zugriff auf Cosmos DB kann über \ac{aad} und \ac{rbac} kontrolliert werden 
 
 \textbf{Fazit}: Besonders das gleichzeitige Verwenden mehrerer Datenmodelle macht aus Cosmos DB eine interessante Möglichkeit für ein BI-System. Für alle gespeicherten Daten, kann das Modell verwendet werden, dass für den benötigten Anwendungsfall optimal ist. Von der gewählten API sind auch die Möglichkeiten zur Datenfernverarbeitung mit diesem Dienst abhängig. Während die Table API dafür ungeeignet ist, sind mit der SQL-Artigen DocumentDB Transformationen und Auswertungen möglich.
 
+
+%===========================================================================================================================
 \subsection{Azure Data Lake Gen 2} \label{sec:grundlagen:azure_dienste:dataLake}
 \acp{blob} sind unstrukturierte Dateien, die sich nicht zum Speichern in einer Datenbank eignen. Eine kostengünstige Möglichkeit, diese in der Cloud abzulegen, ist der Blob Storage. Auf diesen Dienst baut auch der Data Lake Gen 2 auf, welcher für die Analyse der gespeicherten Daten spezialisiert wurde. Organisieren lassen sich die Dateien in einer hierarchischen Ordnerstruktur \cite{soh_microsoft_2020}.
 
@@ -63,6 +71,8 @@ Mit Hilfe der Dienste \ac{adf} oder Azure Databricks kann der Data Lake um das O
 
 \textbf{Fazit}: Die Verwendung von Azure Data Lake Gen 2 ist sinnvoll, wenn viele oder große \ac{blob}-Dateien gespeichert werden müssen. Dies ist zunächst kein Anwendungsfall, der im neuen BI-System benötigt wird. Sollten sich die Anforderungen in Zukunft ändern, könnte Data Lake jedoch eine gute Ergänzung zu einer Datenbank sein.
 
+
+%===========================================================================================================================
 \subsection{Azure Logic Apps} \label{sec:grundlagen:azure_dienste:logicApps}
 Mit diesem Dienst können automatisierte Workflows zur Datenintegration erstellt werden. Die Workflows sind sehr anpassungsfähig und es steht eine Vielzahl an vorgefertigten Konnektoren zur Verfügung \cite{kumar_serverless_2019}.
 
@@ -76,6 +86,8 @@ Für eine ausreichende Sicherheit werden die Daten während der Übertragung mit
 
 \textbf{Fazit}: Mit den angebotenen Konnektoren von Logic Apps, können alle hier benötigten Quellsysteme integriert werden \cite[vgl.][]{fan_verwaltete_2021}. Vor dem Speichern können die Daten bei Bedarf verarbeitet werden. Dieser Dienst ist außerdem performant und benötigt für die meisten Ausführungen nur wenige Sekunden \cite{bennett_enterprise_2021}. Durch die Manipulationsmöglichkeiten wäre auch ein Verarbeitungsschritt möglich, in dem nach festen Regeln Attribute zur Datenklassifikation ergänzt werden.
 
+
+%===========================================================================================================================
 \subsection{Azure Data Factory} \label{sec:grundlagen:azure_dienste:dataFactory}
 \ac{adf} ist ein Datenintegrationsdienst, der für on-premise und Cloud Systeme genutzt werden kann. Der Dienst wurde speziell für den gemeinsamen Einsatz mit anderen Diensten entwickelt und übernimmt dabei die Bewegung, Transformation und Verarbeitung der Daten, zwischen den unterschiedlichen Systemen \cite{klein_iot_2017}.
 
@@ -91,6 +103,8 @@ Der Zugriff in \ac{adf} kann mit \ac{rbac} beschränkt werden \cite{sabat_securi
 
 \textbf{Fazit}: \ac{adf} könnte im neuen BI-System für die Datenintegration genutzt werden. Im Gegensatz zu Logic Apps setzt dieser Dienst auf die Zusammenarbeit mit weiteren Azure Ressourcen, um den ETL-Prozess durchzuführen, was zu einem komplexeren Gesamtsystem führen könnte.
 
+
+%===========================================================================================================================
 \subsection{Azure HDInsight} \label{sec:grundlagen:azure_dienste:hdInsight}
 Azure HDInsight realisiert Apache Hadoop, als vollständig verwalteten Cloud Dienst. Dazu wird von dem Dienst ein Cluster von virtuellen Maschinen, die das \textit{Hadoop Distributed File System} benutzen, verwaltet. Dieses verteilte Dateisystem ist auf Fehlertoleranz und einen hohen Durchsatz ausgelegt ist.
 
@@ -106,9 +120,13 @@ Hadoop kann eine hohe Verfügbarkeit bieten und kann je nach Bedarf skalieren, w
 
 \textbf{Fazit}: Dieser Dienst ist vergleichsweise komplex, da individuelle Konfigurationen notwendig sind. Ein möglicher Anwendungsfall wäre ein ETL-Prozess zwischen einem unstrukturierten Speicher, wie dem Data Lake und einer relationalen Datenbank. \cite[vgl.][]{klein_iot_2017}.
 
+
+%===========================================================================================================================
 \subsection{Azure Databricks} \label{sec:grundlagen:azure_dienste:databricks}
 Azure Databricks setzt Apache Spark als Cloud-Dienst um. Spark ist ein Open-Source Framework für die Big Data Analyse. Im Gegensatz zu Hadoop werden die Daten zur schnelleren Verarbeitung im Arbeitsspeicher vorgehalten \cite{soh_data_2020}.
 
+
+%===========================================================================================================================
 \subsection{Azure Machine Learning} \label{sec:grundlagen:azure_dienste:machineLearning}
 \ac{aml} ist eine Sammlung von Funktionen und Tools zum Arbeiten mit ML-Modellen in einer skalierbaren Cloud-Umgebung. Dafür kann Python, R oder die zero/low code Option \textit{Azure ML designer} verwendet werden.
 
@@ -116,6 +134,8 @@ Von den hier betrachteten Speichermöglichkeiten können entweder Azure SQL-Date
 
 \textbf{Fazit}: \textit{...}
 
+
+%===========================================================================================================================
 \subsection{Azure Analysis Services} \label{sec:grundlagen:azure_dienste:analysisServices}
 \ac{aas} ist eine Cloud Implementierung des Tools \textit{Microsoft SQL Server Analysis Services}. Der Dienst kann als Semantik-Schicht zwischen \ac{dwh} und Endnutzer agieren. In dieser Funktion können beispielsweise Spalten umbenannt oder irrelevante Werte ausgeblendet werden, damit übersichtliche Reports entstehen. Der Dienst kann jedoch nur mit tabellarischen Datenmodellen umgehen, nicht mit multidimensionalen.
 
@@ -129,18 +149,28 @@ Ein Analysis Services Modell enthält die Daten und weitere Objekte, wie die dar
 
 \textbf{Fazit}: \ac{aas} könnte als Semantik-Schicht zwischen Daten und Reports genutzt werden. Ob der Dienst einen Mehrwert für die Cloud-BI bieten könnte, hängt besonders von der gewählten Speicherlösung und den damit zur Verfügung stehenden Funktionen zur Datenverarbeitung ab.
 
+
+%===========================================================================================================================
 \subsection{Power BI} \label{sec:grundlagen:azure_dienste:powerBI}
 Power BI ist Microsofts Dienst zum Visualisieren von Daten. Gleichzeitig können \ac{etl}-Prozesse und Auswertungen durchgeführt werden, die auf der gleichen Power Query Engine, wie bei \ac{aas} basieren. Mit Power BI können vorgefertigte und Self-Service Reports erstellt werden.
 
 Power BI besteht aus mehreren Kernkomponenten wie die Entwicklungsumgebung für Reports \textit{Power BI desktop}, oder das webbasierte Portal \textit{Power BI servcice}, wo die veröffentlichten Reports betrachtet werden können.
 
-Zum Erstellen eines Reports wird zunächst eine Datenquelle verknüpft. Hier werden einige Konnektoren angeboten, mit denen unter anderem mit allen hier vorgestellten Speicherlösungen eine Verbindung aufgebaut werden kann. Anschließend kann das dazugehörige Datenmodell in bearbeitet werden. Relationen werden automatisch von Power BI erkannt, es können jedoch manuell weitere hinzugefügt werden. Mit einem vollständigen Datenmodell können anschließend Reports mit Visualisierungen, wie Balkendiagramme, in einer grafischen Benutzeroberfläche erstellt werden. Abschließend wird der Report veröffentlicht und wird in Power BI service angezeigt.
+Zum Erstellen eines Reports wird zunächst eine Datenquelle verknüpft. Es werden einige Konnektoren angeboten, mit denen unter anderem mit allen hier vorgestellten Speicherlösungen eine Verbindung aufgebaut werden kann. Anschließend kann das dazugehörige Datenmodell bearbeitet werden. Relationen werden automatisch von Power BI erkannt, es können jedoch manuell weitere hinzugefügt werden. Mit einem vollständigen Datenmodell können anschließend Reports mit Visualisierungen, wie Balkendiagramme, in einer grafischen Benutzeroberfläche erstellt werden. Abschließend wird der Report veröffentlicht und wird in Power BI service angezeigt \cite{how_beyond_2020}.
+
+Sollte die Aktualisierung der Reports fehlschlagen, sendet Power BI eine E-Mail, damit zeitnah gehandelt werden kann. Fehler werden auch in einer Übersicht der importierten Datenmodelle angezeigt. Hierüber ist es möglich zu einer Verlaufsübersicht der Aktualisierungen inklusive konkreter Fehlermeldungen zu gelangen \cite{iseminger_data_2021}.
 
 Power BI kann auch eine Liveverbindung zu \ac{aas} aufbauen und Abfragen an diesen Dienst weitergeben, wodurch auf einen vorherigen Import der Daten verzichtet werden kann.
 \cite{how_beyond_2020}.
 
-\textbf{Fazit}: Mit Power BI können alle hier benötigten Reporting-Funktionalitäten umgesetzte werden, damit ist es eine geeignete Option für das neue BI-System, um als Schnittstelle zu dem Endnutzer zu fungieren.
+Der Zugriff auf die Daten kann rollenbasiert auf Zeilenebene kontrolliert werden. Sowohl ruhende als auch sich in Bewegung befindende Daten werden verschlüsselt.
 
+Die Ladezeit eines Reports ist von verschiedenen Faktoren wie der Datenquelle, dem Datenmodell und den Visualisierungen abhängig. Daher ist eine allgemeine Aussage zur Performance nicht möglich. Bei Bedarf gibt es können allerdings einige Möglichkeiten zur Optimierung gefunden werden \cite[vgl.][]{myers_optimization_2021}.
+
+\textbf{Fazit}: Mit Power BI können alle hier benötigten Reporting-Funktionalitäten umgesetzte werden, damit ist es eine geeignete Option für das neue BI-System, um als Schnittstelle zu dem Endnutzer zu fungieren. Bezüglich der Performance kann jedoch noch keine Einschätzung gemacht werden. Ob diese zufriedenstellend ist, muss durch eine konkrete Implementierung getestet werden.
+
+
+%===========================================================================================================================
 \subsection{Azure Synapse Analytics} \label{sec:grundlagen:azure_dienste:synapseAnalytics}
 Azure Synapse Analytics (ehemals Azure SQL Data Warehouse) vereint Datenintegration, Data Warehouse und Big Data Funktionalität in einem Dienst. Der Dienst enthält eine SQL-Engine und unterstützt weitere Speicherdienste wie den Azure Data Lake. Dadurch können Daten jeglicher Struktur gespeichert und verarbeitet werden. Durch eine unbeschränkte Skalierbarkeit ist dies für mehrere Petabyte möglich.
 
@@ -155,6 +185,8 @@ Azure Synapse Analytics bietet einige Sicherheitsfunktionen, darunter die automa
 
 \textbf{Fazit}: Azure Synapse Analytics vereint mehrere Technologien und andere Azure Dienste in einem, wodurch die meisten funktionalen Anforderungen an das Cloud-BI-System erfüllt werden könnten. Jedoch ist dieser Dienst vergleichsweise komplex. Es werden einige Funktionalitäten geboten, die besonders für Big Data Anwendungsfälle attraktiv sind, jedoch hier nicht benötigt werden.
 
+
+%===========================================================================================================================
 \subsection{Azure Purview} \label{sec:grundlagen:azure_dienste:purview}
 Purview dient der zentralen Verwaltung der Datengovernance, für Cloud und on-premise Umgebungen. Dabei soll die Datenherkunft leicht nachvollziehbar werden. Die Metadaten zu den Quellen können um Tags und Beschreibungen erweitert werden. Der Dienst kann über die Benutzeroberfläche Purview Studio verwaltet werden. Der Zugriff auf dieses und die Informationen wird über Rollen und das \ac{aad} kontrolliert.
 
