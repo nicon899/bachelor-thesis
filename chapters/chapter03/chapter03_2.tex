@@ -141,11 +141,11 @@ Von den hier betrachteten Speichermöglichkeiten können entweder Azure SQL-Date
 
 Obwohl ein Data Warehouse die gleichen analytischen Möglichkeiten bietet, kann es sinnvoll sein, Speicher- und Analyseschicht für mehr Flexibilität und weniger Komplexität voneinander zu trennen.
 
-\ac{aas} ermöglicht außerdem die Implementierung von granularen Zugriffsrichtlinie auf Zeilenniveau mit \ac{rbac} in Verbindung mit dem \ac{aad}.
-
 Für effiziente Analysen wird das \textit{Vertipaq Engine} genutzt, welches alle Daten im Arbeitsspeicher ablegt. Um den benötigten Speicher zu reduzieren, werden außerdem verschiedene Algorithmen zum Komprimieren der Daten verwendet.
 
 Ein Analysis Services Modell enthält die Daten und weitere Objekte, wie die daraus berechneten \acp{kpi} \cite{how_beyond_2020}.
+
+\ac{aas} verschlüsselt Daten serverseitig und bei der Übertragung und die Implementierung von granularen Zugriffsrichtlinie auf Zeilenniveau mit \ac{rbac} in Verbindung mit dem \ac{aad} ist möglich \cite{duncan_what_2021}.
 
 \textbf{Fazit}: \ac{aas} könnte als Semantik-Schicht zwischen Daten und Reports genutzt werden. Ob der Dienst einen Mehrwert für die Cloud-BI bieten könnte, hängt besonders von der gewählten Speicherlösung und den damit zur Verfügung stehenden Funktionen zur Datenverarbeitung ab.
 
