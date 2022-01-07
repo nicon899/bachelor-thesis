@@ -15,8 +15,9 @@
 |P{0.05\textwidth - 2.0\tabcolsep}
 |P{0.05\textwidth - 2.0\tabcolsep}
 |P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
 |}
-\caption{Einschätzung der Azure Dienste in Bezug auf die Anforderungen. (\cmark: Erfüllt Anforderung; \xmark: Erfüllt Anforderung nicht; \nmark: Kein direkter Bezug zu Anforderung)} \label{table:eva} \\
+\caption{Einschätzung der Azure Dienste in Bezug auf die Anforderungen.\\\cmark: Erfüllt Anforderung; \xmark: Erfüllt Anforderung nicht; \nmark: Kein direkter Bezug zu Anforderung} \label{table:eva} \\
 
 \hline 
 \diagbox[height=3.2cm,innerwidth=.3\textwidth-2.0\tabcolsep]{Anforderung}{Azure Dienst}
@@ -26,9 +27,10 @@
 & \rotatebox[origin=c]{90}{Cosmos DB}
 & \rotatebox[origin=c]{90}{Data Lake Gen 2}
 & \rotatebox[origin=c]{90}{Logic Apps}
+& \rotatebox[origin=c]{90}{Functions}
 & \rotatebox[origin=c]{90}{Data Factory}
-& \rotatebox[origin=c]{90}{HDInsight}
-& \rotatebox[origin=c]{90}{Databricks}
+%& \rotatebox[origin=c]{90}{HDInsight}
+%& \rotatebox[origin=c]{90}{Databricks}
 & \rotatebox[origin=c]{90}{Machine Learining}
 & \rotatebox[origin=c]{90}{Analysis Services}
 & \rotatebox[origin=c]{90}{Power BI}
@@ -45,9 +47,10 @@
 & \rotatebox[origin=c]{90}{Cosmos DB}
 & \rotatebox[origin=c]{90}{Data Lake Gen 2}
 & \rotatebox[origin=c]{90}{Logic Apps}
+& \rotatebox[origin=c]{90}{Functions}
 & \rotatebox[origin=c]{90}{Data Factory}
-& \rotatebox[origin=c]{90}{HDInsight}
-& \rotatebox[origin=c]{90}{Databricks}
+%& \rotatebox[origin=c]{90}{HDInsight}
+%& \rotatebox[origin=c]{90}{Databricks}
 & \rotatebox[origin=c]{90}{Machine Learining}
 & \rotatebox[origin=c]{90}{Analysis Services}
 & \rotatebox[origin=c]{90}{Power BI}
@@ -64,9 +67,10 @@
 &  % Cosmos DB
 &  % Data Lake Gen 2
 &  % Logic Apps
+&  % Functions
 &  % Data Factory
-&  % HDInsight
-&  % Databricks
+%&  % HDInsight
+%&  % Databricks
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
@@ -81,9 +85,10 @@
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
+&  % Functions
 & \cmark % Data Factory
-& \xmark % HDInsight
-&  % Databricks
+%% & \xmark % HDInsight
+%&  % Databricks
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \xmark % Power BI
@@ -98,9 +103,10 @@
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
+&  % Functions
 & \cmark % Data Factory
-& \xmark % HDInsight
-&  % Databricks
+%& \xmark % HDInsight
+%&  % Databricks
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \xmark % Power BI
@@ -115,9 +121,10 @@
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
+&  % Functions
 & \cmark % Data Factory
-& \xmark % HDInsight
-&  % Databricks
+%& \xmark % HDInsight
+%&  % Databricks
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \xmark % Power BI
@@ -128,13 +135,14 @@
 \hyperref[sec:anforderungsspezifikation:QuellsystemeÄndern]{Hinzufügen/Entfernen}
 & \nmark % Table Storage
 & \nmark % SQL
-& \nmark % SQL MI
+& \cmark % SQL MI
 & \nmark % Cosmos DB
 & \nmark % Data Lake Gen 2
 & \cmark % Logic Apps
+&  % Functions
 & \cmark % Data Factory
-& \nmark % HDInsight
-&  % Databricks
+%& \nmark % HDInsight
+%&  % Databricks
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \nmark % Power BI
@@ -150,9 +158,10 @@
 &  % Cosmos DB
 &  % Data Lake Gen 2
 &  % Logic Apps
+&  % Functions
 &  % Data Factory
-&  % HDInsight
-&  % Databricks
+%&  % HDInsight
+%&  % Databricks
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
@@ -167,9 +176,10 @@
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \xmark % Logic Apps
+&  % Functions
 & \xmark % Data Factory
-& \xmark % HDInsight
-&  % Databricks
+%& \xmark % HDInsight
+%&  % Databricks
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \xmark % Power BI
@@ -184,9 +194,10 @@
 & \cmark % Cosmos DB
 & \cmark\textsuperscript{1} % Data Lake Gen 2
 & \nmark % Logic Apps
+&  % Functions
 & \nmark % Data Factory
-& \nmark % HDInsight
-&  % Databricks
+%& \nmark % HDInsight
+%&  % Databricks
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \nmark % Power BI
@@ -201,9 +212,10 @@
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \nmark % Logic Apps
+&  % Functions
 & \nmark % Data Factory
-& \nmark % HDInsight
-&  % Databricks
+%& \nmark % HDInsight
+%&  % Databricks
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \nmark % Power BI
@@ -218,9 +230,10 @@
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \nmark % Logic Apps
+&  % Functions
 & \nmark % Data Factory
-& \nmark % HDInsight
-&  % Databricks
+%& \nmark % HDInsight
+%&  % Databricks
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \nmark % Power BI
@@ -235,9 +248,10 @@
 & \cmark % Cosmos DB
 & \cmark\textsuperscript{1} % Data Lake Gen 2
 & \nmark % Logic Apps
+&  % Functions
 & \nmark % Data Factory
-&  % HDInsight
-&  % Databricks
+%& \nmark % HDInsight
+%&  % Databricks
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \nmark % Power BI
@@ -253,9 +267,10 @@
 &  % Cosmos DB
 &  % Data Lake Gen 2
 &  % Logic Apps
+&  % Functions
 &  % Data Factory
-&  % HDInsight
-&  % Databricks
+%&  % HDInsight
+%&  % Databricks
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
@@ -270,9 +285,10 @@
 & \cmark\textsuperscript{1} % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
+&  % Functions
 & \cmark % Data Factory
-& \cmark % HDInsight
-&  % Databricks
+%& \cmark % HDInsight
+%&  % Databricks
 & \xmark % Machine Learning
 & \cmark % Analysis Services
 & \cmark % Power BI
@@ -287,9 +303,10 @@
 & \cmark\textsuperscript{1} % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
+&  % Functions
 & \cmark % Data Factory
-& \cmark % HDInsight
-&  % Databricks
+%& \cmark % HDInsight
+%&  % Databricks
 & \xmark % Machine Learning
 & \cmark % Analysis Services
 & \cmark % Power BI
@@ -304,9 +321,10 @@
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \xmark % Logic Apps
+&  % Functions
 & \xmark % Data Factory
-&  % HDInsight
-&  % Databricks
+%&  % HDInsight
+%&  % Databricks
 & \cmark % Machine Learning
 & \xmark % Analysis Services
 & \xmark % Power BI
@@ -322,9 +340,10 @@
 &  % Cosmos DB
 &  % Data Lake Gen 2
 &  % Logic Apps
+&  % Functions
 &  % Data Factory
-&  % HDInsight
-&  % Databricks
+%&  % HDInsight
+%&  % Databricks
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
@@ -339,9 +358,10 @@
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \xmark % Logic Apps
+&  % Functions
 & \xmark % Data Factory
-& \xmark % HDInsight
-& \xmark % Databricks
+%& \xmark % HDInsight
+%& \xmark % Databricks
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \cmark % Power BI
@@ -356,9 +376,10 @@
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \xmark % Logic Apps
+&  % Functions
 & \xmark % Data Factory
-& \xmark % HDInsight
-& \xmark % Databricks
+%& \xmark % HDInsight
+%& \xmark % Databricks
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \cmark % Power BI
@@ -373,9 +394,10 @@
 & \nmark % Cosmos DB
 & \nmark % Data Lake Gen 2
 & \nmark % Logic Apps
+&  % Functions
 & \nmark % Data Factory
-& \nmark % HDInsight
-& \nmark % Databricks
+%& \nmark % HDInsight
+%& \nmark % Databricks
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \cmark % Power BI
@@ -390,9 +412,10 @@
 & \nmark % Cosmos DB
 & \nmark % Data Lake Gen 2
 & \nmark % Logic Apps
+&  % Functions
 & \nmark % Data Factory
-& \nmark % HDInsight
-& \nmark % Databricks
+%& \nmark % HDInsight
+%& \nmark % Databricks
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & ? % Power BI
@@ -408,9 +431,10 @@
 &  % Cosmos DB
 &  % Data Lake Gen 2
 &  % Logic Apps
+&  % Functions
 &  % Data Factory
-&  % HDInsight
-&  % Databricks
+%&  % HDInsight
+%&  % Databricks
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
@@ -425,9 +449,10 @@
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \cmark % Logic Apps
+&  % Functions
 & \cmark % Data Factory
-& \cmark % HDInsight
-&  % Databricks
+%& \cmark % HDInsight
+%&  % Databricks
 & \cmark % Machine Learning
 & \cmark % Analysis Services
 & \cmark % Power BI
@@ -442,9 +467,10 @@
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \xmark % Logic Apps
+&  % Functions
 & \xmark % Data Factory
-&  % HDInsight
-&  % Databricks
+%& \xmark % HDInsight
+%&  % Databricks
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \cmark % Power BI
@@ -459,9 +485,10 @@
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
+&  % Functions
 & \cmark % Data Factory
-&  % HDInsight
-&  % Databricks
+%& \cmark % HDInsight
+%&  % Databricks
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \cmark % Power BI
@@ -477,9 +504,10 @@
 &  % Cosmos DB
 &  % Data Lake Gen 2
 &  % Logic Apps
+&  % Functions
 &  % Data Factory
-&  % HDInsight
-&  % Databricks
+%&  % HDInsight
+%&  % Databricks
 &  % Machine Learning
 &  % Analysis Services
 &  % Power BI
@@ -494,9 +522,10 @@
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \xmark % Logic Apps
+&  % Functions
 & \xmark % Data Factory
-& \xmark % HDInsight
-&  % Databricks
+%& \xmark % HDInsight
+%&  % Databricks
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \xmark % Power BI
@@ -511,9 +540,10 @@
 & \xmark % Cosmos DB
 & \xmark % Data Lake Gen 2
 & \cmark % Logic Apps
+&  % Functions
 & \cmark % Data Factory
-& \xmark % HDInsight
-&  % Databricks
+%& \xmark % HDInsight
+%&  % Databricks
 & \xmark % Machine Learning
 & \xmark % Analysis Services
 & \xmark % Power BI
@@ -528,9 +558,10 @@
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \cmark % Logic Apps
+&  % Functions
 & \cmark % Data Factory
-&  % HDInsight
-&  % Databricks
+%& \cmark % HDInsight
+%&  % Databricks
 & \cmark % Machine Learning
 & \cmark % Analysis Services
 & \cmark % Power BI
@@ -545,9 +576,10 @@
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
 & \cmark % Logic Apps
+&  % Functions
 & \cmark % Data Factory
-&  % HDInsight
-&  % Databricks
+%& \cmark % HDInsight
+%&  % Databricks
 & \cmark % Machine Learning
 & \cmark % Analysis Services
 & \cmark % Power BI
