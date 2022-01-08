@@ -81,14 +81,19 @@ Auch Datentransformationen, wie mathematische Berechnungen und Textmanipulatione
 
 Beim Eintreten von Fehlern werden vorher festgelegte Wiederholungsrichtlinien ausgeführt. Es ist ebenfalls möglich, nach einem aufgetretenen Fehler, mit einer alternativen Aktion fortzufahren, um zum Beispiel eine zuständige Person per E-Mail zu informieren \cite{fan_handle_2021}.
 
-Für eine ausreichende Sicherheit werden die Daten während der Übertragung mit TLS und im Ruhezustand verschlüsselt. Auch die Authentifizierung mit \ac{aad} und Autorisierung durch \ac{rbac} wird unterstützt \cite{baldwin_azure_logicApps_2021}. 
+Für eine ausreichende Sicherheit werden die Daten während der Übertragung mit TLS und im Ruhezustand verschlüsselt. Die Authentifizierung mit \ac{aad} und Autorisierung durch \ac{rbac} wird unterstützt \cite{baldwin_azure_logicApps_2021}. 
 
-\textbf{Fazit}: Mit den angebotenen Konnektoren von Logic Apps, können alle hier benötigten Quellsysteme integriert werden \cite[vgl.][]{fan_verwaltete_2021}. Vor dem Speichern können die Daten bei Bedarf verarbeitet werden. Dieser Dienst ist außerdem performant und benötigt für die meisten Ausführungen nur wenige Sekunden \cite{bennett_enterprise_2021}. Durch die Manipulationsmöglichkeiten wäre auch ein Verarbeitungsschritt möglich, in dem nach festen Regeln Attribute zur Datenklassifikation ergänzt werden.
+\textbf{Fazit}: Mit den angebotenen Konnektoren von Logic Apps, können alle hier benötigten Quellsysteme integriert werden \cite[vgl.][]{fan_verwaltete_2021}. Vor dem Speichern können die Daten bei Bedarf verarbeitet werden. Dieser Dienst ist außerdem performant und benötigt für die meisten Ausführungen nur wenige Sekunden \cite{bennett_enterprise_2021}. Durch die Manipulationsmöglichkeiten wäre ein Verarbeitungsschritt möglich, in dem nach festen Regeln Attribute zur Datenklassifikation ergänzt werden.
 
 
 %===========================================================================================================================
 \subsection{Azure Functions} \label{sec:grundlagen:azure_dienste:functions}
-\textit{...}
+Azure Functions bietet für mehrere Programmiersprachen die Möglichkeit, Skripte serverlos auszuführen. Die Funktionen können entweder im Azure Portal, oder lokal entwickelt werden und anschließend auf eigener Hardware oder in der Azure Cloud bereitgestellt werden. In Azure können mehrere serverlose Funktionen über eine \textit{Function App} einem Container zugeordnet werden und so die gleichen Konfigurationen teilen. Hierzu zählt das Betriebssystem, die Preisstufe und die Laufzeitumgebung, von der auch die ausführbare Programmiersprache abhängig ist \cite{kurniawan_introduction_2019}.
+
+Zum Aufrufen einer Funktion kann aus verschieden Triggern gewählt werden, wie zum Beispiel einem Zeitintervall oder einem HTTP-Aufruf. Einer der häufigsten Anwendungsfälle ist die Entwicklung einer serverlosen API. Denn der Dienst kann sich mit verschiedenen Datenquellen verbinden und anschließend CRUD-Operationen durchführen \cite{satapathi_hands-azure_2021}.
+
+\textbf{Fazit}: Während dieser Dienst besonders beliebt als serverloses Backend ist \cite[vgl.][]{satapathi_hands-azure_2021}, soll er hier als Möglichkeit für die Datenintegration in Erwägung gezogen werden. Es könnte beispielsweise eine Funktion geschrieben werden, welche zuerst die Daten aus einem Quellsystem abfragt, diese anschließend über den Quellcode transformiert und dann in den Zielspeicher schreibt.
+
 
 %===========================================================================================================================
 \subsection{Azure Data Factory} \label{sec:grundlagen:azure_dienste:dataFactory}
@@ -208,5 +213,5 @@ Im Folgenden soll ein kurzer Überblick über die Dienste, die bewusst ausgelass
 \begin{itemize}
 \item \textbf{Azure HDInsight} realisiert Apache Hadoop, als vollständig verwalteten Cloud Dienst. Dieser verwaltet ein Cluster von virtuellen Maschinen, die das \textit{Hadoop Distributed File System} für die verteilte Datenverarbeitung benutzen. Jedoch ist die Konfiguration dieses Dienstes vergleichsweise komplex und er ist auf deutlich größere Datenmengen ausgelegt, als hier benötigt \cite[vgl.][]{klein_iot_2017}.
 \item \textbf{Azure Databricks} basiert auf Apache Spark und ist damit eine weitere Möglichkeit für die Big Data Analyse. Im Gegensatz zu Hadoop werden die Daten hier zur Verarbeitung in den Arbeitsspeicher geladen. Der Dienst wurde ebenfalls aufgrund der Komplexität und den Fokus auf Big Data ausgeschlossen \cite[vgl.][]{soh_data_2020}.
-\item Die Datenbanken \textbf{PostgreSQL}, \textbf{MySQL} und \textbf{MariaDB} werden nicht berücksichtigt, da mit Azure SQL bereits eine relationale Datenbank zur Auswahl steht. Letztere hat den Vorteil, dass Skripte und Kenntnisse in T-SQL in das neue System übernommen werden können.
+\item Die Datenbankdienste für \textbf{PostgreSQL}, \textbf{MySQL} und \textbf{MariaDB} werden nicht berücksichtigt, da mit Azure SQL bereits eine relationale Datenbank zur Auswahl steht. Letztere hat den Vorteil, dass Skripte und Kenntnisse in T-SQL in das neue System übernommen werden können.
 \end{itemize}
