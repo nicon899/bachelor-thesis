@@ -205,3 +205,8 @@ Auch die Übertragung und Speicherung der Daten geschieht in Purview verschlüss
 %===========================================================================================================================
 \subsection{Ausgeschlossene Dienste} \label{sec:grundlagen:azure_dienste:ausgeschlosseneDienste}
 Im Folgenden soll ein kurzer Überblick über die Dienste, die bewusst ausgelassen wurden, gegeben werden:
+\begin{itemize}
+\item \textbf{Azure HDInsight} realisiert Apache Hadoop, als vollständig verwalteten Cloud Dienst. Dieser verwaltet ein Cluster von virtuellen Maschinen, die das \textit{Hadoop Distributed File System} für die verteilte Datenverarbeitung benutzen. Jedoch ist die Konfiguration dieses Dienstes vergleichsweise komplex und er ist auf deutlich größere Datenmengen ausgelegt, als hier benötigt \cite[vgl.][]{klein_iot_2017}.
+\item \textbf{Azure Databricks} basiert auf Apache Spark und ist damit eine weitere Möglichkeit für die Big Data Analyse. Im Gegensatz zu Hadoop werden die Daten hier zur Verarbeitung in den Arbeitsspeicher geladen. Der Dienst wurde ebenfalls aufgrund der Komplexität und den Fokus auf Big Data ausgeschlossen \cite[vgl.][]{soh_data_2020}.
+\item Die Datenbanken \textbf{PostgreSQL}, \textbf{MySQL} und \textbf{MariaDB} werden nicht berücksichtigt, da mit Azure SQL bereits eine relationale Datenbank zur Auswahl steht. Letztere hat den Vorteil, dass Skripte und Kenntnisse in T-SQL in das neue System übernommen werden können.
+\end{itemize}
