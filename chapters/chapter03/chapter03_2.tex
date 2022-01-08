@@ -90,9 +90,11 @@ Für eine ausreichende Sicherheit werden die Daten während der Übertragung mit
 \subsection{Azure Functions} \label{sec:grundlagen:azure_dienste:functions}
 Azure Functions bietet für mehrere Programmiersprachen die Möglichkeit, Skripte serverlos auszuführen. Die Funktionen können entweder im Azure Portal, oder lokal entwickelt werden und anschließend auf eigener Hardware oder in der Azure Cloud bereitgestellt werden. In Azure können mehrere serverlose Funktionen über eine \textit{Function App} einem Container zugeordnet werden und so die gleichen Konfigurationen teilen. Hierzu zählt das Betriebssystem, die Preisstufe und die Laufzeitumgebung, von der auch die ausführbare Programmiersprache abhängig ist \cite{kurniawan_introduction_2019}.
 
-Zum Aufrufen einer Funktion kann aus verschieden Triggern gewählt werden, wie zum Beispiel einem Zeitintervall oder einem HTTP-Aufruf. Einer der häufigsten Anwendungsfälle ist die Entwicklung einer serverlosen API. Denn der Dienst kann sich mit verschiedenen Datenquellen verbinden und anschließend CRUD-Operationen durchführen \cite{satapathi_hands-azure_2021}.
+Zum Aufrufen einer Funktion kann aus verschieden Triggern gewählt werden, wie zum Beispiel einem Zeitintervall oder einem HTTP-Aufruf. Einer der häufigsten Anwendungsfälle ist die Entwicklung einer serverlosen API. Denn der Dienst kann sich mit verschiedenen Datenquellen verbinden und anschließend CRUD-Operationen durchführen. 
 
-\textbf{Fazit}: Während dieser Dienst besonders beliebt als serverloses Backend ist \cite[vgl.][]{satapathi_hands-azure_2021}, soll er hier als Möglichkeit für die Datenintegration in Erwägung gezogen werden. Es könnte beispielsweise eine Funktion geschrieben werden, welche zuerst die Daten aus einem Quellsystem abfragt, diese anschließend über den Quellcode transformiert und dann in den Zielspeicher schreibt.
+Der Aufruf und der Zugriff auf die Funktionen kann über \ac{rbac} eingeschränkt werden \cite{satapathi_hands-azure_2021} und alle Verbindungen werden verschlüsselt \cite{gailey_securing_2021}.
+
+\textbf{Fazit}: Während dieser Dienst besonders beliebt als serverloses Backend ist \cite[vgl.][]{satapathi_hands-azure_2021}, soll er hier als Möglichkeit für die Datenintegration in Erwägung gezogen werden. Es könnte beispielsweise eine Funktion geschrieben werden, welche zuerst die Daten aus einem Quellsystem abfragt, diese anschließend über eine programmierte Transformation anpasst und dann in den Zielspeicher schreibt.
 
 
 %===========================================================================================================================
