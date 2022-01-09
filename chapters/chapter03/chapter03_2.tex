@@ -1,7 +1,5 @@
 \section{Evaluation von Azure Diensten} \label{sec:evaluation}
-Im Folgenden sollen einige Azure Dienste, die im Rahmen einer Literaturrecherche ausgewählt wurden, evaluiert werden, mit dem Ziel, aus den gewonnen Erkenntnissen ein BI-System zu entwerfen, dass die festgelegten Anforderungen erfüllt. Dienste, die innerhalb der nächsten fünf Jahre eingestellt werden, wurden vorab ausgeschlossen und Funktionen, die sich noch in der Preview befinden, werden als nicht existent betrachtet. 
-
-Die untersuchten Dienste werden jeweils kurz vorgestellt und es wird auf die wichtigsten Funktionen, Vor- und Nachteile eingegangen, die in bestehender Literatur und den jeweiligen Dokumentationen gefunden werden konnten.
+Im Rahmen einer Literaturrecherche konnten einige Azure Dienste gefunden werden, die für den Einsatz im neuen BI-System in Frage kommen. Diese werden in den nächsten Absätzen jeweils kurz vorgestellt und es wird auf die wichtigsten Funktionen, Vor- und Nachteile eingegangen, die in bestehender Literatur gefunden werden konnten. Für relevante Aspekte bezüglich der Anforderungen wird teilweise auch auf die Dokumentationen zurückgegriffen. Dienste, die innerhalb der nächsten fünf Jahre eingestellt werden, wurden vorab ausgeschlossen und Funktionen, die sich noch in der Vorschau befinden, werden als nicht existent betrachtet. Es werden ausschließlich die englischen Namen verwendet.
 
 
 %===========================================================================================================================
@@ -26,20 +24,20 @@ Daher ist der Table Storage hier nicht geeignet, um als alleinstehende Speicherl
 Azure SQL ist eine Produktfamilie von relationalen Datenbanken, die basierend auf Abstraktion und Zugriff in Betriebssystem-, Server- und Datenbankebene eingeteilt werden kann\cite{mauri_azure_2021}:
 
 \begin{itemize}
-\item \textbf{SQL Server auf Azure-VMs} stellt einen Microsoft SQL Server auf Betriebssystemebene bereit. Es handelt sich um eine virtuelle Maschine, auf der ein SQL Server installiert ist. Dadurch hat der Nutzer auf der einen Seite mehr Kontrolle, auf der anderen aber auch mehr Verantwortung und Konfigurationsaufwand. 
-\item Wird nur die Kontrolle über den SQL-Server, aber nicht über das Betriebssystem benötigt, eignet sich die \textbf{Verwaltete Azure SQL-Instanz}. Diese bietet nahezu alle Features einer klassischen on-premise SQL-Server-Instanz. Dazu gehört das Anwenden von R oder Python für Machine Learning \cite{ericson_was_2021} oder die Verwendung von Verbindungsservern, um Remotedatenbanken abzufragen \cite{ljepava_t-sql_2021}.
-\item Die \textbf{Azure SQL-Datenbank} ist eine relationale Datenbank in der Cloud die ohne Verwaltungsaufwand genutzt werden kann. Es handelt sich damit um die höchste Abstraktionsebene, die dann eingesetzt werden kann, wenn weder Kontrolle über die Instanz noch Features auf Serverebene benötigt werden.
+\item \textbf{SQL Server on Azure Virtual Machines} stellt einen Microsoft SQL Server auf Betriebssystemebene bereit. Es handelt sich um eine virtuelle Maschine, auf der ein SQL Server installiert ist. Dadurch hat der Nutzer auf der einen Seite mehr Kontrolle, auf der anderen aber auch mehr Verantwortung und Konfigurationsaufwand. 
+\item Wird nur die Kontrolle über den SQL-Server, aber nicht über das Betriebssystem benötigt, eignet sich die \textbf{Azure SQL Managed Instance}. Diese bietet nahezu alle Features einer klassischen on-premise SQL-Server-Instanz. Dazu gehört das Anwenden von R oder Python für Machine Learning \cite{ericson_was_2021} oder die Verwendung von Verbindungsservern, um Remotedatenbanken abzufragen \cite{ljepava_t-sql_2021}.
+\item Die \textbf{Azure SQL Database} ist eine relationale Datenbank in der Cloud, die ohne Verwaltungsaufwand genutzt werden kann. Es handelt sich damit um die höchste Abstraktionsebene, die dann eingesetzt werden kann, wenn weder Kontrolle über die Instanz noch Features auf Serverebene benötigt werden.
 \end{itemize}
 
 Die Abfragesprache T-SQL bietet einige Möglichkeiten zum Transformieren und Auswerten der Daten, wie zum Beispiel die Umwandlung in einen anderen Datentyp oder die Durchführung von mathematischen Berechnungen. Für den Umgang mit möglicherweise auftretenden Fehlern kann in T-SQL eine Try/Catch-Logik genutzt werden \cite[vgl.][]{kellenberger_beginning_2021}.
 
-Ruhende Daten werden von Azure SQL-Datenbank automatisch verschlüsselt. Die Konsistenz der gespeicherten Daten kann durch die Wahl eines geeigneten Datenmodells erreicht werden \cite{reagan_web_2018}. Auch die Autorisierung über das \ac{aad} mit \ac{rbac} wird von Azure SQL unterstützt \cite{wolter_authorize_2021}.
+Ruhende Daten werden von Azure SQL Database automatisch verschlüsselt. Die Konsistenz der gespeicherten Daten kann durch die Wahl eines geeigneten Datenmodells erreicht werden \cite{reagan_web_2018}. Auch die Autorisierung über das \ac{aad} mit \ac{rbac} wird von Azure SQL unterstützt \cite{wolter_authorize_2021}.
 
 Es gibt zwei Möglichkeiten, die Performance bei Bedarf zu verbessern. Solange die oberste Preisstufe noch nicht erreicht wurde, ist das Erhöhen dieser der einfachste Weg, Leistung und Speicherkapazität zu steigern. Azure führt dazu alle notwendigen Schritte zum Ändern der Datenbank automatisch im Hintergrund aus. Eine automatische Skalierung nach Bedarf wird jedoch nicht unterstützt. Die zweite deutlich komplexere Option ist die horizontale Partitionierung der Daten auf mehrere SQL-Instanzen (Sharding) \cite{reagan_web_2018}.
 
 \textbf{Fazit}: Der größte Vorteil von Azure SQL ist, dass alle zu migrierenden Daten bereits in einem relationalen Datenmodell vorliegen. Zusätzlich eignet sich die T-SQL für einfache Datenverarbeitungen, wobei die meisten Skripte aus dem Bestandssystem übernommen werden könnten. Ausgenommen bei der SQL-Database können auch alle ETL-Prozesse übernommen werden, welche Remotedatenbankabfragen verwenden.
 
-Von den drei Azure SQL Diensten werden nur die verwaltete SQL-Instanz und die SQL-Datenbank für das neue BI-System in Erwägung gezogen, da die Kontrolle auf Betriebssystemebene nicht benötigt wird. Welcher dieser beiden Dienste besser geeignet ist, hängt besonders davon ab, wie die zusätzlichen Funktionen der verwalteten SQL-Instanz gegenüber der SQL-Datenbank in Verbindung mit zusätzlichen Diensten zu werten sind.
+Von den drei Azure SQL Diensten werden nur die \textit{SQL Managed Instance} und die \textit{SQL Database} für das neue BI-System in Erwägung gezogen, da die Kontrolle auf Betriebssystemebene nicht benötigt wird. Welcher dieser beiden Dienste besser geeignet ist, hängt besonders davon ab, wie die zusätzlichen Funktionen der \textit{SQL Managed Instance} gegenüber der \textit{SQL Database} in Verbindung mit zusätzlichen Diensten zu werten sind.
 
 
 %===========================================================================================================================

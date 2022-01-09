@@ -22,8 +22,8 @@
 \hline 
 \diagbox[height=3.2cm,innerwidth=.3\textwidth-2.0\tabcolsep]{Anforderung}{Azure Dienst}
 & \rotatebox[origin=c]{90}{Table Storage}
-& \rotatebox[origin=c]{90}{SQL-Databank}
-& \rotatebox[origin=c]{90}{ Verwaltete SQL-Instanz }
+& \rotatebox[origin=c]{90}{SQL Database}
+& \rotatebox[origin=c]{90}{ SQL Managed Instance }
 & \rotatebox[origin=c]{90}{Cosmos DB}
 & \rotatebox[origin=c]{90}{Data Lake Gen 2}
 & \rotatebox[origin=c]{90}{Logic Apps}
@@ -42,8 +42,8 @@
 \hline
 \diagbox[height=3.2cm,innerwidth=.3\textwidth-2.0\tabcolsep]{Anforderung}{Azure Dienst}
 & \rotatebox[origin=c]{90}{Table Storage}
-& \rotatebox[origin=c]{90}{SQL-Databank}
-& \rotatebox[origin=c]{90}{ Verwaltete SQL-Instanz }
+& \rotatebox[origin=c]{90}{SQL Database}
+& \rotatebox[origin=c]{90}{ SQL Managed Instance }
 & \rotatebox[origin=c]{90}{Cosmos DB}
 & \rotatebox[origin=c]{90}{Data Lake Gen 2}
 & \rotatebox[origin=c]{90}{Logic Apps}
@@ -442,7 +442,7 @@
 &  % Purview
 \\ \hline
 
-\hyperref[sec:anforderungsspezifikation:verfügbarkeit]{Verfügbarkeit \( \geq99.5\% \) \cite{microsoft_ubersicht_2021}}
+\hyperref[sec:anforderungsspezifikation:verfügbarkeit]{Verfügbarkeit \(\geq99.95\%\)\cite{microsoft_ubersicht_2021}}
 & \cmark % Table Storage
 & \cmark % SQL
 & \cmark % SQL MI
@@ -460,25 +460,7 @@
 & \cmark % Purview
 \\
 
-\hyperref[sec:anforderungsspezifikation:fehlerquellenIdentifizieren]{Einfaches Fehler finden}
-& \xmark % Table Storage
-& \xmark % SQL
-& \xmark % SQL MI
-& \xmark % Cosmos DB
-& \xmark % Data Lake Gen 2
-& \xmark % Logic Apps
-& \xmark % Functions
-& \xmark % Data Factory
-%& \xmark % HDInsight
-%&  % Databricks
-& \xmark % Machine Learning
-& \xmark % Analysis Services
-& \cmark % Power BI
-& \xmark % Synapse Analytics
-& \xmark % Purview
-\\
-
-\hyperref[sec:anforderungsspezifikation:AutomatischeFehlerbehandlung]{Umgang mit Fehlern}
+\hyperref[sec:anforderungsspezifikation:AutomatischeFehlerbehandlung]{Fehlerbenachrichtigung}
 & \cmark % Table Storage
 & \cmark % SQL
 & \cmark % SQL MI
@@ -493,6 +475,24 @@
 & \xmark % Analysis Services
 & \cmark % Power BI
 & \cmark % Synapse Analytics
+& \xmark % Purview
+\\
+
+\hyperref[sec:anforderungsspezifikation:fehlerquellenIdentifizieren]{Fehler Protokollierung}
+& \xmark % Table Storage
+& \xmark % SQL
+& \xmark % SQL MI
+& \xmark % Cosmos DB
+& \xmark % Data Lake Gen 2
+& \xmark % Logic Apps
+& \xmark % Functions
+& \xmark % Data Factory
+%& \xmark % HDInsight
+%&  % Databricks
+& \xmark % Machine Learning
+& \xmark % Analysis Services
+& \cmark % Power BI
+& \xmark % Synapse Analytics
 & \xmark % Purview
 \\ \hline
 

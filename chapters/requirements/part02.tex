@@ -1,14 +1,14 @@
 \section{Anforderungen an das Erscheinungsbild} 
 
 \subsection{Vielfältige Visualisierungsmöglichkeiten} \label{sec:anforderungsspezifikation:vielfältigeVisualisierungsmöglichkeiten}
-\textbf{Beschreibung}: Die Reports bieten eine Vielfalt an Visualisierungsmöglichkeiten. Darunter mind. : Tabellen, Achsendiagramme und Balkendiagramme
+\textbf{Beschreibung}: Die Reports bieten eine verschiedene Visualisierungsmöglichkeiten. Darunter mindestens: Tabellen, Achsendiagramme und Balkendiagramme.
 \newline \textbf{Begründung}: Für verschiedene Auswertungen sind oft unterschiedliche Visualisierungen am besten geeignet.
 \newline \textbf{Testkriterium}: Es kann ein Report erstellt werden, der die oben genannten Visualisierungen enthält.
 \newline \textbf{Priorität}: 3
 
 \section{Leistungsanforderungen} 
 
-\subsection{Aktuelles Reporting} \label{sec:anforderungsspezifikation:SchnelleDatenintegration}
+\subsection{Aktualität} \label{sec:anforderungsspezifikation:SchnelleDatenintegration}
 \textbf{Beschreibung}: Es soll möglich sein, Reports zu erstellen, die einen Stand, der nicht älter als 60 Minuten ist, wiedergeben. Datenintegration, Verarbeitung und Visualisierung dürfen dementsprechend maximal 60 Minuten benötigen.
 \newline \textbf{Begründung}: Damit Auswertungen auf möglichst aktuellen Daten basieren können, müssen die Daten regelmäßig mit ausreichender Geschwindigkeit aktualisiert werden. 
 \newline \textbf{Testkriterium}: Eine Veränderung der Daten in einem Quellsystem ist innerhalb von einer Stunde in einem abhängigen Report zu finden.
@@ -20,19 +20,19 @@
 \newline \textbf{Testkriterium}: Alle Reports können in unter 30 Sekunden geöffnet werden.
 \newline \textbf{Priorität}: 3
 
-\subsection{Datenkonsistenz} \label{sec:anforderungsspezifikation:Datenkonsistenz}
-\textbf{Beschreibung}: Die Daten sollen im gesamten BI-System konsistent sein.
+\subsection{Datenqualität} \label{sec:anforderungsspezifikation:Datenkonsistenz}
+\textbf{Beschreibung}: Die Konsistenz und Integrität der Daten soll sichergestellt sein.
 \newline \textbf{Begründung}: Inkonsistente oder widersprüchliche Daten würden dazu führen, dass keine sinnvollen Auswertungen mehr möglich sind.
-\newline \textbf{Testkriterium}: Es können keine abweichenden Daten im System gefunden werden.
+\newline \textbf{Testkriterium}: Es können keine inkonsistenten Daten gefunden werden.
 \newline \textbf{Priorität}: 1
 
-\subsection{Das BI-System soll zu über 99,5\% verfügbar sein} \label{sec:anforderungsspezifikation:verfügbarkeit}
-\textbf{Beschreibung}:  Es soll eine Verfügbarkeit von mind. 99,5\% gewährleistet werden. 
-\newline \textbf{Begründung}: Einige Funktionen des BI-Systems werden im Tagesgeschäft benötigt und sollten somit möglichst immer zur Verfügung stehen.
-\newline \textbf{Testkriterium}: Alle verwendeten Azure Dienste gewährleisten in ihrer SLA eine Verfügbarkeit von über 99,5\%.
+\subsection{Das BI-System soll zu über 99,95\% verfügbar sein} \label{sec:anforderungsspezifikation:verfügbarkeit}
+\textbf{Beschreibung}:  Es soll eine Verfügbarkeit von mind. 99,95\% gewährleistet werden. 
+\newline \textbf{Begründung}: Einige Funktionen des BI-Systems werden im Tagesgeschäft benötigt und sollten somit möglichst immer zur Verfügung stehen. Die maximale Ausfallzeit soll eine Stunde pro Woche nicht überschreiten.
+\newline \textbf{Testkriterium}: Alle verwendeten Azure Dienste gewährleisten in ihrer SLA eine Verfügbarkeit von über 99,95\%.
 \newline \textbf{Priorität}: 2
 
-\subsection{Automatische Fehlerbehandlung} \label{sec:anforderungsspezifikation:AutomatischeFehlerbehandlung}
+\subsection{Automatische Benachrichtigung bei Fehlern} \label{sec:anforderungsspezifikation:AutomatischeFehlerbehandlung}
 \textbf{Beschreibung}: Bei Eintreten eines Fehlers soll automatisch eine Benachrichtigung verschickt werden. 
 \newline \textbf{Begründung}: Damit das Auftreten eines Fehlers frühzeitig festgestellt wird, sollen zuständige Personen bei Fehlerauftritt benachrichtigt werden.
 \newline \textbf{Testkriterium}: Bei Auftreten eines Fehlers, wird automatisch eine Benachrichtigung versendet.
@@ -57,7 +57,7 @@
 \newline \textbf{Priorität}: 2
 
 \subsection{Lebensdauer von mind. 5 Jahren} \label{sec:anforderungsspezifikation:langlebigkeit}
-\textbf{Beschreibung}: Die neue BI-Lösung soll in den nächsten 5 Jahren ohne grundlegende Veränderungen an der Architektur verwendet werden können. Es wird damit auch kein Feature verwendet, dass in den nächsten 5 Jahren abgestellt wird.
+\textbf{Beschreibung}: Die neue BI-Lösung soll in den nächsten 5 Jahren ohne grundlegende Veränderungen an der Architektur verwendet werden können. Es wird damit auch kein Feature verwendet, dass in den nächsten 5 Jahren abgestellt wird, oder sich noch in der Vorschau befindet.
 \newline \textbf{Priorität}: 3
 
 \section{Anforderungen an die Wartbarkeit}
@@ -76,8 +76,8 @@
 \section{Sicherheitsanforderungen}
 
 \subsection{Verwendung von RBAC für den Zugriff auf Daten/Ressourcen} \label{sec:anforderungsspezifikation:rbac}
-\textbf{Beschreibung}: Der Zugriff auf alle Ressourcen und Daten im BI-System soll über Role Based Access Control (RBAC) geregelt werden.
-\newline \textbf{Begründung}: Der Zugriff auf bestimmte Daten ist abhängig von der Rolle im Unternehmen und dem lokalen Standort des Nutzers. Mit RBAC soll sichergestellt werden, dass nur berechtigte Nutzer Zugriff auf kritische Daten erhalten.
+\textbf{Beschreibung}: Der Zugriff auf alle Ressourcen und Daten im BI-System soll über \ac{rbac} geregelt werden.
+\newline \textbf{Begründung}: Der Zugriff auf bestimmte Daten ist abhängig von der Rolle im Unternehmen und dem lokalen Standort des Nutzers. Mit ac{rbac} soll sichergestellt werden, dass nur berechtigte Nutzer Zugriff auf kritische Daten erhalten.
 \newline \textbf{Testkriterium}: Daten, deren Zugriff beschränkt ist, können nur von einem Nutzer eingesehen werden, der eine berechtigte Rolle besitzt.
 \newline \textbf{Priorität}: 1
 
@@ -89,8 +89,8 @@
 
 \subsection{Standort von Mitarbeiter wird beim Zugriff berücksichtigt} \label{sec:anforderungsspezifikation:zugriffStandort}
 \textbf{Beschreibung}: Für den Zugriff auf bestimmte Daten muss der Standort des Mitarbeiters berücksichtigt werden. Zum Beispiel fordern manche Kunden aus der EU, dass nur Mitarbeiter innerhalb der EU auf ihre Daten zugreifen dürfen.
-\newline \textbf{Begründung}: Es gibt Kundendaten die nur von Mitarbeitern an einem bestimmten Standort gelesen werden dürfen. 
-\newline \textbf{Testkriterium}: Wenn ein Mitarbeiter versucht auf Daten zuzugreifen, die er wegen seinem Standort nicht sehen darf, wird im stattdessen eine Fehlermeldung angezeigt.
+\newline \textbf{Begründung}: Es gibt Kundendaten, die nur von Mitarbeitern an einem bestimmten Standort gelesen werden dürfen. 
+\newline \textbf{Testkriterium}: Wenn ein Mitarbeiter versucht auf Daten zuzugreifen, die er wegen seinem Standort nicht sehen darf, wird ihm stattdessen eine Fehlermeldung angezeigt.
 \newline \textbf{Priorität}: 1
 
 \subsection{Löschen aller Kundendaten auf Anfrage} \label{sec:anforderungsspezifikation:löschenKundendaten}
@@ -100,14 +100,14 @@
 \newline \textbf{Priorität}: 2
 
 \subsection{Zugriff auf bestimmte Personendaten nur über Betriebsrat möglich} \label{sec:anforderungsspezifikation:ZugriffMitBetriebsrat}
-\textbf{Beschreibung}: Das Einsehen von individuellen Mitarbeiterdaten, z.B. über die ebrachte Leistung, ist nur mit expliziter Zustimmung des Betriebsrates möglich.
-\newline \textbf{Begründung}: Der Betriebsrat erlaubt es im Allgemeinen nicht individuelle Leistungen auszuwerten.
-\newline \textbf{Testkriterium}: Der Zugriff auf individuelle Daten ist nur möglich, wenn dies explizit vom Betriebrat freigeschaltet wurde. 
+\textbf{Beschreibung}: Das Einsehen von individuellen Mitarbeiterdaten, zum Beispiel über die erbrachte Leistung, ist nur mit expliziter Zustimmung des Betriebsrates möglich.
+\newline \textbf{Begründung}: Der Betriebsrat erlaubt es im Allgemeinen nicht, individuelle Leistungen auszuwerten.
+\newline \textbf{Testkriterium}: Der Zugriff auf individuelle Daten ist nur möglich, wenn dies explizit vom Betriebsrat freigeschaltet wurde. 
 \newline \textbf{Priorität}: 2
 
 \subsection{Verschlüsselung der Daten} \label{sec:anforderungsspezifikation:verschlüsselung}
 \textbf{Beschreibung}: Alle Daten werden verschlüsselt gespeichert und übertragen.
-\newline \textbf{Begründung}: Sollten Unbefugte auf das System erhalten, sollen die Daten durch Verschlüsselung weiterhin geschützt sein.
+\newline \textbf{Begründung}: Sollten unbefugte Zugriff auf das System erhalten, sollen die Daten durch Verschlüsselung weiterhin geschützt sein.
 \newline \textbf{Priorität}: 2
 
 \section{Rechtsvorschriften}
