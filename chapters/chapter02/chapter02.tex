@@ -56,7 +56,7 @@ Beim Vergleich der Azure Kategorien mit den funktionalen Schichten des on-premis
 Neben den Azure Diensten zur Erfüllung der funktionalen Anforderungen, die erst in Abschnitt~\ref{sec:konzeption:evaAuswertung} festgelegt werden, sollen weitere Dienste für die Sicherheit und den Datenschutz beim Entwurf der neuen BI-Architektur berücksichtigt werden.
 
 \subsubsection{Azure Policy} \label{subsec:grundlagen:azure:sicherheitUndDatenschutz:ap}
-Mit \textit{Azure Policy} kann die Einhaltung bestimmter Compliance Anforderungen für alle Azure Ressourcen erzwungen werden. Dies wird für das System regelmäßig überprüft. Dazu werden zunächst die einzuhaltenden Parameter, wie beispielsweise der Serverstandort, festgelegt. Dann kann zum Beispiel auch der Versuch eine Ressource zu erstellen, die gegen die festgelegten Compliance Standards verstößt, verhindert werden. Durch \textit{Azure Policy} kann also eine konsistente Einhaltung der Compliance im gesamten BI-System sichergestellt werden \cite{stefanovic_azure_2021}.
+Mit \textit{Azure Policy} kann die Einhaltung bestimmter Compliance Anforderungen für alle Azure Ressourcen erzwungen werden. Dies wird für das System regelmäßig überprüft. Dazu werden zunächst die einzuhaltenden Parameter, wie beispielsweise der Serverstandort, festgelegt. So kann der Versuch eine Ressource zu erstellen, die gegen die festgelegten Compliance Standards verstößt, verhindert werden. Durch \textit{Azure Policy} kann also eine konsistente Einhaltung der Compliance im gesamten BI-System sichergestellt werden \cite{stefanovic_azure_2021}.
 
 \subsubsection{Azure Key Vault} \label{subsec:grundlagen:azure:sicherheitUndDatenschutz:keyVault}
 Der \textit{Azure Key Vault} ist ein sicherer Cloud-Speicherplatz für Schlüssel, Passwörter und Zertifikate. Dafür verfügt jedes Rechenzentrum über ein Hardware-Sicherheitsmodul, welches durch den Einsatz von verschiedenen Sensoren sowohl Hacking-Attacken als auch physische Zugriffsversuchen erkennen kann. In diesem Fall werden alle Passwörter automatisch von der Festplatte gelöscht. Deswegen liegt immer mindestens eine Kopie der Daten in einem anderen Rechenzentrum vor \cite{haunts_key_2019}.
@@ -66,8 +66,8 @@ Der \textit{Azure Key Vault} ist ein sicherer Cloud-Speicherplatz für Schlüsse
 
 \ac{aad} ermöglicht die Umsetzung von \ac{rbac}. Mit \ac{rbac} können die Zugriffsrechte einer Identität auf die Azure Ressourcen granular festgelegt werden \cite{stefanovic_azure_2021}.
 
-\subsubsection{Microsoft Defender for Cloud} \label{subsec:grundlagen:azure:sicherheitUndDatenschutz:asc}
-Der \textit{Microsoft Defender for Cloud} (ehemals Azure Security Center) soll einen Überblick über die Sicherheit der gesamten Infrastruktur geben. Dazu gibt es unter anderem ein Sicherheitsrating, das als Maßstab für die Bewertung der Systemsicherheit verwendet werden kann \cite{buchanan_azure_2022}.
+%\subsubsection{Microsoft Defender for Cloud} \label{subsec:grundlagen:azure:sicherheitUndDatenschutz:asc}
+% Der \textit{Microsoft Defender for Cloud} (ehemals Azure Security Center) soll einen Überblick über die Sicherheit der gesamten Infrastruktur geben. Dazu gibt es unter anderem ein Sicherheitsrating, das als Maßstab für die Bewertung der Systemsicherheit verwendet werden kann \cite{buchanan_azure_2022}.
 
 \section{Migrationsstrategie} \label{sec:beschreibungMigrationsstrategie}
 In der Literatur wird zwischen drei Migrationsstrategien unterschieden \cite{juan-verdejo_moving_2014}:
