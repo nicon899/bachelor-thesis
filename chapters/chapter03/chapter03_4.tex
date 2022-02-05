@@ -1,6 +1,6 @@
-\section{Entwurf des Cloud-BI Systems} \label{sec:entwurfBIArchitektur}
+\section{Entwurf eines vollständigen Konzepts} \label{sec:entwurfBIArchitektur}
 
-\subsection{Auswahl der BI-Komponenten} \label{sec:konzeption:evaAuswertung}
+\subsection{Auswahl der Komponenten} \label{sec:konzeption:evaAuswertung}
 Mit den gewonnenen Erkenntnissen über die verschiedenen Azure Dienste, soll eine geeignete Auswahl für das Cloud-BI System getroffen werden. Eine zusammenfassende Einschätzung der Dienste in Bezug auf die Anforderungen kann in Tabelle~\ref{table:eva} gefunden werden. In den letzten drei Zeilen wird in Summen angeben, wie viele funktionale Anforderungen erfüllt werden und darauf basierend, die Anzahl der nicht-funktionalen Anforderungen, die erfüllt beziehungsweise nicht erfüllt werden.
 \input{chapters/chapter03/chapter03_3_evaTable}
 
@@ -18,7 +18,7 @@ Damit ist das Ergebnis, dass die Dienste \textit{SQL Database}, \textit{Function
 
 % Die zu erwartenden Kosten der Dienste zu ermitteln ist nicht einfach. Das liegt an den nutzungsbasierten Abrechnungen und daran, dass jede Ressource ein eigenes Kostenmodell besitzt, welches dynamische Abhängigkeiten zu Speicher, Betriebsdauer oder der Häufigkeit der Nutzung umfassen kann. Zum Schätzen der zu erwartenden Kosten bietet Microsoft einen kostenlosen Preisrechner an, der die voraussichtlichen Nutzungswerte als Parameter übergeben bekommt\cite{modi_azure_2020}.
 
-\subsection{Vorstellung eines vollständigen Konzepts}
+\subsection{Vorstellung der Architektur}
 Basierend auf dem Ergebnis des vorherigen Abschnitts, wird ein Entwurf für eine vollständige BI-Architektur, in der Azure Cloud, vorgestellt. Dabei wird auf die Verbindung der einzelnen Komponenten, zu einem funktionierenden Gesamtsystem, eingegangen. Insbesondere auch auf die Kommunikation zwischen den einzelnen Komponenten und wie hierbei die Einhaltung von Sicherheit und Datenschutz gewährleistet wird.
 
 \begin{figure}[htbp]
