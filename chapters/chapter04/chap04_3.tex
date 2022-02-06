@@ -1,9 +1,26 @@
 \section[Umstieg zu Cloud-BI]{Umsetzung der Migration zu Cloud-BI und Implementierung der neuen Funktionaliäten} \label{sec:praktischeUmsetzung:Migration}
 Nachdem die Infrastruktur bereitgestellt wurde, soll ein mögliches Vorgehen für den Umstieg zum neuen BI-System vorgestellt werden. Der resultierende Prototyp muss noch kein vollwertiger Ersatz für das on-premise BI-System sein, sondern es soll nur ein Bruchteil der Daten mit den dazugehörigen ETL-Prozessen und Auswertungen migriert werden. Zusätzlich werden neue Funktionalitäten, die im alten BI-System noch nicht vorhanden waren, umgesetzt. Ziel ist es, dass der Prototyp alle zu Beginn definierten Testfälle (\hyperref[sec:anforderungsspezifikation:funktionaleAnforderungen]{siehe Anforderungsspezifikation}) abdeckt.
 
-\subsection{Datenmigration}
-Azure stellt Dienste bereit, die beim Migrationsprozess von einer on-premise zu Cloud Datenbank unterstützen können \cite{chilberto_building_2020}. 
-\textit{...}
+\subsection{Datenbankmigration} \label{subsec:praktischeUmsetzung:Datenmigration}
+Zu Beginn soll das Data Warehouse aus dem on-premise SQL Server zu der \textit{Azure SQL Database} migriert werden. 
+
+% Azure stellt Dienste bereit, die beim Migrationsprozess von einer on-premise zu Cloud Datenbank unterstützen können \cite{chilberto_building_2020}. 
+
+\begin{enumerate}
+\item 
+\end{enumerate}
+
+Für den Migrationsprozess wurden drei mögliche Optionen betrachtet: 
+\begin{enumerate}
+\item \textbf{1. Bacpac} ...
+\item \textbf{Data Migration Assistant} ist ein Tool, das bewertet, wie gut eine Datenbank für die Migration in die Cloud geeignet ist und gibt einen Überblick, welche Funktionalitäten nicht übernommen werden können. Daneben gibt es die hier relevantere Funktion, das Datenbankschema und anschließend die Daten nach Azure zu übertragen. Für Migrationen im großen Maßstab sollte jedoch die folgende Software bevorzugt werden. 
+\item \textbf{Azure Database Migration Service} kann die Daten nicht nur von der on-premise Datenbank in eine Cloud Datenbank übertragen, sondern die Daten während und nach der Migration zwischen den beiden Systemen synchronisieren. Damit kann sichergestellt werden, dass neue Daten, die während dem Migrationsprozess gesammelt werden, nicht verloren gehen. Nach einer Übergangszeit wird die Synchronisation beendet. Diese Anwendung setzt jedoch voraus, dass das korrekte Datenbankschema bereits in der Zieldatenbank vorhanden ist und kann dieses nicht wie der \textit{Data Migration Assistant} übertragen. Daher kann es empfehlenswert sein, beide Anwendungen zu kombinieren \cite{soh_microsoft_2020}.
+\end{enumerate}
+
+Die Durchführung beginnt mit der Installation des \textit{Data Migration Assistants} auf dem gleichen Server wie die on-premise Datenbank. Für den Zeitraum der Migration wird außerdem die IP-Adresse des Servers in den Firewall-Einstellungen der Azure SQL Datenbank zugelassen. Anschließend wird der \textit{Data Migration Assistants} geöffnet und der Migrationsprozess kann über die Benutzeroberfläche durchgeführt werden. Hierzu gehört die Angabe der Quell- und Zielserveradressen, Authentifizierungsinformationen und anschließend die Angabe der zu migrierenden Datenbank. Durch die Hub-and-Spoke-Architektur stehen hier mehrere zur Auswahl. Da sich alle Rohdaten in dem \textit{Hub}, welcher das \ac{dwh} abbildet, befinden, muss nur eine Datenbank migriert werden. Die \textit{Spokes} werden nicht übertragen, weil diese für das aktuelle Reportingframework entworfen wurden, welches durch \textit{Power BI} abgelöst wird. Anschließend wird automatisch ein SQL-Skript erstellt, welches das on-premise Datenbankschema erstellen kann. Dieses kann bei Bedarf angepasst werden und anschließend auf der Zieldatenbank ausgeführt werden. Dies hat hier nur wenige Sekunden gedauert. Abschließend können die Daten in die soeben erstellten Tabellen übertragen werden, wobei die Anwendung den Fortschritt für jede Tabelle in Prozent anzeigt. Die Übertragung der 1,3 GB Daten hat ca. 50 Sekunden benötigt. Es kann also davon ausgegangen werden, dass die Migration der vollen 500 GB wie angenommen in deutlich weniger als einem Tag durchgeführt werden kann. Daraus folgt, dass der \textbf{Data Migration Assistant} nicht nur für den Prototyp ausreicht, sondern auch für den Umstieg des vollständigen \acp{dwh} geeignet ist.
+
+Datenqualität...
+
 
 \subsection{Implementierung ETL}
 \textit{...}
