@@ -24,7 +24,21 @@ Die Durchführung beginnt mit der Installation des \ac{dma} auf dem gleichen Ser
 Neben der Übertragung der Daten ist auch die langfristige Erhaltung der Datenqualität wichtig. Im on-premise SQL-Server werden hierfür Stored Procedures verwendet, welche über einen \textit{Job Agent} täglich ausgeführt werden. Diese führen Plausibilitätschecks durch und suchen nach Unstimmigkeiten, beispielsweise Duplikate oder ungültige Werte wie eine negative Bearbeitungszeit. Wenn eine Auffälligkeit gefunden wird, wird ein Verantwortlicher per E-Mail benachrichtigt, der anschließend die Fehlerursache finden und beheben kann. Die Stored Procedures können problemlos als Bestandteil des Datenbankschemas migriert werden. Die \textit{Azure SQL Datenbank} verfügt jedoch nicht über den \textit{Job Agent}, weswegen die regelmäßige Ausführung der Qualitätschecks anders gelöst werden muss. Eine naheliegende Lösung wäre die Verwendung von \textit{Azure Functions}, da diese über einen Timer getriggert werden können, um dann die Stored Procedures auszuführen. Durch die Kombination mit dem \textit{Azure Monitor} können so gleichzeitig mit wenig Aufwand Logging der Qualitätschecks und Benachrichtigungen bei Problemen umgesetzt werden. Eine konkrete Umsetzung soll hier nicht vorgestellt werden, da die technisch relevanten Aspekte im Abschnitt zur Implementierung des \ac{etl}-Prozesses abgedeckt werden.
 
 \subsection{Implementierung ETL}
-\textit{...}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Erstellen und Bereitstellen von Reports}
 \textit{...}
