@@ -4,6 +4,9 @@
 Zu Beginn wird über das Azure Portal einmalig eine Ressourcengruppe erstellt. Dieser Container für zusammengehörige Ressourcen erlaubt das Teilen eines gemeinsamen Lebenszyklus, von Berechtigungen und Richtlinien. Dabei wird die Region West-Europa als Standort gewählt, die für alles Ressourcen in diesem Prototyp verwendet werden soll. 
 
 \subsubsection{Berechtigungen und Rollen} \label{subsec:infra:prep:aad}
+% ServicePrincipal: purview, devOps
+Die Managed Identities der Funktionsapp und der für \textit{Azure Purview} erstellte Dienstprinzipal bekommen eine Rolle zugewiesen, die es erlaubt, Passwörter aus dem \textit{Azure Key Vault} zu lesen. Der Dienstprinzipal für \textit{Purview} erhält Leserechte und
+die Managed Identity von \textit{Azure Functions} bekommt für den ETL-Prozess Lese- und Schreibrechte auf der Datenbank.
 
 \subsubsection{Festlegen von Richtlinien mit Azure Policy} \label{subsec:infra:prep:policy}
 Mit \textit{Azure Policy} können Richtlinien festgelegt werden, die die Einhaltung von Unternehmensstandards absichern. So kann zum Beispiel das Hinzufügen oder Verändern von Ressourcen verhindern, wenn dadurch gegen Compliance-Anforderungen verstoßen werden würde. Sie schützen somit die Infrastruktur gleichzeitig vor böswilligen als auch ungewollt vorgenommen Änderungen. Mehrere Richtlinien können zu einer Initiative gruppiert werden und damit gemeinsam einem Geltungsbereich zugewiesen werden \cite{de_tender_azure_2019}.
