@@ -11,6 +11,7 @@ Für die Speicherung der Daten soll die \textit{SQL Database} verwendet werden. 
 Damit stehen auch die Verarbeitungsmöglichkeiten von T-SQL zur Verfügung. Deswegen wird aktuell keine Verwendung von \ac{aas} als Semantik-Schicht zwischen Datenbank und Reporting vorgesehen. Allerdings folgt daraus, dass \textit{Azure Machine Learning} verwendet werden muss, um im neuen BI-System maschinelles Lernen mit Python und R zu ermöglichen.
 
 Für die Datenintegration stehen \textit{Logic Apps}, \textit{Functions} und \ac{adf} zur Auswahl. In Bezug auf die gegebenen Anforderungen können die Dienste als gleichwertig betrachtet werden. Da \textit{Azure Functions} den Vorteil hat, dass es auch lokal entwickelt und getestet werden kann, wird dieser Dienst ausgewählt.
+% adf braucht vms
 
 Damit ist das Ergebnis, dass die Dienste \textit{SQL Database}, \textit{Functions}, \textit{Machine Learning}, \textit{Power BI} und \textit{Purview} im neuen BI-System eingesetzt werden sollen. Hierbei ist jedoch die nicht-funktionale Anforderung, dass aufgetretene Fehler leicht nachvollziehbar sein sollen, zu berücksichtigen, welche mit der aktuellen Auswahl nicht erfüllt wird. Diese Problematik kann durch die Verwendung des \textit{Azure Monitors}, welcher im nächsten Abschnitt vorgestellt wird, gelöst werden.
 
