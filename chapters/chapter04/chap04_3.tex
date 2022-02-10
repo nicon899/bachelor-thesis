@@ -1,14 +1,19 @@
 \section{Beschreibung eines möglichen Umstiegs zum neuen BI-System} \label{sec:praktischeUmsetzung:Migration}
 Nachdem die Infrastruktur bereitgestellt wurde, soll ein mögliches Vorgehen für den Umstieg zum neuen BI-System vorgestellt werden. Der resultierende Prototyp muss noch kein vollwertiger Ersatz für das on-premise BI-System sein, sondern es soll nur ein Bruchteil der Daten mit den dazugehörigen ETL-Prozessen und Auswertungen migriert werden. Zusätzlich werden neue Funktionalitäten, die im alten BI-System noch nicht vorhanden waren, umgesetzt. Ziel ist es, dass der Prototyp alle zu Beginn definierten Testfälle (\hyperref[sec:anforderungsspezifikation:funktionaleAnforderungen]{siehe Anforderungsspezifikation}) abdeckt.
 
+Damit sich der prototypische Umstieg auf die technischen Aspekte konzentrieren kann, wurde auf dem on-premise SQL-Server, auf Basis des \acp{dwh} eine Datenbank mit reduzierten Datenmodell (Abbildung~\ref{fig:praktischeUmsetzung:dataModel}) angelegt, dass nur einen Bruchteil an Tabellen und Attributen besitzt, aber ausreichend für die Umsetzung aller Anwendungsfälle ist. 
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=\textwidth]{gfx/data_model.png}
+ \caption{Verwendetes Datenmodell für den Prototyp}
+\label{fig:praktischeUmsetzung:dataModel}
+\end{figure}
+
+\noindent Das gezeigte Datenmodell steht im Zusammenhang mit dem Kundensportsystem \textit{Jira Service Management}. Wenn ein Kunde (\textit{Company}) Probleme mit einem Produkt hat, wird von einer Kontaktperson (\textit{Contact}) ein Support-Ticket (\textit{Issue}) erstellt. Dabei werden alle notwendigen Produktinformationen wie Betriebssystem und Version mit dem \textit{Issue} verknüpft. Weitere Details sind an dieser Stelle nicht relevant und werden dort aufgegriffen, wo es für das Verständnis der Umsetzung sinnvoll ist.
+
 \subsection{Datenbankmigration} \label{subsec:praktischeUmsetzung:Datenmigration}
-Zu Beginn soll das Data Warehouse aus dem on-premise SQL Server zu der \textit{Azure SQL Database} migriert werden. 
-
-% Azure stellt Dienste bereit, die beim Migrationsprozess von einer on-premise zu Cloud Datenbank unterstützen können \cite{chilberto_building_2020}. 
-
-\begin{enumerate}
-\item 
-\end{enumerate}
+Zu Beginn soll die Datenbank, die dem nachgestellten \acp{dwh} entspricht, aus dem on-premise SQL Server zu der \textit{Azure SQL Database} migriert werden. 
 
 Für den Migrationsprozess wurden drei mögliche Optionen betrachtet \cite{soh_microsoft_2020}: 
 \begin{enumerate}
