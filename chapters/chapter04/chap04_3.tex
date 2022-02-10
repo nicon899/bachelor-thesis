@@ -31,6 +31,22 @@ Neben der Übertragung der Daten ist auch die langfristige Erhaltung der Datenqu
 \subsection{Implementierung ETL}
 
 \subsection{Erstellen und Bereitstellen von Reports}
+Die Reports sind die Schnittstelle zum Endnutzer und präsentiert Auswertungen, die unter anderen als Entscheidungshilfe genutzt werden. Im neuen BI-System sollen diese mit \textit{Power BI} erstellt werden. Dabei soll \textit{Power BI} nicht nur für die Visualisierungen verwendet werden, sondern auch für Auswertungen und Transformationen, die vorher mit \textit{Data Marts} und \textit{T-SQL} durchgeführt wurden. Für den Umstieg zum neuen BI-System bedeutet dies, dass das Reporting vollständig neu implementiert werden muss. Deswegen soll für den Prototyp ein Report erstellt werden, der hierfür alle relevanten Komponenten (Tabelle, Filter, Linien- und Balkendiagramm) enthält.
+
+Der erste Schritt ist das Erstellen eines \textit{Datasets}. Dafür werden die Verbindungsinformationen zur \textit{Azure SQL-Database} angegeben und es wird die Option \textit{Import} gewählt. Das bedeutet, dass die Daten nach \textit{Power BI} gedownloadet werden. Die Alternative \textit{DirectQuery} lädt Daten direkt aus der Datenbank und ist dadurch immer aktuell, würde jedoch zu längeren Ladezeiten der Report führen. Anschließend kann das Datenmodell mit dem \textit{Power Query Editor} angepasst werden. Tabellen und Spalten könnten umbenannt werden, oder Datentypen geändert. Hier soll eine neue Spalte zu der Tabelle \textit{Issue} hinzugefügt werden, die das Alter enthält. Das Alter für einen ungelösten \textit{Issue} ist die Zeit von Erstellung bis zum aktuellen Tag oder für einen gelösten bis zum Lösungszeitpunkt. Ob ein \textit{Issue} in Bearbeitung ist, oder bereits gelöst wurde, kann abhängig davon, ob das \textit{ResolutionDate} gesetzt ist, erkannt werden. Dies wird mit einer IF-Funktion geprüft, die die Bedingung als erstes Argument erhält. Ist die Bedingung wahr, wird das zweite Argument, ansonsten das dritte Argument ausgeführt. In beiden Fällen wird über eine Funktion die Zeitdifferenz in Bezug zum Erstellungszeitpunkt berechnet.
+
+\begin{lstlisting}[frame=single,caption={Code zur Defintion der Spalte \textit{Age}} von Tabelle \textit{Issue},captionpos=b]
+Age = 
+IF('issue'[ResolutionDate] = BLANK(),
+    DATEDIFF('issue'[Created], NOW(), DAY),   
+    DATEDIFF('issue'[Created], 'issue'[ResolutionDate], DAY)
+)
+\end{lstlisting}
+
+\noindent Nachdem die neue Spaltendefinition gespeichert wurde, wird jede Zeile der Tabelle automatisch um den neuen Wert ergänzt.
+
+
+
 
 \subsection{Einrichtung der Datengovernance}
 Zum Verwenden von \textit{Azure Purview} für die Datengovernance, muss der Dienst zunächst eingerichtet werden. Dazu öffnet ein berechtigter Nutzer die Webanwendung \textit{Purview Studio}. Als Erstes werden dort die Ressourcen, die gescannt werden sollen, registriert, indem die entsprechenden Verbindungsinformationen angegeben werden.Der Prototyp beschränkt sich hierbei auf die \textit{SQL-Database}. Nun kann beim Erstellen eines sogenannten \textit{Scans}, die zuvor eingerichtete \textit{Self hosted-integration runtime} und die \textit{SQL-Database} angegeben werden. Daneben ist noch die Verlinkung mit dem Passwort des Dienstprinzipals im \textit{Key Vault} notwendig. Nach einem erfolgreichen Verbindungstest kann abschließend ein Zeitplan für regelmäßige Ausführungen des \textit{Scans} definiert werden, oder alternativ eine einmalige Ausführung gestartet werden. Während für den Prototyp letztere Option gewählt wurde, ist für ein zukünftiges Cloud-BI-System eine regelmäßige Wiederholung zu bevorzugen, damit die gesammelten Metadaten aktuell bleiben. 
