@@ -43,7 +43,25 @@ IF('issue'[ResolutionDate] = BLANK(),
 )
 \end{lstlisting}
 
-\noindent Nachdem die neue Spaltendefinition gespeichert wurde, wird jede Zeile der Tabelle automatisch um den neuen Wert ergänzt.
+\noindent Nachdem die neue Spaltendefinition gespeichert wurde, wird jede Zeile der Tabelle automatisch um den neuen Wert ergänzt. Zusätzlich wird eine neue Tabelle \textit{Calendar} mit \textit{DAX} definiert, die jedes Datum vom Erstellungszeitpunkt des ersten \textit{Issues} bis zum aktuellen Tag enthält. Diese Daten werden hier für eine Zeitachse benötigt. Im nächsten Schritt ist es notwendig, die Beziehungen der Tabellen miteinander zu bearbeiten. Diese sind besonders für das korrekte Filtern in den Reports wichtig. Beziehungen können über die Benutzeroberfläche hinzugefügt werden, in dem Primär- und Fremdschlüssel und die Kardinalität angegeben werden. Nach der Bearbeitung entsprechen die Beziehungen in \textit{Power BI} dem Datenmodell in Abbildung~\ref{fig:praktischeUmsetzung:dataModel}. Damit ist das \textit{Dataset} bereit für die Verwendung in einem Report.
+
+Zu Begin wird ein \textit{Slicer} hinzugefügt, mit dem der Benutzer alle Visualisierungen interaktiv nach Region filtern kann. Dadruch, dass \textit{Power BI} die Beziehungen zwischen den Tabellen kennt, ist die Umsetzung sehr einfach und kann vollständig per Drag-And-Drop durchgeführt werden. Der \textit{Slicer} muss lediglich an die gewünschte Stelle gezogen werden und bekommt das Feld \textit{Name} von \textit{Region} zugewiesen. Jetzt kann ein Nutzer den Report per Dropdown-Filter auf eine Region beschränken.
+
+Die manuell hinzugefügten Spalte \textit{Age} soll in einem Balkendiagramm verwendet werden, dass das durchschnittliche Alter eines \textit{Issues} nach Produktfamilie angibt.
+
+Die nächste Visualisierung soll in einem Liniendiagramm den zeitlichen Verlauf der Anzahl an neu erstellten, geschlossenen und offenen \textit{Issues} anzeigen. Dazu werden der Tabelle \textit{Calendar} drei \textit{Measures} hinzugefügt.  \textit{Measures} werden ebenfalls mit \textit{DAX} definiert und können beispielsweise für Aggregationen in den Visualisierungen verwendet werden. Im Gegensatz zu einer berechneten Spalte, wie \textit{Age}, werden die Ergebnisse von \textit{Measures} nicht im \textit{Dataset} gespeichert, sondern jedes Mal beim Laden des Reports berechnet.
+
+% rls
+
+Nach der Implementierung des Reports mit der \textit{Power BI Desktop} Anwendung kann dieser in einen \textit{Workspace} veröffentlicht werden. Danach ist der Report für alle berechtigten Mitarbeiter über den Webbrowser verfügbar. Die Zugriffsberechtigung auf einen \textit{Workspace} kann über \ac{rbac} und dem \ac{aad} gesteuert werden. 
+
+% refreshs/direct query
+
+
+
+
+
+
 
 
 
