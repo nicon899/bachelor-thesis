@@ -51,20 +51,16 @@ Die manuell hinzugefügten Spalte \textit{Age} soll in einem Balkendiagramm verw
 
 Die nächste Visualisierung soll in einem Liniendiagramm den zeitlichen Verlauf der Anzahl an neu erstellten, geschlossenen und offenen \textit{Issues} anzeigen. Dazu werden der Tabelle \textit{Calendar} drei \textit{Measures} hinzugefügt.  \textit{Measures} werden ebenfalls mit \textit{DAX} definiert und können beispielsweise für Aggregationen in den Visualisierungen verwendet werden. Im Gegensatz zu einer berechneten Spalte, wie \textit{Age}, werden die Ergebnisse von \textit{Measures} nicht im \textit{Dataset} gespeichert, sondern jedes Mal beim Laden des Reports berechnet.
 
-% rls
+Nach der Implementierung des Reports mit der \textit{Power BI Desktop} Anwendung kann dieser in einen \textit{Workspace} veröffentlicht werden. Danach ist der Report als auch das \textit{Dataset} für alle berechtigten Mitarbeiter über den Webbrowser verfügbar. Die Zugriffsberechtigung auf einen \textit{Workspace} kann über \ac{rbac} und dem \ac{aad} gesteuert werden. Falls eine granulare Zugriffskontrolle erforderlich ist, sollte jedoch die \textit{row-level security} verwendet werden. Mit dieser können Benutzern oder Gruppen \textit{DAX}-Filter zugeordnet werden, die einschränken, welche Inhalte gesehen werden können. Hier ermöglicht diese Funktionalität, dass der erstellte Report mit allen Mitarbeitern geteilt werden kann und gleichzeitig Daten, bei denen es durch die DSGVO notwendig ist, nur von Personen mit europäischem Standort gesehen werden kann.
 
-Nach der Implementierung des Reports mit der \textit{Power BI Desktop} Anwendung kann dieser in einen \textit{Workspace} veröffentlicht werden. Danach ist der Report für alle berechtigten Mitarbeiter über den Webbrowser verfügbar. Die Zugriffsberechtigung auf einen \textit{Workspace} kann über \ac{rbac} und dem \ac{aad} gesteuert werden. 
+Der letzte Schritt ist das Einrichten eines Zeitplans für die Aktualisierung des \textit{Datasets}. Mit \textit{Power BI Pro} ist die Anzahl der Aktualisierungen auf achtmal täglich beschränkt, was bezüglich der Anforderungen der kritischste Nachteil gegenüber \textit{Power BI Premium} ist. Ob die Einschränkung, dass Reports nur alle drei Stunden, statt stündlich aktualisiert werden können, den zusätzlich Kosten von \textit{Power BI Premium} rechtfertigen würde, ist abhängig davon, wie kritisch die Aktualität der Reports ist. Da bezüglich der Performance keine Probleme festgestellt wurden und das on-premise BI-System nur einmal täglich aktualisiert wird, kann davon ausgegangen, dass \textit{Power BI Pro} ausreichend ist. Ein Umstieg auf \textit{Premium} wäre außerdem zukünftig jederzeit möglich. 
+
+% self service
+
+
+\cite[vgl.][]{pearson_pro_2020}
 
 % refreshs/direct query
-
-
-
-
-
-
-
-
-
 
 \subsection{Einrichtung der Datengovernance}
 Zum Verwenden von \textit{Azure Purview} für die Datengovernance, muss der Dienst zunächst eingerichtet werden. Dazu öffnet ein berechtigter Nutzer die Webanwendung \textit{Purview Studio}. Als Erstes werden dort die Ressourcen, die gescannt werden sollen, registriert, indem die entsprechenden Verbindungsinformationen angegeben werden.Der Prototyp beschränkt sich hierbei auf die \textit{SQL-Database}. Nun kann beim Erstellen eines sogenannten \textit{Scans}, die zuvor eingerichtete \textit{Self hosted-integration runtime} und die \textit{SQL-Database} angegeben werden. Daneben ist noch die Verlinkung mit dem Passwort des Dienstprinzipals im \textit{Key Vault} notwendig. Nach einem erfolgreichen Verbindungstest kann abschließend ein Zeitplan für regelmäßige Ausführungen des \textit{Scans} definiert werden, oder alternativ eine einmalige Ausführung gestartet werden. Während für den Prototyp letztere Option gewählt wurde, ist für ein zukünftiges Cloud-BI-System eine regelmäßige Wiederholung zu bevorzugen, damit die gesammelten Metadaten aktuell bleiben. 
