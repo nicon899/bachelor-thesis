@@ -326,6 +326,8 @@
 %code 
 \newcommand{\code}[1]{\texttt{#1}}
 \usepackage{listings}
+\usepackage{xcolor}
+\lstdefinestyle{sharpc}{language=[Sharp]C, frame=lr, rulecolor=\color{black}}
 \lstset
 { %Formatting for code in appendix
     basicstyle=\footnotesize,
@@ -335,9 +337,14 @@
     tabsize=1,
     breaklines=true,
     breakatwhitespace=false,
+    literate=
+    {Ö}{{\"O}}1
+    {Ä}{{\"A}}1
+    {Ü}{{\"U}}1
+    {ß}{{\ss}}1
+    {ü}{{\"u}}1
+    {ä}{{\"a}}1
+    {ö}{{\"o}}1
 }
-
-
-
 
 

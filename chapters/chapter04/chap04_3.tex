@@ -28,7 +28,108 @@ Die Durchführung beginnt mit der Installation des \ac{dma} auf dem gleichen Ser
 
 Neben der Übertragung der Daten ist auch die langfristige Erhaltung der Datenqualität wichtig. Im on-premise SQL-Server werden hierfür Stored Procedures verwendet, welche über einen \textit{Job Agent} täglich ausgeführt werden. Diese führen Plausibilitätschecks durch und suchen nach Unstimmigkeiten, beispielsweise Duplikate oder ungültige Werte wie eine negative Bearbeitungszeit. Wenn eine Auffälligkeit gefunden wird, wird ein Verantwortlicher per E-Mail benachrichtigt, der anschließend die Fehlerursache finden und beheben kann. Die Stored Procedures können problemlos als Bestandteil des Datenbankschemas migriert werden. Die \textit{Azure SQL Datenbank} verfügt jedoch nicht über den \textit{Job Agent}, weswegen die regelmäßige Ausführung der Qualitätschecks anders gelöst werden muss. Eine naheliegende Lösung wäre die Verwendung von \textit{Azure Functions}, da diese über einen Timer getriggert werden können, um dann die Stored Procedures auszuführen. Durch die Kombination mit dem \textit{Azure Monitor} können so gleichzeitig mit wenig Aufwand Logging der Qualitätschecks und Benachrichtigungen bei Problemen umgesetzt werden. Eine konkrete Umsetzung soll hier nicht vorgestellt werden, da die technisch relevanten Aspekte im Abschnitt zur Implementierung des \ac{etl}-Prozesses abgedeckt werden.
 
+\newpage
 \subsection{Implementierung ETL}
+Der ETL-Prozess mit \textit{Azure Functions} kann auf einer lokalen Maschine entwickelt und getestet werden, vorausgesetzt es können Quell- und Zielsysteme erreicht werden, die schematisch äquivalent zu den produktiven Systemen sind. Eine einfache Möglichkeit, um eine lokale Entwicklungsumgebung aufzusetzen, ist die Verwendung von Docker-Containern. Das Laden der Daten in das Zielsystem wird zum Beispiel mit dem \textit{Azure SQL Edge} Docker-Container getestet \cite[vgl.][]{msdoc_22_sql_docker}, der mit dem im letzten Abschnitt generierten Datenbankschema eingerichtet wird. In einer lokalen Datei werden die dazugehörigen Verbindungszeichenfolgen gespeichert und können in Code als Umgebungsvariable gelesen werden.
+
+Bei den meisten Quellsystemen handelt es sich um Datenbanken, auf die aktuell direkt vom on-premise \ac{dwh} zugegriffen wird. Dabei sind die kompletten ETL-Prozesse mit T-SQL implementiert. Um den Migrationsaufwand zu verringern, wurde ein Konzept für \textit{Azure Functions} entwickelt, mit dem der Extractions- und Transformationsteil der T-SQL-Abfragen nahezu unverändert übernommen werden kann. Gleichzeitig ist der C\#-Code so gestaltet, dass für unterschiedliche Entitäten nur eine andere T-SQL-Abfrage verwendet werden muss. Das Konzept und der Quellode für den ETL-Prozess zwischen zwei Datenbanken wird im Folgenden vorgestellt. Dabei gibt es durch die Infrastruktur keinen Unterschied zwischen on-premise und Cloud Datenbanken. 
+
+Zum stündlichen Ausführen der Funktion wird über den Konstruktor die Verwendung eines \textit{TimerTriggers} mit einem NCrontab-Ausdruck angegeben, sodass die Funktion zu jeder vollen Stunde aufgerufen wird. Im Konstruktor wird außerdem ein \textit{ILogger-Objekt} übergeben. Alle damit geloggten Nachrichten werden zu dem Monitordienst \textit{Application Insights} übertragen. 
+
+Beim Aufruf wird zuerst ein Zugriffstoken geladen, welches notwendig für die Authentifizierung als \textit{Managed Identity} bei der \textit{Azure SQL Database} ist. Anschließend folgt der ETL-Prozess für jede Entität, deren Name in einem Array enthalten ist. Der Prozess ist in drei Schritte geteilt:
+\begin{enumerate}
+\item Frage aus dem Zielsystem den letzten Aktualisierungszeitpunkt der Entität ab.
+\item Extrahiere und transformiere alle neuen oder veränderten Ergebnisse aus dem Quellsystem mit der zur Entität gehörigen T-SQL-Abfrage.
+\item Lade die neuen Werte in das Zielsystem (Alle Aktionen werden innerhalb einer gemeinsamen Datenbanktransaktion ausgeführt):
+    \begin{enumerate}
+    \item Erstelle eine temporäre Tabelle mit gleichem Schema wie Zieltabelle.
+    \item Lade alle Daten mit Bulk-Copy in die Temporäre-Tabelle.
+    \item Lösche alle Datensätze in Zieltabelle, die in der temporären Tabelle vorkommen.
+    \item Füge alle Datensätze von temporärer Tabelle in Zieltabelle ein.
+    \end{enumerate}
+\end{enumerate}
+Schritt 2 setzt voraus, dass in einem Unterverzeichnis für jede Entität eine gleichnamige SQL-Datei vorhanden ist. In der Datei steht die aus dem alten System übernommene SQL-Abfrage. In der WHERE-Bedingung wurde ein Parameter zum dynamischen Filtern der Datensätze nach ihrem letzten Aktualisierungszeitpunkt hinzugefügt.
+
+\lstset{style=sharpc}
+\begin{lstlisting}[frame=single,caption=ETL-Prozess: Aufruf der Funktion,captionpos=b]
+public static async Task Run(
+    //NCrontab: {second}{minute}{hour}{day}{month}{day-of-week}
+    [TimerTrigger("0 0 * * * *")] TimerInfo myTimer, 
+    ILogger log, ExecutionContext context)
+{
+    // Laden des Zugrifftokens für den Zugriff als Managed Identity
+    var tokenProvider = new AzureServiceTokenProvider();
+    string accessToken = await tokenProvider.
+        GetAccessTokenAsync("https://database.windows.net/");
+
+    // Array mit den Namen aller Entitäten 
+    string[] entities = new string[] { "region", "company", ... };
+    
+    // Führe ETL-Prozess für jede Entität aus
+    foreach (string entity in entities)
+    {
+        log.LogInformation($"Start ETL process for entity: {entity}");
+        try
+        {
+            // Laden des letzen Akutalisierungszeitpunkts
+            long lastUpdate = getLastUpdateOfEntity(entity, accessToken);
+            // Lade SQL-Query aus Datei mit dem Namen der Entität im Verzeichnis SQL
+            string sqlPath = Path.Combine(context.FunctionAppDirectory, "sql", $"{entity}.sql");
+            string sqlQuery = File.ReadAllText(sqlPath);
+            // Extrahieren und Transformieren der Daten aus Quellsystem
+            DataTable dataFromSource = extractDataFromSource(entity, sqlQuery, lastUpdate);
+            // Laden der Daten in das Zielsystem
+            loadDataToDWH(dataFromSource, entity, accessToken);
+            log.LogInformation($"Completed ETL for {entity}");
+        }
+        catch (SqlException ex)
+        {
+            log.LogError(ex, $"ERROR execution ETL for {entity}; ExceptionMessage: ${ex.ToString()}");
+        }
+    }
+}
+
+public static long getLastUpdateOfEntity(string tableName, string accessToken) {
+    DateTime lastUpdateDateTime;
+    using (SqlConnection conn = new SqlConnection(Environment.GetEnvironmentVariable("connectionstringDWH")))
+    {
+        conn.AccessToken = accessToken;
+        conn.Open();
+        var sqlQuery = $"SELECT MAX(UPDATED) FROM {tableName}";
+        using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
+        {
+            object lastUpdateObj = cmd.ExecuteScalar();
+            if (lastUpdateObj == null || lastUpdateObj == DBNull.Value) { return 0; }
+            lastUpdateDateTime = (DateTime)lastUpdateObj;
+        }
+    }
+    TimeSpan diffToOriginTime = lastUpdateDateTime.ToUniversalTime() - DateTime.UnixEpoch;
+    long lastUpdate = ((long)diffToOriginTime.TotalSeconds);
+    return lastUpdate;
+}
+\end{lstlisting}
+
+Der obige Code kann über den Editor \textit{Visual Studio Code} direkt nach Azure übertragen werden. Die Verbindungszeichenfolgen zu den Quellsystemen, welche als Umgebungsvariable eingelesen werden, müssen dort noch hinzugefügt werden. Die sicherste Möglichkeit ist die Speicherung im \textit{Azure Key Vault} und die anschließende Verknüpfung mit der  Funktionsapp. Damit konnte abschließend bestätigt werden, dass der ETL-Prozess mit \textit{Azure Functions} funktioniert. 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 \subsection{Erstellen und Bereitstellen von Reports}
 Die Reports sind die Schnittstelle zum Endnutzer und präsentiert Auswertungen, die unter anderen als Entscheidungshilfe genutzt werden. Im neuen BI-System sollen diese mit \textit{Power BI} erstellt werden. Dabei soll \textit{Power BI} nicht nur für die Visualisierungen verwendet werden, sondern auch für Auswertungen und Transformationen, die vorher mit \textit{Data Marts} und \textit{T-SQL} durchgeführt wurden. Für den Umstieg zum neuen BI-System bedeutet dies, dass das Reporting vollständig neu implementiert werden muss. Deswegen soll für den Prototyp ein Report erstellt werden, der hierfür alle relevanten Komponenten (Tabelle, Filter, Linien- und Balkendiagramm) enthält.
