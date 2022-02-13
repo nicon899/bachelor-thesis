@@ -49,64 +49,7 @@ Beim Aufruf wird zuerst ein Zugriffstoken geladen, welches notwendig für die Au
 \end{enumerate}
 Schritt 2 setzt voraus, dass in einem Unterverzeichnis für jede Entität eine gleichnamige SQL-Datei vorhanden ist. In der Datei steht die aus dem alten System übernommene SQL-Abfrage. In der WHERE-Bedingung wurde ein Parameter zum dynamischen Filtern der Datensätze nach ihrem letzten Aktualisierungszeitpunkt hinzugefügt.
 
-\lstset{style=sharpc}
-\begin{lstlisting}[frame=single,caption=ETL-Prozess: Aufruf der Funktion,captionpos=b]
-public static async Task Run(
-    //NCrontab: {second}{minute}{hour}{day}{month}{day-of-week}
-    [TimerTrigger("0 0 * * * *")] TimerInfo myTimer, 
-    ILogger log, ExecutionContext context)
-{
-    // Laden des Zugrifftokens für den Zugriff als Managed Identity
-    var tokenProvider = new AzureServiceTokenProvider();
-    string accessToken = await tokenProvider.
-        GetAccessTokenAsync("https://database.windows.net/");
-
-    // Array mit den Namen aller Entitäten 
-    string[] entities = new string[] { "region", "company", ... };
-    
-    // Führe ETL-Prozess für jede Entität aus
-    foreach (string entity in entities)
-    {
-        log.LogInformation($"Start ETL process for entity: {entity}");
-        try
-        {
-            // Laden des letzen Akutalisierungszeitpunkts
-            long lastUpdate = getLastUpdateOfEntity(entity, accessToken);
-            // Lade SQL-Query aus Datei mit dem Namen der Entität im Verzeichnis SQL
-            string sqlPath = Path.Combine(context.FunctionAppDirectory, "sql", $"{entity}.sql");
-            string sqlQuery = File.ReadAllText(sqlPath);
-            // Extrahieren und Transformieren der Daten aus Quellsystem
-            DataTable dataFromSource = extractDataFromSource(entity, sqlQuery, lastUpdate);
-            // Laden der Daten in das Zielsystem
-            loadDataToDWH(dataFromSource, entity, accessToken);
-            log.LogInformation($"Completed ETL for {entity}");
-        }
-        catch (SqlException ex)
-        {
-            log.LogError(ex, $"ERROR execution ETL for {entity}; ExceptionMessage: ${ex.ToString()}");
-        }
-    }
-}
-
-public static long getLastUpdateOfEntity(string tableName, string accessToken) {
-    DateTime lastUpdateDateTime;
-    using (SqlConnection conn = new SqlConnection(Environment.GetEnvironmentVariable("connectionstringDWH")))
-    {
-        conn.AccessToken = accessToken;
-        conn.Open();
-        var sqlQuery = $"SELECT MAX(UPDATED) FROM {tableName}";
-        using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
-        {
-            object lastUpdateObj = cmd.ExecuteScalar();
-            if (lastUpdateObj == null || lastUpdateObj == DBNull.Value) { return 0; }
-            lastUpdateDateTime = (DateTime)lastUpdateObj;
-        }
-    }
-    TimeSpan diffToOriginTime = lastUpdateDateTime.ToUniversalTime() - DateTime.UnixEpoch;
-    long lastUpdate = ((long)diffToOriginTime.TotalSeconds);
-    return lastUpdate;
-}
-\end{lstlisting}
+\input{chapters/chapter04/azureFunctionsCodeListing}
 
 Der obige Code kann über den Editor \textit{Visual Studio Code} direkt nach Azure übertragen werden. Die Verbindungszeichenfolgen zu den Quellsystemen, welche als Umgebungsvariable eingelesen werden, müssen dort noch hinzugefügt werden. Die sicherste Möglichkeit ist die Speicherung im \textit{Azure Key Vault} und die anschließende Verknüpfung mit der  Funktionsapp. Damit konnte abschließend bestätigt werden, dass der ETL-Prozess mit \textit{Azure Functions} funktioniert. Die Datenintegration von Quellsystemen über eine REST API konnte ebenfalls erfolgreich umgesetzt werden, jedoch ist hier der Migrationsaufwand höher, da nichts aus dem on-premise BI-System übernommen werden kann und die Datentransformation in C\# erfolgt. Das Vorgehen ähnelt hier der Verwendung von \textit{Azure Functions} als Web-backend, weswegen es keine besonderen Ansätze gibt, die in dieser Arbeit erwähnenswert wären \cite[vgl.][]{kurniawan_practical_2019, satapathi_hands-azure_2021}.
 
