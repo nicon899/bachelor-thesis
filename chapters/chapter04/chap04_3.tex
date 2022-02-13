@@ -28,7 +28,6 @@ Die Durchführung beginnt mit der Installation des \ac{dma} auf dem gleichen Ser
 
 Neben der Übertragung der Daten ist auch die langfristige Erhaltung der Datenqualität wichtig. Im on-premise SQL-Server werden hierfür Stored Procedures verwendet, welche über einen \textit{Job Agent} täglich ausgeführt werden. Diese führen Plausibilitätschecks durch und suchen nach Unstimmigkeiten, beispielsweise Duplikate oder ungültige Werte wie eine negative Bearbeitungszeit. Wenn eine Auffälligkeit gefunden wird, wird ein Verantwortlicher per E-Mail benachrichtigt, der anschließend die Fehlerursache finden und beheben kann. Die Stored Procedures können problemlos als Bestandteil des Datenbankschemas migriert werden. Die \textit{Azure SQL Datenbank} verfügt jedoch nicht über den \textit{Job Agent}, weswegen die regelmäßige Ausführung der Qualitätschecks anders gelöst werden muss. Eine naheliegende Lösung wäre die Verwendung von \textit{Azure Functions}, da diese über einen Timer getriggert werden können, um dann die Stored Procedures auszuführen. Durch die Kombination mit dem \textit{Azure Monitor} können so gleichzeitig mit wenig Aufwand Logging der Qualitätschecks und Benachrichtigungen bei Problemen umgesetzt werden. Eine konkrete Umsetzung soll hier nicht vorgestellt werden, da die technisch relevanten Aspekte im Abschnitt zur Implementierung des \ac{etl}-Prozesses abgedeckt werden.
 
-\newpage
 \subsection{Implementierung ETL}
 Der ETL-Prozess mit \textit{Azure Functions} kann auf einer lokalen Maschine entwickelt und getestet werden, vorausgesetzt es können Quell- und Zielsysteme erreicht werden, die schematisch äquivalent zu den produktiven Systemen sind. Eine einfache Möglichkeit, um eine lokale Entwicklungsumgebung aufzusetzen, ist die Verwendung von Docker-Containern. Das Laden der Daten in das Zielsystem wird zum Beispiel mit dem \textit{Azure SQL Edge} Docker-Container getestet \cite[vgl.][]{msdoc_22_sql_docker}, der mit dem im letzten Abschnitt generierten Datenbankschema eingerichtet wird. In einer lokalen Datei werden die dazugehörigen Verbindungszeichenfolgen gespeichert und können in Code als Umgebungsvariable gelesen werden.
 
@@ -109,27 +108,9 @@ public static long getLastUpdateOfEntity(string tableName, string accessToken) {
 }
 \end{lstlisting}
 
-Der obige Code kann über den Editor \textit{Visual Studio Code} direkt nach Azure übertragen werden. Die Verbindungszeichenfolgen zu den Quellsystemen, welche als Umgebungsvariable eingelesen werden, müssen dort noch hinzugefügt werden. Die sicherste Möglichkeit ist die Speicherung im \textit{Azure Key Vault} und die anschließende Verknüpfung mit der  Funktionsapp. Damit konnte abschließend bestätigt werden, dass der ETL-Prozess mit \textit{Azure Functions} funktioniert. 
+Der obige Code kann über den Editor \textit{Visual Studio Code} direkt nach Azure übertragen werden. Die Verbindungszeichenfolgen zu den Quellsystemen, welche als Umgebungsvariable eingelesen werden, müssen dort noch hinzugefügt werden. Die sicherste Möglichkeit ist die Speicherung im \textit{Azure Key Vault} und die anschließende Verknüpfung mit der  Funktionsapp. Damit konnte abschließend bestätigt werden, dass der ETL-Prozess mit \textit{Azure Functions} funktioniert. Die Datenintegration von Quellsystemen über eine REST API konnte ebenfalls erfolgreich umgesetzt werden, jedoch ist hier der Migrationsaufwand höher, da nichts aus dem on-premise BI-System übernommen werden kann und die Datentransformation in C\# erfolgt. Das Vorgehen ähnelt hier der Verwendung von \textit{Azure Functions} als Web-backend, weswegen es keine besonderen Ansätze gibt, die in dieser Arbeit erwähnenswert wären \cite[vgl.][]{kurniawan_practical_2019, satapathi_hands-azure_2021}.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+Das Logging für den ETL-Prozess kann im Azure Portal über die \textit{Application Insights} gefunden werden. Dort wird eine Regel definiert, die an alle Benutzer in einer \ac{aad} Gruppe eine E-Mail-Benachrichtigung sendet, falls ein Fehler aufgetreten ist \cite[vgl.][]{satapathi_hands-azure_2021, sreeram_azure_2020}.
 
 \subsection{Erstellen und Bereitstellen von Reports}
 Die Reports sind die Schnittstelle zum Endnutzer und präsentiert Auswertungen, die unter anderen als Entscheidungshilfe genutzt werden. Im neuen BI-System sollen diese mit \textit{Power BI} erstellt werden. Dabei soll \textit{Power BI} nicht nur für die Visualisierungen verwendet werden, sondern auch für Auswertungen und Transformationen, die vorher mit \textit{Data Marts} und \textit{T-SQL} durchgeführt wurden. Für den Umstieg zum neuen BI-System bedeutet dies, dass das Reporting vollständig neu implementiert werden muss. Deswegen soll für den Prototyp ein Report erstellt werden, der hierfür alle relevanten Komponenten (Tabelle, Filter, Linien- und Balkendiagramm) enthält.
