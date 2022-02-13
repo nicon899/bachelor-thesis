@@ -1,5 +1,5 @@
 \lstset{style=sharpc}
-\begin{lstlisting}[frame=single,caption=ETL-Prozess: Aufruf der Funktion,captionpos=b]
+\begin{lstlisting}[frame=single,caption=ETL-Prozess: Aufruf der Funktion,captionpos=b,label={lst:azFunc}]
 public static async Task Run(
     //NCrontab: {second}{minute}{hour}{day}{month}{day-of-week}
     [TimerTrigger("0 0 * * * *")] TimerInfo myTimer, 
@@ -16,96 +16,121 @@ public static async Task Run(
     // Führe ETL-Prozess für jede Entität aus
     foreach (string entity in entities)
     {
-        log.LogInformation($"Start ETL process for entity: {entity}");
+        log.LogInformation($"Start ETL for entity: {entity}");
         try
         {
-            // Laden des letzen Akutalisierungszeitpunkts
-            long lastUpdate = getLastUpdateOfEntity(entity, accessToken);
-            // Lade SQL-Query aus Datei mit dem Namen der Entität im Verzeichnis SQL
-            string sqlPath = Path.Combine(context.FunctionAppDirectory, "sql", $"{entity}.sql");
+            // Abfragen des letzen Akutalisierungszeitpunkts
+            long lastUpdate = getLastUpdateOfEntity(entity, 
+                                accessToken);
+            // Lade SQL-Query aus Datei mit Namen der Entität
+            string sqlPath = Path.Combine(
+                                context.FunctionAppDirectory, "sql", 
+                                $"{entity}.sql");
             string sqlQuery = File.ReadAllText(sqlPath);
-            // Extrahieren und Transformieren der Daten aus Quellsystem
-            DataTable dataFromSource = extractDataFromSource(entity, sqlQuery, lastUpdate);
+            // Extrahieren und Transformieren der Daten aus Quellsystem in DataTable-Objekt
+            DataTable dataFromSource = 
+                extractDataFromSource(entity,sqlQuery,lastUpdate);
             // Laden der Daten in das Zielsystem
             loadDataToDWH(dataFromSource, entity, accessToken);
             log.LogInformation($"Completed ETL for {entity}");
         }
-        catch (SqlException ex)
+        catch (Exception ex)
         {
-            log.LogError(ex, $"ERROR execution ETL for {entity}; ExceptionMessage: ${ex.ToString()}");
+            // Aufgetretene Fehler werden geloggt
+            log.LogError(ex, $"ERROR execution ETL for {entity} -
+                ExceptionMessage: ${ex.ToString()}");
         }
     }
 }
 
-public static long getLastUpdateOfEntity(string tableName, string accessToken) {
+// Gibt den letzten Aktualisierungszeitpunkt einer Tabelle in Unixzeit zurück
+public static long getLastUpdateOfEntity(string tableName, 
+    string accessToken) {
+    
     DateTime lastUpdateDateTime;
-    using (SqlConnection conn = new SqlConnection(Environment.GetEnvironmentVariable("connectionstringDWH")))
-    {
+    // Verbindung zu Zielsystem mit Verbindungszeichenfolge in Umgebungsvariable
+    using (SqlConnection conn = new SqlConnection(Environment.GetEnvironmentVariable("connectionstringDWH"))) {
         conn.AccessToken = accessToken;
         conn.Open();
+        // Abfrage des letzten Aktualisierungszeitpunkts
         var sqlQuery = $"SELECT MAX(UPDATED) FROM {tableName}";
         using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
         {
             object lastUpdateObj = cmd.ExecuteScalar();
+            
             if (lastUpdateObj == null || lastUpdateObj == DBNull.Value) { return 0; }
-            lastUpdateDateTime = (DateTime)lastUpdateObj;
+            lastUpdateDateTime = (DateTime) lastUpdateObj;
         }
     }
-    TimeSpan diffToOriginTime = lastUpdateDateTime.ToUniversalTime() - DateTime.UnixEpoch;
-    long lastUpdate = ((long)diffToOriginTime.TotalSeconds);
+    // Umwandlung von DateTime-Objekt zu Unixzeit
+    TimeSpan diffToUnixEpoch = lastUpdateDateTime.ToUniversalTime() - DateTime.UnixEpoch;
+    long lastUpdate = ((long) diffToUnixEpoch.TotalSeconds);
     return lastUpdate;
 }
 
-  public static DataTable extractDataFromSource(string entity, string sqlQuery, DateTime lastUpdate)
+
+ public static DataTable extractDataFromSource(string entity, string sqlQuery, DateTime lastUpdate) {
+    DataTable dataFromSource = new DataTable();
+    // Verbindung zu Quellsystem mit Verbindungszeichenfolge in Umgebungsvariable
+    using (SqlConnection conn = new SqlConnection(Environment.GetEnvironmentVariable("connectionstringJSM")))
+    {
+        conn.Open();
+        // Führe übergebene SQL-Query aus
+        using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
         {
-            DataTable dataFromSource = new DataTable();
-            using (SqlConnection conn = new SqlConnection(Environment.GetEnvironmentVariable("connectionstringJSM")))
+            // Berücksichtiung des letzen Aktualisierungszeitpunkts durch Parameter
+            cmd.Prepare();
+            cmd.Parameters.AddWithValue("@lastUpdate", lastUpdate.ToString());
+            using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
             {
-                conn.Open();
-                using (SqlCommand cmd = new SqlCommand(sqlQuery, conn))
-                {
-                    cmd.CommandTimeout = 3600;
-                    cmd.Prepare();
-                    cmd.Parameters.AddWithValue("@lastUpdate", lastUpdate.ToString());
-                    using (SqlDataAdapter sda = new SqlDataAdapter(cmd))
-                    {
-                        sda.Fill(dataFromSource);
-                    }
-                }
-            }
-            return dataFromSource;
-        }
-
-        public static void loadDataToDWH(DataTable data, string tableName, string accessToken)
-        {
-            using (SqlConnection conn = new SqlConnection(Environment.GetEnvironmentVariable("connectionstringDWH")))
-            {
-                conn.AccessToken = accessToken;
-                conn.Open();
-
-                // create temp table
-                string sqlCreateTmpTable = $"SELECT TOP 0 * INTO #tmp{tableName} FROM {tableName}";
-                using (SqlCommand cmd = new SqlCommand(sqlCreateTmpTable, conn))
-                {
-                    cmd.CommandTimeout = 3600;
-                    cmd.ExecuteNonQuery();
-                }
-
-                // bulk copy data into temp table
-                using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conn))
-                {
-                    bulkCopy.DestinationTableName = $"#tmp{tableName}";
-                    bulkCopy.WriteToServer(data);
-                }
-
-                // update table
-                string sqlUpdateTable = $"BEGIN TRANSACTION; DELETE FROM {tableName} WHERE IssueID IN (SELECT IssueID FROM #tmp{tableName}); INSERT INTO {tableName} SELECT * FROM #tmp{tableName}; COMMIT TRANSACTION; DROP TABLE #tmp{tableName}";
-                using (SqlCommand cmd = new SqlCommand(sqlUpdateTable, conn))
-                {
-                    cmd.CommandTimeout = 3600;
-                    cmd.ExecuteNonQuery();
-                }
+                // Schreibe SQL-Ergebnis in DataTable-Objekt
+                sda.Fill(dataFromSource);
             }
         }
     }
+    return dataFromSource;
+}
+
+public static void loadDataToDWH(DataTable data, string tableName, string accessToken) {
+    // Verbindung zu Zielsystem mit Verbindungszeichenfolge in Umgebungsvariable
+    using (SqlConnection conn = new SqlConnection(Environment.GetEnvironmentVariable("connectionstringDWH"))) {
+        conn.AccessToken = accessToken;
+        conn.Open();
+        // Beginne Datenbanktransaktion
+        using (SqlTransaction transaction = conn.BeginTransaction())
+        {
+            // Erstelle Temporäre Tabelle mit gleichen Spalten wie Zieltabelle
+            string sqlCreateTmpTable = $"SELECT TOP 0 * INTO #tmp{tableName} FROM {tableName}";
+            using (SqlCommand cmd = new SqlCommand(sqlCreateTmpTable, conn, transaction))
+            {
+                cmd.ExecuteNonQuery();
+            }
+            
+            // Einfügen der extrahierten Daten in temporäre Tabelle
+            using (SqlBulkCopy bulkCopy = new SqlBulkCopy(conn, SqlBulkCopyOptions.Default, transaction))
+            {
+                bulkCopy.DestinationTableName = $"#tmp{tableName}";
+                bulkCopy.WriteToServer(data);
+            }
+            
+            // Aktualisieren der Zieltabelle mit temporärer Tabelle, die anschließend gelöscht wird
+            string sqlUpdateTable = 
+                $"DELETE FROM {tableName} WHERE ID IN (SELECT ID FROM #tmp{tableName});"
+                + $"INSERT INTO {tableName} SELECT * FROM #tmp{tableName};"
+                + $"DROP TABLE #tmp{tableName};";
+            using (SqlCommand cmd = new SqlCommand(sqlUpdateTable, conn, transaction))
+            {
+                cmd.ExecuteNonQuery();
+            }
+            
+            // Ausführen der Datenbanktransaktion und Rollback im Fehlerfall
+            try {
+                transaction.Commit();
+            } catch (Exception ex) {
+                transaction.Rollback();
+                throw (ex);
+            }
+        }
+    }
+}
 \end{lstlisting}
