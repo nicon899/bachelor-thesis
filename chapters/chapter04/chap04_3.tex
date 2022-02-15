@@ -1,4 +1,4 @@
-\section{Beschreibung eines möglichen Umstiegs zum neuen BI-System} \label{sec:praktischeUmsetzung:Migration}
+\section{Prototypischer Umstieg zum neuen BI-System} \label{sec:praktischeUmsetzung:Migration}
 Nachdem die Infrastruktur bereitgestellt wurde, soll ein mögliches Vorgehen für den Umstieg zum neuen BI-System vorgestellt werden. Der resultierende Prototyp muss noch kein vollwertiger Ersatz für das on-premise BI-System sein, sondern es soll nur ein Bruchteil der Daten mit den dazugehörigen ETL-Prozessen und Auswertungen migriert werden. Zusätzlich werden neue Funktionalitäten, die im alten BI-System noch nicht vorhanden waren, umgesetzt. Ziel ist es, dass der Prototyp alle zu Beginn definierten Testfälle (\hyperref[sec:anforderungsspezifikation:funktionaleAnforderungen]{siehe Anforderungsspezifikation}) abdeckt.
 
 Damit sich der prototypische Umstieg auf die technischen Aspekte konzentrieren kann, wurde auf dem on-premise SQL-Server, auf Basis des \acp{dwh} eine Datenbank mit reduzierten Datenmodell (Abbildung~\ref{fig:praktischeUmsetzung:dataModel}) angelegt, dass nur einen Bruchteil an Tabellen und Attributen besitzt, aber ausreichend für die Umsetzung aller Anwendungsfälle ist. 
@@ -125,7 +125,10 @@ Die von der DSGVO geforderte Datenflussdokumentation kann zwischen den Datenbank
 
 Zusammengefasst konnte durch die praktische Verwendung von \textit{Azure Purview} festgestellt werden, dass dieser Dienst zwar hilfreich bei der Erfüllung von DSGVO-Vorgaben ist und einen guten Überblick über die Datenlandschaft im BI-System geben kann, jedoch müssen bezüglich der Anforderungen Kompromisse eingegangen werden, die durch die mangelnden Alternativen jedoch akzeptabel sind.
 
-% \subsection{Auswertung von Personendaten nur mit expliziter Zustimmung}
+
+\section{Erweiterung um neue Anwendungsfälle} \label{sec:praktischeUmsetzung:ausblick}
+
+\subsection{Reports mit explizitere Zustimmung des Betriebsrates}
 % Eine bisher noch nicht betrachtete Anforderung ist es, dass es grundsätzlich möglich sein soll
 
 \subsection{Einbindung von Azure Machine Learning für fortgeschrittene Analysen}

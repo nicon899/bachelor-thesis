@@ -22,6 +22,20 @@ Damit ist das Ergebnis, dass die Dienste \textit{SQL Database}, \textit{Function
 \subsection{Vorstellung der Architektur}
 Basierend auf dem Ergebnis des vorherigen Abschnitts, wird ein Entwurf für eine vollständige BI-Architektur, in der Azure Cloud, vorgestellt. Dabei wird auf die Verbindung der einzelnen Komponenten, zu einem funktionierenden Gesamtsystem, eingegangen. Insbesondere auch auf die Kommunikation zwischen den einzelnen Komponenten und wie hierbei die Einhaltung von Sicherheit und Datenschutz gewährleistet wird.
 
+Mit einer Windows \ac{vm}, auf der zwei Anwendungen installiert werden, soll es den Diensten \textit{Power BI} und \textit{Purview} ermöglicht werden, auf die Daten in der \textit{SQL Database} zuzugreifen, ohne dass die Firewall für alle öffentlichen Adressen geöffnet werden muss. 
+
+
+
+
+
+
+
+
+
+
+
+
+
 \begin{figure}[htbp]
  \centering
  \includegraphics[width=\textwidth]{gfx/chap03_konzept_architektur.png}
