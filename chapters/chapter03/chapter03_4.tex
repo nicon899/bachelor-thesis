@@ -1,6 +1,6 @@
 \section{Entwurf eines vollständigen Konzepts} \label{sec:entwurfBIArchitektur}
 
-\subsection{Auswahl der Komponenten} \label{sec:konzeption:evaAuswertung}
+\subsection{Auswertung der Evaluation} \label{sec:konzeption:evaAuswertung}
 Mit den gewonnenen Erkenntnissen über die verschiedenen Azure Dienste, soll eine geeignete Auswahl für das Cloud-BI System getroffen werden. Eine zusammenfassende Einschätzung der Dienste in Bezug auf die Anforderungen kann in Tabelle~\ref{table:eva} gefunden werden. In den letzten drei Zeilen wird in Summen angeben, wie viele funktionale Anforderungen erfüllt werden und darauf basierend, die Anzahl der nicht-funktionalen Anforderungen, die erfüllt beziehungsweise nicht erfüllt werden.
 \input{chapters/chapter03/chapter03_3_evaTable}
 
@@ -8,39 +8,43 @@ In Tabelle~\ref{table:eva} ist zu erkennen, dass \textit{Power BI} und \textit{P
 
 Für die Speicherung der Daten soll die \textit{SQL Database} verwendet werden. Diese eignet sich, weil alle Daten aus den Quellsystemen entweder bereits relational sind, oder in ein relationales Format transformiert werden können. Besonders in Hinsicht auf das aktuelle BI-System ist die Verwendung von \textit{Azure SQL} attraktiv, weil die Migration dadurch vereinfacht wird und vorhandenes Wissen weiterhin in der Praxis eingesetzt werden kann. Die naheliegendste Alternative wäre die \textit{Azure Managed Instance}, welche mehr Funktionen und Kontrolle über den SQL-Server bietet. Jedoch ist letzteres nicht zwangsläufig erforderlich und die zusätzlichen Funktionen, die benötigt werden, können mit anderen Diensten abgedeckt werden. Dadurch soll eine modulare Infrastruktur entstehen, bei der es möglichst einfach ist, neue Ressourcen hinzuzufügen oder vorhandene auszutauschen. Sollte in Zukunft zum Beispiel die Anforderung entstehen, dass unstrukturierte Daten gespeichert werden sollen, könnte das System um einen \textit{Data Lake} ergänzt werden, ohne dass grundlegende Änderungen notwendig sind.
 
-Damit stehen auch die Verarbeitungsmöglichkeiten von T-SQL zur Verfügung. Deswegen wird aktuell keine Verwendung von \ac{aas} als Semantik-Schicht zwischen Datenbank und Reporting vorgesehen. Allerdings folgt daraus, dass \textit{Azure Machine Learning} verwendet werden muss, um im neuen BI-System maschinelles Lernen mit Python und R zu ermöglichen.
+Damit stehen auch die Verarbeitungsmöglichkeiten von T-SQL zur Verfügung. Deswegen wird aktuell keine Verwendung von \ac{aas} als Semantik-Schicht zwischen Datenbank und Reporting vorgesehen. Allerdings folgt daraus, dass \textit{Azure Machine Learning} verwendet werden muss, um das maschinelle Lernen mit Python und R zu ermöglichen.
 
-Für die Datenintegration stehen \textit{Logic Apps}, \textit{Functions} und \ac{adf} zur Auswahl. In Bezug auf die gegebenen Anforderungen können die Dienste als gleichwertig betrachtet werden. Da \textit{Azure Functions} den Vorteil hat, dass es auch lokal entwickelt und getestet werden kann, wird dieser Dienst ausgewählt.
+Für die Datenintegration stehen \textit{Logic Apps}, \textit{Functions} und \ac{adf} zur Auswahl. In Bezug auf die gegebenen Anforderungen können die Dienste als gleichwertig betrachtet werden. Da \textit{Azure Functions} den Vorteil hat, dass es auch lokal entwickelt und getestet werden kann, wird dieser Dienst ausgewählt. Hierbei ist jedoch die nicht-funktionale Anforderung, dass aufgetretene Fehler leicht nachvollziehbar sein sollen, zu berücksichtigen, welche mit der aktuellen Auswahl nicht erfüllt wird. Diese Problematik kann durch die Ergänzung von \textit{Application Insight} gelöst werden. Dies ist ein Monitoring Dienst, der mit \textit{Azure Functions} verknüpft werden kann. Dadurch steht beim Programmieren der Funktionen ein Logger-Objekt zur Verfügung, welches Informationen oder Fehler an \textit{Application Insights} sendet. Dieses Logging ist über das \textit{Azure Portal} einsehbar. Außerdem können basierend auf den Logs automatische E-Mail-Benachrichtigungen gesendet werden \cite[vgl.][]{satapathi_hands-azure_2021}.
 % adf braucht vms
 
-Damit ist das Ergebnis, dass die Dienste \textit{SQL Database}, \textit{Functions}, \textit{Machine Learning}, \textit{Power BI} und \textit{Purview} im neuen BI-System eingesetzt werden sollen. Hierbei ist jedoch die nicht-funktionale Anforderung, dass aufgetretene Fehler leicht nachvollziehbar sein sollen, zu berücksichtigen, welche mit der aktuellen Auswahl nicht erfüllt wird. Diese Problematik kann durch die Verwendung des \textit{Azure Monitors}, welcher im nächsten Abschnitt vorgestellt wird, gelöst werden.
-
-% Eine Schätzung mit dem Azure Preisrechner hat ergeben, dass \textit{Functions} voraussichtlich am kostengünstigsten ist. Aus diesem Grund soll \textit{Functions} für die Integration verwendet werden.
-
-% Die zu erwartenden Kosten der Dienste zu ermitteln ist nicht einfach. Das liegt an den nutzungsbasierten Abrechnungen und daran, dass jede Ressource ein eigenes Kostenmodell besitzt, welches dynamische Abhängigkeiten zu Speicher, Betriebsdauer oder der Häufigkeit der Nutzung umfassen kann. Zum Schätzen der zu erwartenden Kosten bietet Microsoft einen kostenlosen Preisrechner an, der die voraussichtlichen Nutzungswerte als Parameter übergeben bekommt\cite{modi_azure_2020}.
+Damit ist das Ergebnis der Evaluation, dass die Dienste \textit{Azure SQL Database}, \textit{Functions}, \textit{Application Insights}, \textit{Machine Learning}, \textit{Purview} und \textit{Power BI} zum Erfüllen der funktionalen Anforderungen eingesetzt werden sollen. 
 
 \subsection{Vorstellung der Architektur}
-Basierend auf dem Ergebnis des vorherigen Abschnitts, wird ein Entwurf für eine vollständige BI-Architektur, in der Azure Cloud, vorgestellt. Dabei wird auf die Verbindung der einzelnen Komponenten, zu einem funktionierenden Gesamtsystem, eingegangen. Insbesondere auch auf die Kommunikation zwischen den einzelnen Komponenten und wie hierbei die Einhaltung von Sicherheit und Datenschutz gewährleistet wird.
-
-Mit einer Windows \ac{vm}, auf der zwei Anwendungen installiert werden, soll es den Diensten \textit{Power BI} und \textit{Purview} ermöglicht werden, auf die Daten in der \textit{SQL Database} zuzugreifen, ohne dass die Firewall für alle öffentlichen Adressen geöffnet werden muss. 
-
-
-
-
-
-
-
-
-
-
-
-
+Die Grundidee für die neue BI-Architektur wird in Abbildung~\ref{fig:chap03_4_konzeptArchitektur_offen} gezeigt. Neben den zuvor ausgewählten Ressourcen wurden die in Abschnitt~\ref{subsec:grundlagen:azure:sicherheitUndDatenschutz} vorgestellten Sicherheitsdienste ergänzt. Da \textit{Azure Policy} und das \ac{aad} Funktionen der \textit{Azure Cloud} sind, die implizit mit allen Ressourcen zusammenhängen, wurden zum Erhalten der Übersichtlichkeit keine Verbindungen eingezeichnet. 
 
 \begin{figure}[htbp]
  \centering
- \includegraphics[width=\textwidth]{gfx/chap03_konzept_architektur.png}
- \caption{Konzept für BI-Architektur in Azure Cloud (Entwurf)}
-\label{fig:chap03_4_konzeptArchitektur}
+ \includegraphics[width=\textwidth]{gfx/konzept_1.png}
+ \caption{Konzept für BI-Architektur in Azure}
+\label{fig:chap03_4_konzeptArchitektur_offen}
 \end{figure}
 
-\textit{...}
+Das Konzept lässt sich in 5 Bereiche aufteilen:
+\begin{itemize}
+\item \ac{etl}:
+\item Speicher:
+\item Reporting:
+\item Datengovernance:
+\item Sicherheit: 
+\end{itemize}
+
+Diese Architektur ist jedoch noch nicht ausreichend, um den Sicherheitsanforderungen gerecht zu werden, da vorausgesetzt wird, dass alle Ressourcen miteinander kommunizieren können. Dies ist nur der Fall, wenn auf schützende Firewall-Regeln verzichtet wird, was offensichtlich keine Option ist. Daher folgen einige notwendige Ergänzungen, darunter ein virtuelles Netzwerk für \textit{Azure Functions} und das \ac{dwh}. 
+
+Mit einer zusätzlichen Windows \ac{vm} in dem virtuellen Netzwerk, auf der zwei Anwendungen installiert werden, kann es den Diensten \textit{Power BI} und \textit{Purview} ermöglicht werden, auf das geschützte \ac{dwh} zuzugreifen \cite[vgl.][]{gunnarsson_pro_2020, msdoc_22_purviewSHIR}. Der Dienst \textit{Azure Bastion} ermöglicht den Aufbau einer sicheren RDP-Verbindung zu \ac{vm} über das Azure Portal \cite[vgl.][]{herath_azure_2022}.
+
+Für \textit{Azure Functions} soll eine statische IP-Adresse eingerichtet werden, sodass nur diese in den Firewall-Einstellungen zugelassen werden muss. Wegen einer Unternehmensvorgabe darf die Firewall des on-premise Servers jedoch überhaupt nicht verändert werden. Die Datenintegration kann durch die Anwendung \textit{Hybrid Connection Manager} trotzdem ermöglicht werden, da damit nur noch ausgehende Verbindungen vom on-premise Server notwendig sind \cite[vgl.][]{msdoc_22_func_hybridConn}. 
+
+Das vollständige Konzept für die BI-Architektur, unter Berücksichtigung der Netzwerksicherheit, kann in Abbildung~\ref{fig:chap03_4_konzeptArchitektur} gefunden werden.
+ 
+ \begin{figure}[htbp]
+ \centering
+ \includegraphics[width=\textwidth]{gfx/konzept_2.png}
+ \caption{Konzept für \textbf{sichere} BI-Architektur in Azure}
+\label{fig:chap03_4_konzeptArchitektur}
+\end{figure}
