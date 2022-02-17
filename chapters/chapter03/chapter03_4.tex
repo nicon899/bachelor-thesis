@@ -36,7 +36,7 @@ Das Konzept lässt sich in 5 Bereiche aufteilen:
 
 Diese Architektur ist jedoch noch nicht ausreichend, um den Sicherheitsanforderungen gerecht zu werden, da vorausgesetzt wird, dass alle Ressourcen miteinander kommunizieren können. Dies ist nur der Fall, wenn auf schützende Firewall-Regeln verzichtet wird, was offensichtlich keine Option ist. Daher folgen einige notwendige Ergänzungen, darunter ein virtuelles Netzwerk für \textit{Azure Functions} und das \ac{dwh}. 
 
-Mit einer zusätzlichen Windows \ac{vm} in dem virtuellen Netzwerk, auf der zwei Anwendungen installiert werden, kann es den Diensten \textit{Power BI} und \textit{Purview} ermöglicht werden, auf das geschützte \ac{dwh} zuzugreifen \cite[vgl.][]{gunnarsson_pro_2020, msdoc_22_purviewSHIR}. Der Dienst \textit{Azure Bastion} ermöglicht den Aufbau einer sicheren RDP-Verbindung zu \ac{vm} über das Azure Portal \cite[vgl.][]{herath_azure_2022}.
+Mit einer zusätzlichen Windows \ac{vm} in dem virtuellen Netzwerk, auf der zwei Anwendungen installiert werden, kann es den Diensten \textit{Power BI} und \textit{Purview} ermöglicht werden, auf das geschützte \ac{dwh} zuzugreifen \cite[vgl.][]{gunnarsson_pro_2020, msdoc_22_purviewSHIR}.
 
 Für \textit{Azure Functions} soll eine statische IP-Adresse eingerichtet werden, sodass nur diese in den Firewall-Einstellungen zugelassen werden muss. Wegen einer Unternehmensvorgabe darf die Firewall des on-premise Servers jedoch überhaupt nicht verändert werden. Die Datenintegration kann durch die Anwendung \textit{Hybrid Connection Manager} trotzdem ermöglicht werden, da damit nur noch ausgehende Verbindungen vom on-premise Server notwendig sind \cite[vgl.][]{msdoc_22_func_hybridConn}. 
 
