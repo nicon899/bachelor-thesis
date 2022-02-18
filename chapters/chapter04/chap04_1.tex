@@ -51,20 +51,14 @@ Für die gespeicherten Passwörter im \textit{Azure Key Vault} kann zwischen Har
 \end{figure}
 
 % ================================================================================
-\subsubsection{Netzwerkeinstellungen für die Kommunikation} \label{subsec:infra:konfig:netzwerk}
+\subsubsection{Netzwerkkommunikation} \label{subsec:infra:konfig:netzwerk}
 Die Netzwerkeinstellungen der Ressourcen werden allgemein so eingerichtet, dass alles blockiert wird, dass nicht explizit zugelassen wurde. 
 
-Für den ausgehenden Datenverkehr der Funktionsapp soll eine statische IP-Adresse verwendet werden. Dafür wird im virtuellen Netzwerk ein neues Subnetz für die Funktionsapp und den dazugehörigen \textit{Storage Accounts} erstellt. In diesem Subnetz befindet sich ein \textit{NAT Gateway} mit einer zugewiesenen statischen IP-Adresse, zum Weiterleiten des Datenverkehrs. In den Konfigurationen der Funktionsapp wird erzwungen, dass alle Funktionen ihren ausgehenden Datenverkehr über dieses NAT Gateway leiten \cite[vgl.][]{msdoc_22_func_ip}. Diese IP-Adresse wird in den Firewall-Einstellungen des \ac{dwh}, des \textit{Key Vaults} und dem Cloud-Quellsystem zugelassen.
+Für den ausgehenden Datenverkehr der Funktionsapp soll eine statische IP-Adresse verwendet werden. Dafür wird im virtuellen Netzwerk ein neues Subnetz für die Funktionsapp und den dazugehörigen \textit{Storage Accounts} erstellt. In diesem Subnetz befindet sich ein \textit{NAT Gateway} mit einer zugewiesenen statischen IP-Adresse, welches den Datenverkehr weiterleitet. In den Konfigurationen der Funktionsapp wird erzwungen, dass alle Funktionen ihren ausgehenden Datenverkehr über dieses NAT Gateway leiten \cite[vgl.][]{msdoc_22_func_ip}. Diese IP-Adresse wird in den Firewall-Einstellungen des \ac{dwh}, des \textit{Key Vaults} und dem Cloud-Quellsystem zugelassen.
 
-Für die Datenintegration aus einem Quellsystem auf dem on-premise Server wird ein Relay erstellt. Dem Relay wird die Konfiguration der Hybridverbindung hinzugefügt, welche die Netzwerkadresse und den Port des lokalen Endpunkts definiert. Danach wird die Hybridverbindung mit der Funktionsapp verknüpft. Nachdem die Hybridverbindung in Azure bereitgestellt wurde, kann eine dazugehörige Gateway-Verbindungszeichenfolge entnommen werden. Damit erfolgt die manuelle Installation und Einrichtung der Anwendung \textit{Hybrid Connection Manager} auf dem on-premise Server \cite[vgl.][]{msdoc_22_func_hybridConn}.
+Für die Datenintegration aus einem Quellsystem auf dem on-premise Server wird ein Relay erstellt. Dem Relay wird eine \textit{Hybridverbindung} hinzugefügt, welche die Netzwerkadresse und den Port des lokalen Endpunkts definiert. Danach wird die \textit{Hybridverbindung} mit der Funktionsapp verknüpft. Nachdem die \textit{Hybridverbindung} in Azure bereitgestellt wurde, kann dort eine Gateway-Verbindungszeichenfolge entnommen werden. Damit erfolgt die manuelle Installation und Einrichtung der Anwendung \textit{Hybrid Connection Manager} auf dem on-premise Server. Die Kommunikation zwischen on-premise Server und Funktionsapp erfolgt nun über das Relay. Der \textit{Hybrid Connection Manager} verwendet den ausgehenden TCP Port 443, um sich mit dem Relay zu verbinden, weswegen keine Änderungen an der Firewall notwendig sind \cite[vgl.][]{msdoc_22_func_hybridConn}.
 
-% Im Hintergrund wird ein \textit{Azure Service Bus} für die Kommunikation zwischen \ac{vm} und \textit{Power BI} genutzt, es besteht also keine direkte Verbindung. Stattdessen werden Anfragen und Antworten über den \textit{Service Bus} geleitet, weswegen kein eingehender Datenverkehr ins virtuelle Netzwerk notwendig ist. \cite[vgl.][]{gunnarsson_pro_2020} 
-
-% Funktionsweise Service Bus: ...
-
-% !!!!!!!!!!!!!!!!!!!! Key Vault Weiterere Ausnahme: Microsoft Trusted Services 
-
-\textit{...}
+In den Firewall-Einstellungen des \textit{Key Vaults} werden \textit{Trusted Microsoft Services} erlaubt, da dies für \textit{Purview} erforderlich ist. Es handelt sich dabei um Azure Ressourcen, deren Code vollständig von Microsoft verwaltet wird. Fremde Azure Ressourcen, die benutzergenerierten Code ausführen, werden also weither in geblockt \cite[vgl.][]{msdoc_21_keyVault_netSec}.
 
 % ================================================================================
 \subsubsection{Zugriff auf Datenquellen im virtuellen Netzwerk} \label{subsec:infra:konfig:vm}

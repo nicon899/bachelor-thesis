@@ -1,4 +1,4 @@
-\section{Anforderungen an das Erscheinungsbild} 
+\section{Anforderungen an das Erscheinungsbild} \label{sec:anforderungsspezifikation:erscheinungsbild}
 
 \subsection{Vielfältige Visualisierungsmöglichkeiten} \label{sec:anforderungsspezifikation:vielfältigeVisualisierungsmöglichkeiten}
 \textbf{Beschreibung}: Die Reports bieten eine verschiedene Visualisierungsmöglichkeiten. Darunter mindestens: Tabellen, Achsendiagramme und Balkendiagramme.
@@ -6,7 +6,7 @@
 \newline \textbf{Testkriterium}: Es kann ein Report erstellt werden, der die oben genannten Visualisierungen enthält.
 \newline \textbf{Priorität}: 3
 
-\section{Leistungsanforderungen} 
+\section{Leistungsanforderungen}  \label{sec:anforderungsspezifikation:leistungsanforderungen}
 
 \subsection{Aktualität} \label{sec:anforderungsspezifikation:SchnelleDatenintegration}
 \textbf{Beschreibung}: Es soll möglich sein, Reports zu erstellen, die einen Stand, der nicht älter als 60 Minuten ist, wiedergeben. Datenintegration, Verarbeitung und Visualisierung dürfen dementsprechend maximal 60 Minuten benötigen.
@@ -60,7 +60,7 @@
 \textbf{Beschreibung}: Die neue BI-Lösung soll in den nächsten 5 Jahren ohne grundlegende Veränderungen an der Architektur verwendet werden können. Es wird damit auch kein Feature verwendet, dass in den nächsten 5 Jahren abgestellt wird, oder sich noch in der Vorschau befindet.
 \newline \textbf{Priorität}: 3
 
-\section{Anforderungen an die Wartbarkeit}
+\section{Anforderungen an die Wartbarkeit} \label{sec:anforderungsspezifikation:wartbarkeit}
 
 \subsection{Fehlerquellen identifizieren} \label{sec:anforderungsspezifikation:fehlerquellenIdentifizieren}
 \textbf{Beschreibung}: Aufgetretene Fehler sollen nachvollziehbar sein. Die Fehlerursache sollte möglichst einfach zu identifizieren sein. Zum Beispiel durch das Lesen eines Logfiles.
@@ -73,7 +73,7 @@
 \newline \textbf{Begründung}: Um die Wartung zu vereinfachen, sollen sich die zuständigen Personen auf möglichst wenig unterschiedliche Technologien spezialisieren müssen.
 \newline \textbf{Priorität}: 3
 
-\section{Sicherheitsanforderungen}
+\section{Sicherheitsanforderungen} \label{sec:anforderungsspezifikation:sicherheitsanforderungen}
 
 \subsection{Verwendung von RBAC für den Zugriff auf Daten/Ressourcen} \label{sec:anforderungsspezifikation:rbac}
 \textbf{Beschreibung}: Der Zugriff auf alle Ressourcen und Daten im BI-System soll über \ac{rbac} geregelt werden.
@@ -110,7 +110,7 @@
 \newline \textbf{Begründung}: Sollten unbefugte Zugriff auf das System erhalten, sollen die Daten durch Verschlüsselung weiterhin geschützt sein.
 \newline \textbf{Priorität}: 2
 
-\section{Rechtsvorschriften}
+\section{Rechtsvorschriften} \label{sec:anforderungsspezifikation:rechtsvorschriften}
 
 \subsection{Einhaltung DSGVO} \label{sec:anforderungsspezifikation:dsgvo}
 \textbf{Beschreibung}: Für alle Daten von Kunden aus der EU muss die Datenschutzgrundverordnung (DSGVO) eingehalten werden.
