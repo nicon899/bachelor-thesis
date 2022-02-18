@@ -12,6 +12,7 @@ Damit sich der prototypische Umstieg auf die technischen Aspekte konzentrieren k
 
 \noindent Das gezeigte Datenmodell steht im Zusammenhang mit dem Kundensportsystem \textit{Jira Service Management}. Wenn ein Kunde (\textit{Company}) Probleme mit einem Produkt hat, wird von einer Kontaktperson (\textit{Contact}) ein Support-Ticket (\textit{Issue}) erstellt. Dabei werden alle notwendigen Produktinformationen wie Betriebssystem und Version mit dem \textit{Issue} verknüpft. Weitere Details sind an dieser Stelle nicht relevant und werden dort aufgegriffen, wo es für das Verständnis der Umsetzung sinnvoll ist.
 
+% ================================================================================
 \subsection{Datenbankmigration} \label{subsec:praktischeUmsetzung:Datenmigration}
 Zu Beginn soll die Datenbank, die dem nachgestellten on-premise \acp{dwh} entspricht zu dem Cloud \acp{dwh} migriert werden. 
 
@@ -28,6 +29,7 @@ Die Durchführung beginnt mit der Installation des \ac{dma} auf dem gleichen Ser
 
 Neben der Übertragung der Daten ist auch die langfristige Erhaltung der Datenqualität wichtig. Im on-premise SQL-Server werden hierfür Stored Procedures verwendet, welche über einen \textit{Job Agent} täglich ausgeführt werden. Diese führen Plausibilitätschecks durch und suchen nach Unstimmigkeiten, beispielsweise Duplikate oder ungültige Werte wie eine negative Bearbeitungszeit. Wenn eine Auffälligkeit gefunden wird, wird ein Verantwortlicher per E-Mail benachrichtigt, der anschließend die Fehlerursache finden und beheben kann. Die Stored Procedures können problemlos als Bestandteil des Datenbankschemas migriert werden. Die \textit{Azure SQL Database} verfügt jedoch nicht über den \textit{Job Agent}, weswegen die regelmäßige Ausführung der Qualitätschecks anders gelöst werden muss. Eine naheliegende Lösung wäre die Verwendung von \textit{Azure Functions}, da diese über einen Timer getriggert werden können, um dann die Stored Procedures auszuführen. Durch die Kombination mit dem \textit{Azure Monitor} können so gleichzeitig mit wenig Aufwand Logging der Qualitätschecks und Benachrichtigungen bei Problemen umgesetzt werden. Eine konkrete Umsetzung soll hier nicht vorgestellt werden, da die technisch relevanten Aspekte im Abschnitt zur Implementierung des \ac{etl}-Prozesses abgedeckt werden.
 
+% ================================================================================
 \subsection{Implementierung ETL}
 Der ETL-Prozess mit \textit{Azure Functions} kann auf einer lokalen Maschine entwickelt und getestet werden, vorausgesetzt es können Quell- und Zielsysteme erreicht werden, die schematisch äquivalent zu den produktiven Systemen sind. Eine einfache Möglichkeit, um eine lokale Entwicklungsumgebung aufzusetzen, ist die Verwendung von Docker-Containern. Das Laden der Daten in das Zielsystem wird zum Beispiel mit dem \textit{Azure SQL Edge} Docker-Container getestet \cite[vgl.][]{msdoc_22_sql_docker}, der mit dem im letzten Abschnitt generierten Datenbankschema eingerichtet wird. In einer lokalen Datei werden die dazugehörigen Verbindungszeichenfolgen gespeichert und können in Code als Umgebungsvariable gelesen werden.
 
@@ -54,6 +56,7 @@ Schritt 2 setzt voraus, dass in einem Unterverzeichnis für jede Entität eine g
 Insgesamt konnte bestätigt werden, dass der ETL-Prozess mit \textit{Azure Functions} funktioniert. Die Datenintegration von Quellsystemen über eine REST API konnte ebenfalls erfolgreich umgesetzt werden, jedoch ist hier der Migrationsaufwand höher, da nichts aus dem on-premise BI-System übernommen werden kann und die Datentransformation in C\# erfolgen muss. Das Vorgehen ähnelt hier der Verwendung von \textit{Azure Functions} als Web-backend, weswegen es keine besonderen Ansätze gibt, die in dieser Arbeit erwähnenswert wären. 
 \cite[vgl.][]{kurniawan_practical_2019, satapathi_hands-azure_2021, sreeram_azure_2020}.
 
+% ================================================================================
 \subsection{Reporting}
 Die Reports sind die Schnittstelle zum Endnutzer und präsentiert Auswertungen, die unter anderen als Entscheidungshilfe genutzt werden. Im neuen BI-System sollen diese mit \textit{Power BI} erstellt werden. Dabei soll \textit{Power BI} nicht nur für die Visualisierungen verwendet werden, sondern auch für Auswertungen und Transformationen, die vorher mit \textit{Data Marts} und \textit{T-SQL} durchgeführt wurden. Für den Umstieg zum neuen BI-System bedeutet dies, dass das Reporting vollständig neu implementiert werden muss. Deswegen soll für den Prototyp ein Report erstellt werden, der hierfür alle relevanten Komponenten (Tabelle, Filter, Linien- und Balkendiagramm) enthält.
 
@@ -114,6 +117,7 @@ Der letzte Schritt ist das Einrichten eines Zeitplans für die Aktualisierung de
 
 \cite[vgl.][]{pearson_pro_2020}
 
+% ================================================================================
 \subsection{Einrichtung der Datengovernance}
 Zum Verwenden von \textit{Azure Purview} für die Datengovernance, muss der Dienst zunächst eingerichtet werden. Dazu öffnet ein berechtigter Nutzer die Webanwendung \textit{Purview Studio}. Als Erstes werden dort die Ressourcen, die gescannt werden sollen, registriert, indem die entsprechenden Verbindungsinformationen angegeben werden.Der Prototyp beschränkt sich hierbei auf die \textit{SQL-Database}. Nun kann beim Erstellen eines sogenannten \textit{Scans}, die zuvor eingerichtete \textit{Self hosted-integration runtime} und die \textit{SQL-Database} angegeben werden. Daneben ist noch die Verlinkung mit dem Passwort des service principals im \textit{Key Vault} notwendig. Nach einem erfolgreichen Verbindungstest kann abschließend ein Zeitplan für regelmäßige Ausführungen des \textit{Scans} definiert werden, oder alternativ eine einmalige Ausführung gestartet werden. Während für den Prototyp letztere Option gewählt wurde, ist für ein zukünftiges Cloud-BI-System eine regelmäßige Wiederholung zu bevorzugen, damit die gesammelten Metadaten aktuell bleiben. 
 
