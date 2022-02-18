@@ -1,13 +1,6 @@
-\section{Auswertung und Diskussion} \label{sec:umsetzung:auswertung}
+\section{Ausblick auf notwendige Ergänzungen} \label{sec:praktischeUmsetzung:ausblick}
 
-\subsection{Betrachtung der Testfälle} \label{subsec:umsetzung:auswertung:testen}
-Mit Hilfe des Prototyps wird die neue BI-Architektur in der Praxis getestet. Zu den Testfällen gehört das Erstellen von Reports für die integrierten Quellsysteme. Die Reports sollen vergleichbar zu den aus dem on-premise BI-System sein. Es sollen berechnete Kennzahlen, Tabellen und Diagramme, die den zeitlichen Verlauf eines Werts darstellen, angezeigt werden. Durch das Validieren der Inhalte können gleichzeitig mehrere Anforderungen überprüft werden. Denn Fehler bei der Datenintegration oder der Auswertung würden auch zu fehlerhaften Reports führen.
+\subsection{Reports mit explizitere Zustimmung des Betriebsrates}
+% Eine bisher noch nicht betrachtete Anforderung ist es, dass es grundsätzlich möglich sein soll
 
-\subsection{Chancen und Risiken der Migration} \label{subsec:umsetzung:auswertung:diskussion}
-Bevor eine tatsächliche Migration des BI-Systems in die Cloud durchgeführt wird, sollten die Chancen und Risiken dieses Umstiegs betrachtet werden.
-
-Es können viele Vor- und Nachteile von Cloud gegenüber on-premise BI gefunden werden. Zu den Vorteilen zählt die kürzere Entwicklungszeit, die unbeschränkt hochskalierbare Rechenleistung und Speicherkapazität und die potenziellen Kostenersparnisse \cite{ouf_cloud_2011}. Zu den Nachteilen gehört die Abhängigkeit von dem Cloud-Provider und das notwendige Vertrauen in diesen \cite{menon_business_2012}. Ein anderes Risiko ist das mögliche Scheitern der Migration. Für diesen Fall sollten schon zuvor eindeutige Abbruchbedingungen und eine genaue Vorgehensweise festgelegt werden. Außerdem muss sichergestellt werden, dass das alte BI-System bei fehlgeschlagener Migration weiterhin eingesetzt werden kann.
-
-Um den wirklichen Mehrwert der neuen BI-Architektur darzulegen, sollte der Prototyp mit dem Bestandssystem verglichen werden.
-
- % Beim aktuellen BI-System wird für das Reporting ein auf Javascript-Bibliotheken aufbauendes Webframework verwendet. Wird vom Management ein neuer Report gewünscht, muss dieser implementiert und anschließend als Webseite veröffentlicht werden. Daraus folgt die Schwierigkeit, dass Reports nur mit Grundkenntnissen in Webentwicklung erstellt werden können. Mit \textit{Power BI} soll es zukünftig einer deutlich größeren Personengruppe möglich sein, benutzerdefinierte Reports zu erstellen.
+\subsection{Einbindung von Azure Machine Learning für fortgeschrittene Analysen}
