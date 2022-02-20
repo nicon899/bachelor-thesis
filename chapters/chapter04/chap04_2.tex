@@ -66,7 +66,7 @@ Der erste Schritt ist das Erstellen eines \textit{Datasets}, welches aus den Dat
 Nach dem Laden der Daten wird das Datenmodell mit dem \textit{Power Query Editor} bearbeitet. Zuerst wird die neue Spalte \textit{Alter} zu der Tabelle \textit{Issue} hinzugefügt. Das Alter für einen ungelösten \textit{Issue} ist die Zeit von Erstellung bis zum aktuellen Tag. Für einen gelösten ist es der Erstellungs- bis zum Lösungszeitpunkt. Ob ein \textit{Issue} in Bearbeitung ist, oder bereits gelöst wurde, kann abhängig davon, ob das \textit{ResolutionDate} gesetzt ist, erkannt werden. Dies wird mit einer IF-Funktion geprüft. Das erste Argument ist die IF-Bedingung. Ist die Bedingung wahr, wird das zweite Argument, ansonsten das dritte Argument ausgeführt. In beiden Fällen wird über eine Funktion die Zeitdifferenz in Bezug zum Erstellungszeitpunkt berechnet.
 
 \begin{minipage}{\linewidth}
-\begin{lstlisting}[frame=single,caption=Code zur Defintion der Spalte \textit{Age} von Tabelle \textit{Issue},captionpos=b,style=sharpc]
+\begin{lstlisting}[caption=Code zur Defintion der Spalte \textit{Age} von Tabelle \textit{Issue},captionpos=b,style=sharpc]
 Age = 
 IF('issue'[ResolutionDate] = BLANK(),
     // Zeitdifferenz zum aktuellen Tag
@@ -86,7 +86,7 @@ Die manuell hinzugefügten Spalte \textit{Age} soll in einem Balkendiagramm verw
 Die nächste Visualisierung soll in einem Liniendiagramm den zeitlichen Verlauf der Anzahl an neu erstellten, geschlossenen und offenen \textit{Issues} anzeigen. Dazu werden der Tabelle \textit{Calendar} drei \textit{Measures} hinzugefügt. \textit{Measures} werden ebenfalls mit \textit{DAX} definiert und können für komplexere Aggregationen in den Visualisierungen verwendet werden. Im Gegensatz zu einer berechneten Spalte, wie \textit{Age}, werden die Ergebnisse von \textit{Measures} nicht im \textit{Dataset} gespeichert, sondern jedes Mal beim Laden des Reports neu berechnet. Diese Measures werden als Werte für das Liniendiagramm verwendet. Für die Achse werden nach Monat gruppierte Daten verwendet.
 
 \begin{minipage}{\linewidth}
-\begin{lstlisting}[frame=single,caption=Measure: Anzahl neuer \textit{Issues} in einem Zeitabschnitt,captionpos=b]
+\begin{lstlisting}[caption=Measure: Anzahl neuer \textit{Issues} in einem Zeitabschnitt,captionpos=b]
 New Issues = 
 var startDate = MIN('Calendar'[Date])
 var endDate = MAX('Calendar'[Date])
@@ -107,7 +107,7 @@ return CALCULATE (
 Zuletzt wird noch eine Tabelle erstellt, die für jeden Kunden die Anzahl der offenen und geschlossenen Issues angibt. Dafür werden zwei Measures erstellt, die der vorherigen sehr ähneln und deswegen nicht genauer beschrieben werden. Erwähnenswert ist die Möglichkeit, diese beiden Measures in einer dritten zu verwenden, weil dadurch komplexere Berechnungen zerlegt werden können. Hier wurde zum Beispiel die Gesamtanzahl der erstellten Issues eines Kunden, durch die Addition der zwei anderen Measures berechnet.
 
 \begin{minipage}{\linewidth}
-\begin{lstlisting}[frame=single,captionpos=b, caption={[Verwendung von Measures in Measure]Verwendung von Measures in Measure. Die Verwendung einer Measure unterscheidet sich nicht von einer normalen Spalte.}]
+\begin{lstlisting}[captionpos=b, caption={[Verwendung von Measures in Measure]Verwendung von Measures in Measure. Die Verwendung einer Measure unterscheidet sich nicht von einer normalen Spalte.}]
 TotalIssues = 
 company[OpenIssues] + company[ClosedIssues]
 \end{lstlisting}

@@ -1,5 +1,5 @@
 \lstset{style=sharpc}
-\begin{lstlisting}[frame=single,caption=ETL-Prozess der zu jeder vollen Stunde ausgeführt wird,captionpos=b,label={lst:azFunc}]
+\begin{lstlisting}[caption=ETL-Prozess der zu jeder vollen Stunde ausgeführt wird,captionpos=b,label={lst:azFunc}]
 public static async Task Run(
     //NCrontab: {second}{minute}{hour}{day}{month}{day-of-week}
     [TimerTrigger("0 0 * * * *")] TimerInfo myTimer, 
