@@ -1,7 +1,14 @@
 \section{Bereitstellen der Infrastruktur} \label{sec:infra}
 
 \subsection{Vorgehen und Vorbereitung} \label{subsec:infra:azDevOps}
-Zu Beginn wird über das Azure Portal einmalig eine Ressourcengruppe erstellt. Dieser Container für zusammengehörige Ressourcen erlaubt das Teilen eines gemeinsamen Lebenszyklus, von Berechtigungen und Richtlinien. Dabei wird die Region West-Europa als Standort gewählt, die für alles Ressourcen in diesem Prototyp verwendet werden soll. 
+Zu Beginn wird über das Azure Portal einmalig eine Ressourcengruppe erstellt. Dieser Container für zusammengehörige Ressourcen erlaubt das Teilen eines gemeinsamen Lebenszyklus, von Berechtigungen und Richtlinien. Dabei wird die Region West-Europa als Standort gewählt, die für alles Ressourcen in diesem Prototyp verwendet werden soll.
+
+\subsubsection{Berechtigungskonzept mit Standortberücksichtigung}
+Es ist bereits ein \ac{aad} vorhanden, welches mit dem Active Directory des Unternehmens synchronisiert wird. Dadurch sind bereits alle potenziellen Benutzer vorhanden. Das Berechtigungskonzept sieht vor, dass für jeden Aufgabenbereich pro Standort eine Gruppe erstellt wird. Dann werden die Benutzer in die Gruppen eingefügt, wobei Benutzer in mehreren Gruppen sein können. Der Gruppe werden Rollen zugewiesen, damit die entsprechende Tätigkeit ausgeführt werden kann. Für den Prototyp werden beispielhaft zwei Gruppen erstellt:
+\begin{itemize}
+\item \textit{ReportReader-EU}: Darf alle Auswertungen in \textit{Power BI} sehen.
+\item \textit{ReportReader-US}: Darf alle Auswertungen in \textit{Power BI} sehen, die nicht von der DSGVO betroffen sind.
+\end{itemize}
 
 \subsubsection{Festlegen von Richtlinien mit Azure Policy} \label{subsec:infra:prep:policy}
 Mit \textit{Azure Policy} können Richtlinien festgelegt werden, die die Einhaltung von Unternehmensstandards absichern. So kann zum Beispiel das Hinzufügen oder Verändern von Ressourcen verhindern, wenn dadurch gegen Compliance-Anforderungen verstoßen werden würde. Sie schützen somit die Infrastruktur gleichzeitig vor böswilligen als auch ungewollt vorgenommen Änderungen. Mehrere Richtlinien können zu einer Initiative gruppiert werden und damit gemeinsam einem Geltungsbereich zugewiesen werden \cite{de_tender_azure_2019}.
@@ -40,7 +47,7 @@ Für \textit{Azure Purview} sind vergleichsweise wenig Entscheidungen notwendig.
 \subsubsection{Sichere Aufbewahrung von Schlüsseln} \label{subsec:infra:konfig:keyVault}
 Für die gespeicherten Passwörter im \textit{Azure Key Vault} kann zwischen Hardware- und Softwaremodus entschieden werden. Bei beiden erfolgt die Speicherung auf einem Hardware-Sicherheitsmodul, jedoch werden nur beim Hardwaremodus alle Operationen, wie Ver- und Entschlüsselung, ebenfalls in diesem Modul durchgeführt. Damit verspricht der Hardwaremodus eine höhere Sicherheit, setzt jedoch die Premium-Variante des Key Vaults voraus. In der Premium-Variante stehen außerdem stärkere Schlüssel zur Verfügung \cite{haunts_key_2019}. Aus diesen Gründen wird hier die Premium, gegenüber der Standard~=Variante bevorzugt, da sie mehr Möglichkeiten, mit denen die Sicherheit weiter erhöht werden kann, bietet. Des Weiteren wird die Verwendung von \ac{rbac} festgelegt. Alternativ würde ein eigenes Zugriffsrichtliniensystem des \textit{Key Vaults} verwendet werden \cite[vgl.][]{herath_azure_2022}.
 
-\subsubsection{Berechtigungen und Rollen von Ressourcen} \label{subsec:infra:konfig:aad}
+\subsubsection{Berechtigungen und Rollen von Ressourn} \label{subsec:infra:konfig:aad}
 \textit{Azure Purview} und \textit{Functions} wird eine Managed Identitiy zugewiesen. Beide erhalten eine Rolle, die es erlaubt, Passwörter aus dem \textit{Azure Key Vault} zu lesen. Die Managed Identity von \textit{Azure Functions} bekommt für den ETL-Prozess Lese- und Schreibrechte auf dem \ac{dwh}. Für \textit{Purview} wird ein service principal angelegt, der Leserechten auf dem \ac{dwh} hat. Die Zugangsdaten des service principals werden im \textit{Key Vault} gespeichert \cite[vgl.][]{riscutia_data_2021}. Das Authentifizierungskonzept der Ressourcen wird in Abbildung~\ref{fig:chap04_ressourceAuth} verdeutlicht. 
 
  \begin{figure}[htbp]
