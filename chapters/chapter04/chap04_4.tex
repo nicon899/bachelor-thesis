@@ -6,3 +6,10 @@ Die Auswertung der erbrachten Leistungen einzelner Personen ist aus regulatorisc
 Mit der Datenbankfunktion \textit{Always Encrypted} kann das verhindert werden. \textit{Always Encrypted} ermöglicht es Spalten zu verschlüsseln und kann damit auch Datenbankadministratoren daran hindern sensitive Daten zu lesen. Der verwendete Schlüssel wird im \textit{Key Vault} gespeichert und die dort eingestellten Zugriffsberechtigungen auf den Schlüssel, bestimmen, wer die Daten unverschlüsselt abfragen kann. Die Entschlüsselung während der Abfrage passiert dabei automatisch \cite{mauri_practical_2021}. Es wäre demnach ausreichend, der zuvor erstellten Gruppe, Zugriff auf den Schlüssel im \textit{Key Vault} zu gewähren. Einem Datenbankadministrator, der nicht in dieser Gruppe ist, werden dann nur verschlüsselte Binärwerte angezeigt. 
 
 \subsection{Einbindung von Azure Machine Learning für fortgeschrittene Analysen} \label{sec:praktischeUmsetzung:ausblick:aml}
+
+\begin{figure}[htbp]
+ \centering
+ \includegraphics[width=\textwidth]{gfx/pbi_report.pdf}
+ \caption[Azure Machine Learning]{Ergänzung von Azure Machie Learning (unvollständig)}
+\label{fig:praktischeUmsetzung:ausblick:aml}
+\end{figure}
