@@ -1,0 +1,206 @@
+\begin{scriptsize}
+\begin{longtable}{
+|p{.3\textwidth   - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|P{0.05\textwidth - 2.0\tabcolsep}
+|}
+\caption[Einschätzung der Azure Dienste in Bezug auf allgemeine Anforderungen]{Ergänzung zu Tabelle~\ref{table:eva}. Einschätzung der Azure Dienste in Bezug auf Anforderungen, die unabhängig von den funktionalen Aufgaben sind.} \label{table:eva2} \\
+
+\hline 
+\diagbox[height=3.2cm,innerwidth=.3\textwidth-2.0\tabcolsep]{Anforderung}{Azure Dienst}
+& \rotatebox[origin=c]{90}{Table Storage}
+& \rotatebox[origin=c]{90}{\ul{SQL Database}}
+& \rotatebox[origin=c]{90}{ SQL Managed Instance }
+& \rotatebox[origin=c]{90}{Cosmos DB}
+& \rotatebox[origin=c]{90}{Data Lake Gen 2}
+& \rotatebox[origin=c]{90}{Logic Apps}
+& \rotatebox[origin=c]{90}{\ul{Functions}}
+& \rotatebox[origin=c]{90}{Data Factory}
+& \rotatebox[origin=c]{90}{\ul{Machine Learining}}
+& \rotatebox[origin=c]{90}{Analysis Services}
+& \rotatebox[origin=c]{90}{\ul{Power BI}}
+& \rotatebox[origin=c]{90}{Synapse Analytics}
+& \rotatebox[origin=c]{90}{\ul{Purview}}
+\\ \hline
+\endfirsthead
+
+\hline
+\diagbox[height=3.2cm,innerwidth=.3\textwidth-2.0\tabcolsep]{Anforderung}{Azure Dienst}
+& \rotatebox[origin=c]{90}{Table Storage}
+& \rotatebox[origin=c]{90}{\ul{SQL Database}}
+& \rotatebox[origin=c]{90}{ SQL Managed Instance }
+& \rotatebox[origin=c]{90}{Cosmos DB}
+& \rotatebox[origin=c]{90}{Data Lake Gen 2}
+& \rotatebox[origin=c]{90}{Logic Apps}
+& \rotatebox[origin=c]{90}{\ul{Functions}}
+& \rotatebox[origin=c]{90}{Data Factory}
+& \rotatebox[origin=c]{90}{\ul{Machine Learining}}
+& \rotatebox[origin=c]{90}{Analysis Services}
+& \rotatebox[origin=c]{90}{\ul{Power BI}}
+& \rotatebox[origin=c]{90}{Synapse Analytics}
+& \rotatebox[origin=c]{90}{\ul{Purview}}
+\\ \hline
+\endhead
+
+\textit{Wartung/Zuverlässigkeit}
+&  % Table Storage
+&  % SQL
+&  % SQL MI
+&  % Cosmos DB
+&  % Data Lake Gen 2
+&  % Logic Apps
+&  % Functions
+&  % Data Factory
+&  % Machine Learning
+&  % Analysis Services
+&  % Power BI
+&  % Synapse Analytics
+&  % Purview
+\\ \hline
+
+\hyperref[sec:anforderungsspezifikation:fehlerquellenIdentifizieren]{Logging (von Fehlern)}
+& \xmark % Table Storage
+& \xmark % SQL
+& \xmark % SQL MI
+& \xmark % Cosmos DB
+& \xmark % Data Lake Gen 2
+& \xmark % Logic Apps
+& \xmark % Functions
+& \xmark % Data Factory
+& \xmark % Machine Learning
+& \xmark % Analysis Services
+& \cmark % Power BI
+& \xmark % Synapse Analytics
+& \xmark % Purview
+\\
+
+\hyperref[sec:anforderungsspezifikation:verfügbarkeit]{Verfügbarkeit \(\geq99.95\%\)\cite{microsoft_azure_ubersicht_2021}}
+& \cmark % Table Storage
+& \cmark % SQL
+& \cmark % SQL MI
+& \cmark % Cosmos DB
+& \cmark % Data Lake Gen 2
+& \cmark % Logic Apps
+& \cmark % Functions
+& \cmark % Data Factory
+%& \cmark % HDInsight
+%&  % Databricks
+& \cmark % Machine Learning
+& \cmark % Analysis Services
+& \cmark % Power BI
+& \cmark % Synapse Analytics
+& \cmark % Purview
+\\ \hline
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textit{Sicherheit/Datenschutz}
+&  % Table Storage
+&  % SQL
+&  % SQL MI
+&  % Cosmos DB
+&  % Data Lake Gen 2
+&  % Logic Apps
+&  % Functions
+&  % Data Factory
+&  % Machine Learning
+&  % Analysis Services
+&  % Power BI
+&  % Synapse Analytics
+&  % Purview
+\\ \hline
+
+\hyperref[sec:anforderungsspezifikation:rbac]{Unterstützt \ac{rbac}}
+& \xmark % Table Storage
+& \cmark % SQL
+& \cmark % SQL MI
+& \cmark % Cosmos DB
+& \cmark % Data Lake Gen 2
+& \cmark % Logic Apps
+& \cmark % Functions
+& \cmark % Data Factory
+& \cmark % Machine Learning
+& \cmark % Analysis Services
+& \cmark % Power BI
+& \cmark % Synapse Analytics
+& \cmark % Purview
+\\
+
+\hyperref[sec:anforderungsspezifikation:verschlüsselung]{Verschlüsselung der Daten}
+& \cmark % Table Storage
+& \cmark % SQL
+& \cmark % SQL MI
+& \cmark % Cosmos DB
+& \cmark % Data Lake Gen 2
+& \cmark % Logic Apps
+& \cmark% Functions
+& \cmark % Data Factory
+& \cmark % Machine Learning
+& \cmark % Analysis Services
+& \cmark % Power BI
+& \cmark % Synapse Analytics
+& \cmark % Purview
+\\ \hline
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+Summe
+&  2 % Table Storage
+&  3 % SQL
+&  3 % SQL MI
+&  3 % Cosmos DB
+&  3 % Data Lake Gen 2
+&  3 % Logic Apps
+&  3 % Functions
+&  3 % Data Factory
+&  3 % Machine Learning
+&  3 % Analysis Services
+&  4 % Power BI
+&  3 % Synapse Analytics
+&  3 % Purview
+\\ \hline
+
+\textit{Wartung/Zuverlässigkeit}
+&  1 % Table Storage
+&  1 % SQL
+&  1 % SQL MI
+&  1 % Cosmos DB
+&  1 % Data Lake Gen 2
+&  1 % Logic Apps
+&  1 % Functions
+&  1 % Data Factory
+&  1 % Machine Learning
+&  1 % Analysis Services
+&  2 % Power BI
+&  1 % Synapse Analytics
+&  1 % Purview
+\\
+
+\textit{Sicherheit/Datenschutz}
+&  1 % Table Storage
+&  2 % SQL
+&  2 % SQL MI
+&  2 % Cosmos DB
+&  2 % Data Lake Gen 2
+&  2 % Logic Apps
+&  2 % Functions
+&  2 % Data Factory
+&  2 % Machine Learning
+&  2 % Analysis Services
+&  2 % Power BI
+&  2 % Synapse Analytics
+&  2 % Purview
+\\ \hline
+\end{longtable}
+\end{scriptsize}

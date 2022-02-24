@@ -17,156 +17,59 @@
 |P{0.05\textwidth - 2.0\tabcolsep}
 |P{0.05\textwidth - 2.0\tabcolsep}
 |}
-\caption[Einschätzung der Azure Dienste in Bezug auf die Anforderungen]{Einschätzung der Azure Dienste in Bezug auf die Anforderungen.\\\cmark: Erfüllt Anforderung; \xmark: Erfüllt Anforderung nicht; \nmark: Kein direkter Bezug zu Anforderung} \label{table:eva} \\
+\caption[Einschätzung der Azure Dienste in Bezug auf die Anforderungen]{Einschätzung der Azure Dienste in Bezug auf die Anforderungen (\cmark: Erfüllt Anforderung \xmark: Erfüllt Anforderung nicht). Die Anforderungen sind in Aufgabenbereiche(kursiv) untergliedert. Wenn die Funktionen eines Dienstes in den Aufgabenbereich passen (\cmark), sind alle dazugehörigen Anforderungen bewertet. Ansonsten wird kein Bezug zwischen Dienst und Anforderung hergestellt (\nmark). Am Tabellenende steht die Anzahl der erfüllten Anforderungen insgesamt und nach Aufgabenbereich unterteilt. Für die Architektur ausgewählte Dienste sind blau unterstrichen.} \label{table:eva} \\
 
 \hline 
 \diagbox[height=3.2cm,innerwidth=.3\textwidth-2.0\tabcolsep]{Anforderung}{Azure Dienst}
 & \rotatebox[origin=c]{90}{Table Storage}
-& \rotatebox[origin=c]{90}{SQL Database}
+& \rotatebox[origin=c]{90}{\ul{SQL Database}}
 & \rotatebox[origin=c]{90}{ SQL Managed Instance }
 & \rotatebox[origin=c]{90}{Cosmos DB}
 & \rotatebox[origin=c]{90}{Data Lake Gen 2}
 & \rotatebox[origin=c]{90}{Logic Apps}
-& \rotatebox[origin=c]{90}{Functions}
+& \rotatebox[origin=c]{90}{\ul{Functions}}
 & \rotatebox[origin=c]{90}{Data Factory}
-%& \rotatebox[origin=c]{90}{HDInsight}
-%& \rotatebox[origin=c]{90}{Databricks}
-& \rotatebox[origin=c]{90}{Machine Learining}
+& \rotatebox[origin=c]{90}{\ul{Machine Learining}}
 & \rotatebox[origin=c]{90}{Analysis Services}
-& \rotatebox[origin=c]{90}{Power BI}
+& \rotatebox[origin=c]{90}{\ul{Power BI}}
 & \rotatebox[origin=c]{90}{Synapse Analytics}
-& \rotatebox[origin=c]{90}{Purview}
+& \rotatebox[origin=c]{90}{\ul{Purview}}
 \\ \hline
 \endfirsthead
 
 \hline
 \diagbox[height=3.2cm,innerwidth=.3\textwidth-2.0\tabcolsep]{Anforderung}{Azure Dienst}
 & \rotatebox[origin=c]{90}{Table Storage}
-& \rotatebox[origin=c]{90}{SQL Database}
+& \rotatebox[origin=c]{90}{\ul{SQL Database}}
 & \rotatebox[origin=c]{90}{ SQL Managed Instance }
 & \rotatebox[origin=c]{90}{Cosmos DB}
 & \rotatebox[origin=c]{90}{Data Lake Gen 2}
 & \rotatebox[origin=c]{90}{Logic Apps}
-& \rotatebox[origin=c]{90}{Functions}
+& \rotatebox[origin=c]{90}{\ul{Functions}}
 & \rotatebox[origin=c]{90}{Data Factory}
-%& \rotatebox[origin=c]{90}{HDInsight}
-%& \rotatebox[origin=c]{90}{Databricks}
-& \rotatebox[origin=c]{90}{Machine Learining}
+& \rotatebox[origin=c]{90}{\ul{Machine Learining}}
 & \rotatebox[origin=c]{90}{Analysis Services}
-& \rotatebox[origin=c]{90}{Power BI}
+& \rotatebox[origin=c]{90}{\ul{Power BI}}
 & \rotatebox[origin=c]{90}{Synapse Analytics}
-& \rotatebox[origin=c]{90}{Purview}
+& \rotatebox[origin=c]{90}{\ul{Purview}}
 \\ \hline
 \endhead
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textbf{Integration Quellsysteme}
-&  % Table Storage
-&  % SQL DB
-&  % SQL MI
-&  % Cosmos DB
-&  % Data Lake Gen 2
-&  % Logic Apps
-&  % Functions
-&  % Data Factory
-%&  % HDInsight
-%&  % Databricks
-&  % Machine Learning
-&  % Analysis Services
-&  % Power BI
-&  % Synapse Analytics
-&  % Purview
-\\ \hline
-
-\hyperref[sec:anforderungsspezifikation:datenintegrationOnPremDB]{On-premise DB}
-& \xmark % Table Storage
-& \xmark % SQL
+\textit{Datenspeicherung}
+& \cmark % Table Storage
+& \cmark % SQL
 & \cmark % SQL MI
-& \xmark % Cosmos DB
-& \xmark % Data Lake Gen 2
-& \cmark % Logic Apps
-& \cmark % Functions
-& \cmark % Data Factory
-%% & \xmark % HDInsight
-%&  % Databricks
-& \xmark % Machine Learning
-& \xmark % Analysis Services
-& \xmark % Power BI
-& \cmark % Synapse Analytics
-& \xmark % Purview
-\\
-
-\hyperref[sec:anforderungsspezifikation:datenintegrationCloudDB]{Cloud DB}
-& \xmark % Table Storage
-& \xmark % SQL
-& \cmark % SQL MI
-& \xmark % Cosmos DB
-& \xmark % Data Lake Gen 2
-& \cmark % Logic Apps
-& \cmark % Functions
-& \cmark % Data Factory
-%& \xmark % HDInsight
-%&  % Databricks
-& \xmark % Machine Learning
-& \xmark % Analysis Services
-& \xmark % Power BI
-& \cmark % Synapse Analytics
-& \xmark% Purview
-\\
-
-\hyperref[sec:anforderungsspezifikation:datenintegrationREST]{REST API}
-& \xmark % Table Storage
-& \xmark % SQL
-& \xmark % SQL MI
-& \xmark % Cosmos DB
-& \xmark % Data Lake Gen 2
-& \cmark % Logic Apps
-& \cmark % Functions
-& \cmark % Data Factory
-%& \xmark % HDInsight
-%&  % Databricks
-& \xmark % Machine Learning
-& \xmark % Analysis Services
-& \xmark % Power BI
-& \cmark % Synapse Analytics
-& \xmark % Purview
-\\
-
-\hyperref[sec:anforderungsspezifikation:QuellsystemeÄndern]{Hinzufügen/Entfernen}
-& \nmark % Table Storage
-& \nmark % SQL
-& \cmark % SQL MI
-& \nmark % Cosmos DB
-& \nmark % Data Lake Gen 2
-& \cmark % Logic Apps
-& \cmark % Functions
-& \cmark % Data Factory
-%& \nmark % HDInsight
-%&  % Databricks
+& \cmark % Cosmos DB
+& \cmark % Data Lake Gen 2
+& \nmark % Logic Apps
+& \nmark % Functions
+& \nmark % Data Factory
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \nmark % Power BI
 & \cmark % Synapse Analytics
 & \nmark % Purview
-\\ \hline
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textbf{Datenspeicherung}
-&  % Table Storage
-&  % SQL
-&  % SQL MI
-&  % Cosmos DB
-&  % Data Lake Gen 2
-&  % Logic Apps
-&  % Functions
-&  % Data Factory
-%&  % HDInsight
-%&  % Databricks
-&  % Machine Learning
-&  % Analysis Services
-&  % Power BI
-&  % Synapse Analytics
-&  % Purview
 \\ \hline
 
 \hyperref[sec:anforderungsspezifikation:dauerhaftesSpeichern]{Langfristige Speicherung}
@@ -175,16 +78,14 @@
 & \cmark % SQL MI
 & \cmark % Cosmos DB
 & \cmark % Data Lake Gen 2
-& \xmark % Logic Apps
-& \xmark % Functions
-& \xmark % Data Factory
-%& \xmark % HDInsight
-%&  % Databricks
-& \xmark % Machine Learning
-& \xmark % Analysis Services
-& \xmark % Power BI
+& \nmark % Logic Apps
+& \nmark % Functions
+& \nmark % Data Factory
+& \nmark % Machine Learning
+& \nmark % Analysis Services
+& \nmark % Power BI
 & \cmark % Synapse Analytics
-& \xmark % Purview
+& \nmark % Purview
 \\
 
 \hyperref[sec:anforderungsspezifikation:Datenkonsistenz]{Integrität und Konsistenz}
@@ -196,8 +97,6 @@
 & \nmark % Logic Apps
 & \nmark % Functions
 & \nmark % Data Factory
-%& \nmark % HDInsight
-%&  % Databricks
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \nmark % Power BI
@@ -214,8 +113,6 @@
 & \nmark % Logic Apps
 & \nmark % Functions
 & \nmark % Data Factory
-%& \nmark % HDInsight
-%&  % Databricks
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \nmark % Power BI
@@ -232,8 +129,6 @@
 & \nmark % Logic Apps
 & \nmark % Functions
 & \nmark % Data Factory
-%& \nmark % HDInsight
-%&  % Databricks
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \nmark % Power BI
@@ -250,8 +145,6 @@
 & \nmark % Logic Apps
 & \nmark % Functions
 & \nmark % Data Factory
-%& \nmark % HDInsight
-%&  % Databricks
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \nmark % Power BI
@@ -260,131 +153,198 @@
 \\\hline
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textbf{Datenverarbeitung}
-&  % Table Storage
-&  % SQL
-&  % SQL MI
-&  % Cosmos DB
-&  % Data Lake Gen 2
-&  % Logic Apps
-&  % Functions
-&  % Data Factory
-%&  % HDInsight
-%&  % Databricks
-&  % Machine Learning
-&  % Analysis Services
-&  % Power BI
-&  % Synapse Analytics
-&  % Purview
+\textit{Datenintegration}
+& \nmark % Table Storage
+& \nmark % SQL
+& \cmark % SQL MI
+& \nmark % Cosmos DB
+& \nmark % Data Lake Gen 2
+& \cmark % Logic Apps
+& \cmark % Functions
+& \cmark % Data Factory
+& \nmark % Machine Learning
+& \nmark % Analysis Services
+& \nmark % Power BI
+& \cmark % Synapse Analytics
+& \nmark % Purview
+\\ \hline
+
+\hyperref[sec:anforderungsspezifikation:datenintegrationOnPremDB]{On-premise DB}
+& \nmark % Table Storage
+& \nmark % SQL
+& \cmark % SQL MI
+& \nmark % Cosmos DB
+& \nmark % Data Lake Gen 2
+& \cmark % Logic Apps
+& \cmark % Functions
+& \cmark % Data Factory
+& \nmark % Machine Learning
+& \nmark % Analysis Services
+& \nmark % Power BI
+& \cmark % Synapse Analytics
+& \nmark % Purview
+\\
+
+\hyperref[sec:anforderungsspezifikation:datenintegrationCloudDB]{Cloud DB}
+& \nmark % Table Storage
+& \nmark % SQL
+& \cmark % SQL MI
+& \nmark % Cosmos DB
+& \nmark % Data Lake Gen 2
+& \cmark % Logic Apps
+& \cmark % Functions
+& \cmark % Data Factory
+& \nmark % Machine Learning
+& \nmark % Analysis Services
+& \nmark % Power BI
+& \cmark % Synapse Analytics
+& \nmark% Purview
+\\
+
+\hyperref[sec:anforderungsspezifikation:datenintegrationREST]{REST API}
+& \nmark % Table Storage
+& \nmark % SQL
+& \xmark % SQL MI
+& \nmark % Cosmos DB
+& \nmark % Data Lake Gen 2
+& \cmark % Logic Apps
+& \cmark % Functions
+& \cmark % Data Factory
+& \nmark % Machine Learning
+& \nmark % Analysis Services
+& \nmark % Power BI
+& \cmark % Synapse Analytics
+& \nmark % Purview
+\\
+
+\hyperref[sec:anforderungsspezifikation:QuellsystemeÄndern]{Hinzufügen/Entfernen}
+& \nmark % Table Storage
+& \nmark % SQL
+& \cmark % SQL MI
+& \nmark % Cosmos DB
+& \nmark % Data Lake Gen 2
+& \cmark % Logic Apps
+& \cmark % Functions
+& \cmark % Data Factory
+& \nmark % Machine Learning
+& \nmark % Analysis Services
+& \nmark % Power BI
+& \cmark % Synapse Analytics
+& \nmark % Purview
+\\ \hline
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textit{Datenverarbeitung}
+& \nmark  % Table Storage
+& \cmark  % SQL
+& \cmark % SQL MI
+& \cmark % Cosmos DB
+& \nmark % Data Lake Gen 2
+& \cmark % Logic Apps
+& \cmark % Functions
+& \cmark % Data Factory
+& \cmark % Machine Learning
+& \cmark % Analysis Services
+& \cmark % Power BI
+& \cmark % Synapse Analytics
+& \nmark % Purview
 \\ \hline
 
 \hyperref[sec:anforderungsspezifikation:datentransformation]{Datentransformation}
-& \xmark  % Table Storage
+& \nmark  % Table Storage
 & \cmark  % SQL
 & \cmark % SQL MI
 & \cmark\textsuperscript{1} % Cosmos DB
-& \xmark % Data Lake Gen 2
+& \nmark % Data Lake Gen 2
 & \cmark % Logic Apps
 & \cmark % Functions
 & \cmark % Data Factory
-%& \cmark % HDInsight
-%&  % Databricks
 & \xmark % Machine Learning
 & \cmark % Analysis Services
 & \cmark % Power BI
 & \cmark % Synapse Analytics
-& \xmark % Purview
+& \nmark % Purview
 \\ 
 
 \hyperref[sec:anforderungsspezifikation:datenAuswertung]{Auswertung der Daten}
-& \xmark  % Table Storage
+& \nmark  % Table Storage
 & \cmark  % SQL
 & \cmark % SQL MI
 & \cmark\textsuperscript{1} % Cosmos DB
-& \xmark % Data Lake Gen 2
+& \nmark % Data Lake Gen 2
 & \cmark % Logic Apps
 & \cmark % Functions
 & \cmark % Data Factory
-%& \cmark % HDInsight
-%&  % Databricks
 & \xmark % Machine Learning
 & \cmark % Analysis Services
 & \cmark % Power BI
 & \cmark % Synapse Analytics
-& \xmark % Purview
-\\ 
+& \nmark % Purview
+\\
 
 \hyperref[sec:anforderungsspezifikation:datenanalysePythonUndR]{Machine Learning}
-& \xmark  % Table Storage
+& \nmark  % Table Storage
 & \xmark % SQL
 & \cmark % SQL MI
 & \xmark % Cosmos DB
-& \xmark % Data Lake Gen 2
+& \nmark % Data Lake Gen 2
 & \xmark % Logic Apps
 & \xmark % Functions
 & \xmark % Data Factory
-%&  % HDInsight
-%&  % Databricks
 & \cmark % Machine Learning
 & \xmark % Analysis Services
 & \xmark % Power BI
 & \cmark\textsuperscript{2} % Synapse Analytics
-& \xmark % Purview
+& \nmark % Purview
 \\ \hline
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textbf{Reporting}
-&  % Table Storage
-&  % SQL
-&  % SQL MI
-&  % Cosmos DB
-&  % Data Lake Gen 2
-&  % Logic Apps
-&  % Functions
-&  % Data Factory
-%&  % HDInsight
-%&  % Databricks
-&  % Machine Learning
-&  % Analysis Services
-&  % Power BI
-&  % Synapse Analytics
-&  % Purview
+\textit{Reporting}
+& \nmark  % Table Storage
+& \nmark % SQL
+& \nmark % SQL MI
+& \nmark % Cosmos DB
+& \nmark % Data Lake Gen 2
+& \nmark % Logic Apps
+& \nmark % Functions
+& \nmark % Data Factory
+& \nmark % Machine Learning
+& \nmark % Analysis Services
+& \cmark % Power BI
+& \nmark % Synapse Analytics
+& \nmark % Purview
 \\ \hline
 
 \hyperref[sec:anforderungsspezifikation:reports]{Reports bereitstellen}
-& \xmark  % Table Storage
-& \xmark % SQL
-& \xmark % SQL MI
-& \xmark % Cosmos DB
-& \xmark % Data Lake Gen 2
-& \xmark % Logic Apps
-& \xmark % Functions
-& \xmark % Data Factory
-%& \xmark % HDInsight
-%& \xmark % Databricks
-& \xmark % Machine Learning
-& \xmark % Analysis Services
+& \nmark  % Table Storage
+& \nmark % SQL
+& \nmark % SQL MI
+& \nmark % Cosmos DB
+& \nmark % Data Lake Gen 2
+& \nmark % Logic Apps
+& \nmark % Functions
+& \nmark % Data Factory
+& \nmark % Machine Learning
+& \nmark % Analysis Services
 & \cmark % Power BI
-& \xmark % Synapse Analytics
-& \xmark % Purview
+& \nmark % Synapse Analytics
+& \nmark % Purview
 \\
 
 \hyperref[sec:anforderungsspezifikation:selfServiceReports]{Self-Service Reports}
-& \xmark  % Table Storage
-& \xmark % SQL
-& \xmark % SQL MI
-& \xmark % Cosmos DB
-& \xmark % Data Lake Gen 2
-& \xmark % Logic Apps
-& \xmark % Functions
-& \xmark % Data Factory
-%& \xmark % HDInsight
-%& \xmark % Databricks
-& \xmark % Machine Learning
-& \xmark % Analysis Services
+& \nmark  % Table Storage
+& \nmark % SQL
+& \nmark % SQL MI
+& \nmark % Cosmos DB
+& \nmark % Data Lake Gen 2
+& \nmark % Logic Apps
+& \nmark % Functions
+& \nmark % Data Factory
+& \nmark % Machine Learning
+& \nmark % Analysis Services
 & \cmark % Power BI
-& \xmark % Synapse Analytics
-& \xmark % Purview
+& \nmark % Synapse Analytics
+& \nmark % Purview
 \\
 
 \hyperref[sec:anforderungsspezifikation:vielfältigeVisualisierungsmöglichkeiten]{Vielfätlige Visualisierungen}
@@ -396,8 +356,6 @@
 & \nmark % Logic Apps
 & \nmark % Functions
 & \nmark % Data Factory
-%& \nmark % HDInsight
-%& \nmark % Databricks
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & \cmark % Power BI
@@ -414,8 +372,6 @@
 & \nmark % Logic Apps
 & \nmark % Functions
 & \nmark % Data Factory
-%& \nmark % HDInsight
-%& \nmark % Databricks
 & \nmark % Machine Learning
 & \nmark % Analysis Services
 & ?\textsuperscript{3} % Power BI
@@ -424,238 +380,156 @@
 \\ \hline
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textbf{Zuverlässigkeit/Wartung}
-&  % Table Storage
-&  % SQL
-&  % SQL MI
-&  % Cosmos DB
-&  % Data Lake Gen 2
-&  % Logic Apps
-&  % Functions
-&  % Data Factory
-%&  % HDInsight
-%&  % Databricks
-&  % Machine Learning
-&  % Analysis Services
-&  % Power BI
-&  % Synapse Analytics
-&  % Purview
-\\ \hline
-
-\hyperref[sec:anforderungsspezifikation:verfügbarkeit]{Verfügbarkeit \(\geq99.95\%\)\cite{microsoft_azure_ubersicht_2021}}
-& \cmark % Table Storage
-& \cmark % SQL
-& \cmark % SQL MI
-& \cmark % Cosmos DB
-& \cmark % Data Lake Gen 2
-& \cmark % Logic Apps
-& \cmark % Functions
-& \cmark % Data Factory
-%& \cmark % HDInsight
-%&  % Databricks
-& \cmark % Machine Learning
-& \cmark % Analysis Services
-& \cmark % Power BI
-& \cmark % Synapse Analytics
+\textit{Datengovernance}
+& \nmark % Table Storage
+& \nmark % SQL
+& \nmark % SQL MI
+& \nmark % Cosmos DB
+& \nmark % Data Lake Gen 2
+& \nmark % Logic Apps
+& \nmark % Functions
+& \nmark % Data Factory
+& \nmark % Machine Learning
+& \nmark % Analysis Services
+& \nmark % Power BI
+& \nmark % Synapse Analytics
 & \cmark % Purview
-\\
-
-\hyperref[sec:anforderungsspezifikation:AutomatischeFehlerbehandlung]{Fehlerbenachrichtigung}
-& \cmark % Table Storage
-& \cmark % SQL
-& \cmark % SQL MI
-& \xmark % Cosmos DB
-& \xmark % Data Lake Gen 2
-& \cmark % Logic Apps
-& \cmark% Functions
-& \cmark % Data Factory
-%& \cmark % HDInsight
-%&  % Databricks
-& \xmark % Machine Learning
-& \xmark % Analysis Services
-& \cmark % Power BI
-& \cmark % Synapse Analytics
-& \xmark % Purview
-\\
-
-\hyperref[sec:anforderungsspezifikation:fehlerquellenIdentifizieren]{Fehler Protokollierung}
-& \xmark % Table Storage
-& \xmark % SQL
-& \xmark % SQL MI
-& \xmark % Cosmos DB
-& \xmark % Data Lake Gen 2
-& \xmark % Logic Apps
-& \xmark % Functions
-& \xmark % Data Factory
-%& \xmark % HDInsight
-%&  % Databricks
-& \xmark % Machine Learning
-& \xmark % Analysis Services
-& \cmark % Power BI
-& \xmark % Synapse Analytics
-& \xmark % Purview
-\\ \hline
-
-%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textbf{Sicherheit/Datenschutz}
-&  % Table Storage
-&  % SQL
-&  % SQL MI
-&  % Cosmos DB
-&  % Data Lake Gen 2
-&  % Logic Apps
-&  % Functions
-&  % Data Factory
-%&  % HDInsight
-%&  % Databricks
-&  % Machine Learning
-&  % Analysis Services
-&  % Power BI
-&  % Synapse Analytics
-&  % Purview
 \\ \hline
 
 \hyperref[sec:anforderungsspezifikation:datenflussDokumentation]{Datenflussdokumentation}
-& \xmark % Table Storage
-& \xmark % SQL
-& \xmark % SQL MI
-& \xmark % Cosmos DB
-& \xmark % Data Lake Gen 2
-& \xmark % Logic Apps
-& \xmark % Functions
-& \xmark % Data Factory
-%& \xmark % HDInsight
-%&  % Databricks
-& \xmark % Machine Learning
-& \xmark % Analysis Services
-& \xmark % Power BI
-& \xmark % Synapse Analytics
+& \nmark % Table Storage
+& \nmark % SQL
+& \nmark % SQL MI
+& \nmark % Cosmos DB
+& \nmark % Data Lake Gen 2
+& \nmark % Logic Apps
+& \nmark % Functions
+& \nmark % Data Factory
+& \nmark % Machine Learning
+& \nmark % Analysis Services
+& \nmark % Power BI
+& \nmark % Synapse Analytics
 & \cmark % Purview
 \\
 
 \hyperref[sec:anforderungsspezifikation:DatenKlassifizierung]{Datenklassifizierung}
-& \xmark % Table Storage
-& \xmark % SQL
-& \cmark % SQL MI
-& \xmark % Cosmos DB
-& \xmark % Data Lake Gen 2
-& \cmark % Logic Apps
-& \cmark % Functions
-& \cmark % Data Factory
-%& \xmark % HDInsight
-%&  % Databricks
-& \xmark % Machine Learning
-& \xmark % Analysis Services
-& \xmark % Power BI
-& \cmark % Synapse Analytics
-& \cmark % Purview
-\\
-
-\hyperref[sec:anforderungsspezifikation:rbac]{Verwendung von \ac{rbac}}
-& \xmark % Table Storage
-& \cmark % SQL
-& \cmark % SQL MI
-& \cmark % Cosmos DB
-& \cmark % Data Lake Gen 2
-& \cmark % Logic Apps
-& \cmark % Functions
-& \cmark % Data Factory
-%& \cmark % HDInsight
-%&  % Databricks
-& \cmark % Machine Learning
-& \cmark % Analysis Services
-& \cmark % Power BI
-& \cmark % Synapse Analytics
-& \cmark % Purview
-\\
-
-\hyperref[sec:anforderungsspezifikation:verschlüsselung]{Verschlüsselung der Daten}
-& \cmark % Table Storage
-& \cmark % SQL
-& \cmark % SQL MI
-& \cmark % Cosmos DB
-& \cmark % Data Lake Gen 2
-& \cmark % Logic Apps
-& \cmark% Functions
-& \cmark % Data Factory
-%& \cmark % HDInsight
-%&  % Databricks
-& \cmark % Machine Learning
-& \cmark % Analysis Services
-& \cmark % Power BI
-& \cmark % Synapse Analytics
+& \nmark % Table Storage
+& \nmark % SQL
+& \nmark % SQL MI
+& \nmark % Cosmos DB
+& \nmark % Data Lake Gen 2
+& \nmark % Logic Apps
+& \nmark % Functions
+& \nmark % Data Factory
+& \nmark % Machine Learning
+& \nmark % Analysis Services
+& \nmark % Power BI
+& \nmark % Synapse Analytics
 & \cmark % Purview
 \\ \hline
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textbf{Summe}
-&  % Table Storage
-&  % SQL
-&  % SQL MI
-&  % Cosmos DB
-&  % Data Lake Gen 2
-&  % Logic Apps
-&  % Functions
-&  % Data Factory
-&  % Machine Learning
-&  % Analysis Services
-&  % Power BI
-&  % Synapse Analytics
-&  % Purview
+Summe
+&  4 % Table Storage
+&  6 % SQL
+&  10 % SQL MI
+&  7 % Cosmos DB
+&  5 % Data Lake Gen 2
+&  6 % Logic Apps
+&  6 % Functions
+&  6 % Data Factory
+&  1 % Machine Learning
+&  2 % Analysis Services
+&  5 % Power BI
+&  12 % Synapse Analytics
+&  2 % Purview
 \\ \hline
 
-Funktional (von 11): \cmark
-& 1 % Table Storage
-& 3 % SQL
-& 7 % SQL MI
-& 3 % Cosmos DB
-& 1 % Data Lake Gen 2
-& 6 % Logic Apps
-& 6 % Functions
-& 6 % Data Factory
+\textit{Datenspeicherung}
+&  4 % Table Storage
+&  4 % SQL
+&  4 % SQL MI
+&  5 % Cosmos DB
+&  5 % Data Lake Gen 2
+&  0 % Logic Apps
+&  0 % Functions
+&  0 % Data Factory
+&  0 % Machine Learning
+&  0 % Analysis Services
+&  0 % Power BI
+&  5 % Synapse Analytics
+&  0 % Purview
+\\
+
+\textit{Datenintegration}
+&  0 % Table Storage
+&  0 % SQL
+&  3 % SQL MI
+&  0 % Cosmos DB
+&  0 % Data Lake Gen 2
+&  4 % Logic Apps
+&  4 % Functions
+&  4 % Data Factory
+&  0 % Machine Learning
+&  0 % Analysis Services
+&  0 % Power BI
+&  4 % Synapse Analytics
+&  0 % Purview
+\\
+
+\textit{Datenverarbeitung}
+& 0  % Table Storage
+& 2 % SQL
+& 3 % SQL MI
+& 2 % Cosmos DB
+& 0 % Data Lake Gen 2
+& 2 % Logic Apps
+& 2 % Functions
+& 2 % Data Factory
 & 1 % Machine Learning
 & 2 % Analysis Services
-& 4 % Power BI
-& 8 % Synapse Analytics
-& 2 % Purview
+& 2 % Power BI
+& 3 % Synapse Analytics
+& 0 % Purview
 \\
 
-Nicht-Funktional: \cmark 
-&  6 % Table Storage
-&  7 % SQL
-&  8 % SQL MI
-&  7 % Cosmos DB
-&  7 % Data Lake Gen 2
-&  5 % Logic Apps
-&  5 % Functions
-&  5 % Data Factory
-&  3 % Machine Learning
-&  3 % Analysis Services
-&  6 % Power BI
-&  9 % Synapse Analytics
-&  3 % Purview
+\textit{Reporting}
+&  0 % Table Storage
+&  0 % SQL
+&  0 % SQL MI
+&  0 % Cosmos DB
+&  0 % Data Lake Gen 2
+&  0 % Logic Apps
+&  0 % Functions
+&  0 % Data Factory
+&  0 % Machine Learning
+&  0 % Analysis Services
+&  3 % Power BI
+&  0 % Synapse Analytics
+&  0 % Purview
 \\
 
-Nicht-Funktional: \xmark
-& 3 % Table Storage
-& 2 % SQL
-& 2 % SQL MI
-& 2 % Cosmos DB
-& 2 % Data Lake Gen 2
-& 1 % Logic Apps
-& 1 % Functions
-& 1 % Data Factory
-& 2 % Machine Learning
-& 2 % Analysis Services
+\textit{Datengovernance}
+& 0 % Table Storage
+& 0 % SQL
+& 0 % SQL MI
+& 0 % Cosmos DB
+& 0 % Data Lake Gen 2
+& 0 % Logic Apps
+& 0 % Functions
+& 0 % Data Factory
+& 0 % Machine Learning
+& 0 % Analysis Services
 & 0 % Power BI
-& 1 % Synapse Analytics
+& 0 % Synapse Analytics
 & 2 % Purview
 \\ \hline
-
-\multicolumn{15}{l}{\textsuperscript{1}Erfüllt Anforderung nur unter bestimmten Voraussetzungen.}
-\\
-\multicolumn{15}{l}{\textsuperscript{2}Nur Python, nicht mit R.}
-\\
-\multicolumn{15}{l}{\textsuperscript{3}Durch Recherche nicht beantwortbar. Praktische Umsetzung erforderlich.}
 \end{longtable}
+
+\noindent\textsuperscript{1}Erfüllt Anforderung nur unter bestimmten Voraussetzungen.
+
+\noindent\textsuperscript{2}Nur Python, nicht mit R.
+
+\noindent\textsuperscript{3}Durch Recherche nicht beantwortbar. Praktische Umsetzung erforderlich.
+
 \end{scriptsize}

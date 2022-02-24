@@ -2,7 +2,24 @@
 
 \subsection{Auswertung der Evaluation} \label{sec:konzeption:evaAuswertung}
 Mit den gewonnenen Erkenntnissen über die verschiedenen Azure Dienste, soll eine geeignete Auswahl für das Cloud-BI System getroffen werden. Eine zusammenfassende Einschätzung der Dienste in Bezug auf die Anforderungen kann in Tabelle~\ref{table:eva} gefunden werden. In den letzten drei Zeilen wird in Summen angeben, wie viele funktionale Anforderungen erfüllt werden und darauf basierend, die Anzahl der nicht-funktionalen Anforderungen, die erfüllt beziehungsweise nicht erfüllt werden.
-\input{chapters/chapter03/chapter03_3_evaTable}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 In Tabelle~\ref{table:eva} ist zu erkennen, dass \textit{Power BI} und \textit{Purview} alternativlos sind und um alle Anforderungen zu erfüllen. \textit{Power BI} bietet die benötigten Reporting-Funktionalitäten und Purview kann als Datengovernance-Tool für die Datenklassifizierung und eine automatische Datenflussdokumentation genutzt werden. Für die weiteren funktionalen Anforderungen gibt es mehrere Möglichkeiten. 
 
@@ -13,7 +30,37 @@ Damit stehen auch die Verarbeitungsmöglichkeiten von T-SQL zur Verfügung. Desw
 Für die Datenintegration stehen \textit{Logic Apps}, \textit{Functions} und \ac{adf} zur Auswahl. In Bezug auf die gegebenen Anforderungen können die Dienste als gleichwertig betrachtet werden. Da \textit{Azure Functions} den Vorteil hat, dass es auch lokal entwickelt und getestet werden kann, wird dieser Dienst ausgewählt. Hierbei ist jedoch die nicht-funktionale Anforderung, dass aufgetretene Fehler leicht nachvollziehbar sein sollen, zu berücksichtigen, welche mit der aktuellen Auswahl nicht erfüllt wird. Diese Problematik kann durch die Ergänzung von \textit{Application Insight} gelöst werden. Dies ist ein Monitoring Dienst, der mit \textit{Azure Functions} verknüpft werden kann. Dadurch steht beim Programmieren der Funktionen ein Logger-Objekt zur Verfügung, welches Informationen oder Fehler an \textit{Application Insights} sendet. Dieses Logging ist über das \textit{Azure Portal} einsehbar. Außerdem können basierend auf den Logs automatische E-Mail-Benachrichtigungen gesendet werden \cite[vgl.][]{satapathi_hands-azure_2021}.
 % adf braucht vms
 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 Damit ist das Ergebnis der Evaluation, dass die Dienste \textit{Azure SQL Database}, \textit{Functions}, \textit{Application Insights}, \textit{Machine Learning}, \textit{Purview} und \textit{Power BI} zum Erfüllen der funktionalen Anforderungen eingesetzt werden sollen. 
+
+\input{chapters/chapter03/chapter03_3_evaTable}
+\input{chapters/chapter03/chapter03_3_evaTable2}
 
 \subsection{Vorstellung der Architektur}
 Die Grundidee für die neue BI-Architektur wird in Abbildung~\ref{fig:chap03_4_konzeptArchitektur_offen} gezeigt. Neben den zuvor ausgewählten Ressourcen wurden die in Abschnitt~\ref{subsec:grundlagen:azure:sicherheitUndDatenschutz} vorgestellten Sicherheitsdienste ergänzt. Da \textit{Azure Policy} und das \ac{aad} Funktionen der \textit{Azure Cloud} sind, die implizit mit allen Ressourcen zusammenhängen, wurden zum Erhalten der Übersichtlichkeit keine Verbindungen eingezeichnet. Zum Verringern der Komplexität wurde Azure Machine Learning zunächst ausgelassen. Ein Ausblick auf eine mögliche Ergänzung wird in Abschnitt~\ref{sec:praktischeUmsetzung:ausblick:aml} gegeben.
