@@ -17,46 +17,46 @@
 |P{0.05\textwidth - 2.0\tabcolsep}
 |P{0.05\textwidth - 2.0\tabcolsep}
 |}
-\caption[Einschätzung der Azure Dienste in Bezug auf die Anforderungen]{Einschätzung der Azure Dienste in Bezug auf die Anforderungen (\cmark: Erfüllt Anforderung \xmark: Erfüllt Anforderung nicht). Die Anforderungen sind in Aufgabenbereiche(kursiv) untergliedert. Wenn die Funktionen eines Dienstes in den Aufgabenbereich passen (\cmark), sind alle dazugehörigen Anforderungen bewertet. Ansonsten wird kein Bezug zwischen Dienst und Anforderung hergestellt (\nmark). Am Tabellenende steht die Anzahl der erfüllten Anforderungen insgesamt und nach Aufgabenbereich unterteilt. Für das BI-System ausgewählte Dienste sind blau unterstrichen.} \label{table:eva} \\
+\caption[Einschätzung der Azure Dienste in Bezug auf die Anforderungen]{Einschätzung der Azure Dienste in Bezug auf die Anforderungen (\cmark: Erfüllt Anforderung \xmark: Erfüllt Anforderung nicht). Die Anforderungen sind in Aufgabenbereiche(\textbf{fett}) untergliedert. Wenn die Funktionen eines Dienstes in den Aufgabenbereich passen (\cmark), sind alle dazugehörigen Anforderungen bewertet. Ansonsten wird kein Bezug zwischen Dienst und Anforderungen hergestellt (\nmark). Am Tabellenende steht die Anzahl der erfüllten Anforderungen insgesamt und nach Aufgabenbereich unterteilt. Für das BI-System ausgewählte Dienste sind grau markiert.} \label{table:eva} \\
 
 \hline 
 \diagbox[height=3.2cm,innerwidth=.3\textwidth-2.0\tabcolsep]{Anforderung}{Azure Dienst}
 & \rotatebox[origin=c]{90}{Table Storage}
-& \rotatebox[origin=c]{90}{\ul{SQL Database}}
+& \greycell\rotatebox[origin=c]{90}{SQL Database}
 & \rotatebox[origin=c]{90}{ SQL Managed Instance }
 & \rotatebox[origin=c]{90}{Cosmos DB}
 & \rotatebox[origin=c]{90}{Data Lake Gen 2}
 & \rotatebox[origin=c]{90}{Logic Apps}
-& \rotatebox[origin=c]{90}{\ul{Functions}}
+& \greycell\rotatebox[origin=c]{90}{Functions}
 & \rotatebox[origin=c]{90}{Data Factory}
-& \rotatebox[origin=c]{90}{\ul{Machine Learining}}
+& \greycell\rotatebox[origin=c]{90}{Machine Learining}
 & \rotatebox[origin=c]{90}{Analysis Services}
-& \rotatebox[origin=c]{90}{\ul{Power BI}}
+& \greycell\rotatebox[origin=c]{90}{Power BI}
 & \rotatebox[origin=c]{90}{Synapse Analytics}
-& \rotatebox[origin=c]{90}{\ul{Purview}}
+& \greycell\rotatebox[origin=c]{90}{Purview}
 \\ \hline
 \endfirsthead
 
 \hline
 \diagbox[height=3.2cm,innerwidth=.3\textwidth-2.0\tabcolsep]{Anforderung}{Azure Dienst}
 & \rotatebox[origin=c]{90}{Table Storage}
-& \rotatebox[origin=c]{90}{\ul{SQL Database}}
+& \greycell\rotatebox[origin=c]{90}{SQL Database}
 & \rotatebox[origin=c]{90}{ SQL Managed Instance }
 & \rotatebox[origin=c]{90}{Cosmos DB}
 & \rotatebox[origin=c]{90}{Data Lake Gen 2}
 & \rotatebox[origin=c]{90}{Logic Apps}
-& \rotatebox[origin=c]{90}{\ul{Functions}}
+& \greycell\rotatebox[origin=c]{90}{Functions}
 & \rotatebox[origin=c]{90}{Data Factory}
-& \rotatebox[origin=c]{90}{\ul{Machine Learining}}
+& \greycell\rotatebox[origin=c]{90}{Machine Learining}
 & \rotatebox[origin=c]{90}{Analysis Services}
-& \rotatebox[origin=c]{90}{\ul{Power BI}}
+& \greycell\rotatebox[origin=c]{90}{Power BI}
 & \rotatebox[origin=c]{90}{Synapse Analytics}
-& \rotatebox[origin=c]{90}{\ul{Purview}}
+& \greycell\rotatebox[origin=c]{90}{Purview}
 \\ \hline
 \endhead
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textit{Datenspeicherung}
+\textbf{Datenspeicherung}
 & \cmark % Table Storage
 & \cmark % SQL
 & \cmark % SQL MI
@@ -153,7 +153,7 @@
 \\\hline
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textit{Datenintegration}
+\textbf{Datenintegration}
 & \nmark % Table Storage
 & \nmark % SQL
 & \cmark % SQL MI
@@ -234,7 +234,7 @@
 \\ \hline
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textit{Datenverarbeitung}
+\textbf{Datenverarbeitung}
 & \nmark  % Table Storage
 & \cmark  % SQL
 & \cmark % SQL MI
@@ -299,7 +299,7 @@
 \\ \hline
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textit{Reporting}
+\textbf{Reporting}
 & \nmark  % Table Storage
 & \nmark % SQL
 & \nmark % SQL MI
@@ -380,7 +380,7 @@
 \\ \hline
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-\textit{Datengovernance}
+\textbf{Datengovernance}
 & \nmark % Table Storage
 & \nmark % SQL
 & \nmark % SQL MI
@@ -429,7 +429,7 @@
 \\ \hline
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
-Summe
+\textbf{Summe}
 &  4 % Table Storage
 &  6 % SQL
 &  10 % SQL MI
@@ -445,7 +445,7 @@ Summe
 &  2 % Purview
 \\ \hline
 
-\textit{Datenspeicherung}
+Datenspeicherung
 &  4 % Table Storage
 &  4 % SQL
 &  4 % SQL MI
@@ -461,7 +461,7 @@ Summe
 &  0 % Purview
 \\
 
-\textit{Datenintegration}
+Datenintegration
 &  0 % Table Storage
 &  0 % SQL
 &  3 % SQL MI
@@ -477,7 +477,7 @@ Summe
 &  0 % Purview
 \\
 
-\textit{Datenverarbeitung}
+Datenverarbeitung
 & 0  % Table Storage
 & 2 % SQL
 & 3 % SQL MI
@@ -493,7 +493,7 @@ Summe
 & 0 % Purview
 \\
 
-\textit{Reporting}
+Reporting
 &  0 % Table Storage
 &  0 % SQL
 &  0 % SQL MI
@@ -509,7 +509,7 @@ Summe
 &  0 % Purview
 \\
 
-\textit{Datengovernance}
+Datengovernance
 & 0 % Table Storage
 & 0 % SQL
 & 0 % SQL MI
