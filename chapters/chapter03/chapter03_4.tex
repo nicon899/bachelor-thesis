@@ -1,63 +1,23 @@
-\section{Entwurf eines vollständigen Konzepts} \label{sec:entwurfBIArchitektur}
+\section{Entwurf der Cloud-BI Architektur} \label{sec:entwurfBIArchitektur}
+Mit den gewonnenen Erkenntnissen über die verschiedenen Azure Dienste, soll eine geeignete Auswahl für das Cloud-BI System getroffen werden und anschließend eine Architektur entworfen werden.
 
 \subsection{Auswertung der Evaluation} \label{sec:konzeption:evaAuswertung}
-Mit den gewonnenen Erkenntnissen über die verschiedenen Azure Dienste, soll eine geeignete Auswahl für das Cloud-BI System getroffen werden. Eine zusammenfassende Einschätzung der Dienste in Bezug auf die Anforderungen kann in Tabelle~\ref{table:eva} gefunden werden. In den letzten drei Zeilen wird in Summen angeben, wie viele funktionale Anforderungen erfüllt werden und darauf basierend, die Anzahl der nicht-funktionalen Anforderungen, die erfüllt beziehungsweise nicht erfüllt werden.
+ Eine zusammenfassende Einschätzung der Dienste in Bezug auf die Anforderungen kann in den Tabellen \ref{table:eva} und \ref{table:eva2} gefunden werden. In Tabelle~\ref{table:eva} werden Anforderungen, die bestimmten Aufgabenbereichen im BI-System zugeordnet werden können, betrachtet. Tabelle~\ref{table:eva2} enthält weitere relevante Anforderungen, die unabhängig davon sind, wofür ein Dienst eingesetzt wird.
+ 
+Die Grundlage für die Auswahl der Dienste, die in der Cloud BI-Architektur verwendet werden sollen, bilden die abzudeckenden Aufgabenbereiche. Die Auswahl wird im Folgenden erläutert:
+\begin{itemize}
+\item \textbf{Datenspeicherung}: Für die Speicherung der Daten soll die \textit{SQL Database} verwendet werden. Diese eignet sich, weil alle Daten aus den Quellsystemen entweder bereits relational sind oder in ein relationales Format transformiert werden können. Besonders in Hinsicht auf das aktuelle BI-System ist die Verwendung einer SQL-Datenbank attraktiv, weil die Migration dadurch vereinfacht wird und vorhandenes Wissen weiterhin in der Praxis eingesetzt werden kann. Naheliegende Alternativen wären die \textit{SQL Managed Instance}, welche mehr Kontrolle über den SQL-Server bietet, oder \textit{Synapse Analytics}. Beide bieten zusätzliche Funktionen in den Aufgabenbereichen \textit{Datenintegration und -verarbeitung}, für die es allerdings jeweils bessere Optionen gibt. Wird nur die Datenspeicherung betrachtet, ist die \textit{SQL Database} die Lösung mit der geringsten Komplexität und wird deswegen bevorzugt.
 
+\item \textbf{Datenintegration}: Zunächst sollen einige Dienste ausgeschlossen werden. Die \textit{SQL Managed Instance} kann verlinkte Datenbanken abfragen, allerdings keine \ac{rest}-API und ist damit, im Gegensatz zu den anderen Diensten, nicht alleine ausreichend für die Datenintegration. Die \ac{adf} und \textit{Synapse Analytics} haben den entscheidenden Nachteil, dass sie nicht direkt auf die \textit{SQL-Database} zugreifen können, wenn sich diese in einem virtuellen Netzwerk befindet, sondern dafür eine zusätzliche \ac{vm} in Azure erforderlich wäre \cite{msdoc_22_adf_integrationRuntime}.
 
+Damit stehen noch \textit{Logic Apps} und \textit{Functions} zur Auswahl, welche hier als gleichwertig einzuordnen sind. Da \textit{Functions} den Vorteil hat, dass es auch lokal entwickelt und getestet werden kann, wird dieser Dienst ausgewählt. Hierbei ist jedoch die nicht-funktionale Anforderung, dass aufgetretene Fehler leicht nachvollziehbar sein sollen, zu berücksichtigen, welche mit der aktuellen Auswahl nicht erfüllt wird. Diese Problematik kann durch die Ergänzung von \textit{Application Insight} gelöst werden. Dies ist ein Monitoring Dienst, der mit \textit{Azure Functions} verknüpft werden kann. Dadurch steht beim Programmieren der Funktionen ein Logger-Objekt zur Verfügung, welches Informationen oder Fehler an \textit{Application Insights} sendet. Dieses Logging ist über das \textit{Azure Portal} einsehbar. Außerdem können basierend auf den Logs automatische E-Mail-Benachrichtigungen gesendet werden \cite[vgl.][]{satapathi_hands-azure_2021}.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-In Tabelle~\ref{table:eva} ist zu erkennen, dass \textit{Power BI} und \textit{Purview} alternativlos sind und um alle Anforderungen zu erfüllen. \textit{Power BI} bietet die benötigten Reporting-Funktionalitäten und Purview kann als Datengovernance-Tool für die Datenklassifizierung und eine automatische Datenflussdokumentation genutzt werden. Für die weiteren funktionalen Anforderungen gibt es mehrere Möglichkeiten. 
-
-Für die Speicherung der Daten soll die \textit{SQL Database} verwendet werden. Diese eignet sich, weil alle Daten aus den Quellsystemen entweder bereits relational sind oder in ein relationales Format transformiert werden können. Besonders in Hinsicht auf das aktuelle BI-System ist die Verwendung von \textit{Azure SQL} attraktiv, weil die Migration dadurch vereinfacht wird und vorhandenes Wissen weiterhin in der Praxis eingesetzt werden kann. Die naheliegendste Alternative wäre die \textit{Azure Managed Instance}, welche mehr Funktionen und Kontrolle über den SQL-Server bietet. Jedoch ist letzteres nicht zwangsläufig erforderlich und die zusätzlichen Funktionen, die benötigt werden, können mit anderen Diensten abgedeckt werden. Dadurch soll eine modulare Infrastruktur entstehen, bei der es möglichst einfach ist, neue Ressourcen hinzuzufügen oder vorhandene auszutauschen. Sollte in Zukunft zum Beispiel die Anforderung entstehen, dass unstrukturierte Daten gespeichert werden sollen, könnte das System um einen \textit{Data Lake} ergänzt werden, ohne dass grundlegende Änderungen notwendig sind.
-
-Damit stehen auch die Verarbeitungsmöglichkeiten von T-SQL zur Verfügung. Deswegen wird aktuell keine Verwendung von \ac{aas} als Semantik-Schicht zwischen Datenbank und Reporting vorgesehen. Allerdings folgt daraus, dass \textit{Azure Machine Learning} verwendet werden muss, um das maschinelle Lernen mit Python und R zu ermöglichen.
-
-Für die Datenintegration stehen \textit{Logic Apps}, \textit{Functions} und \ac{adf} zur Auswahl. In Bezug auf die gegebenen Anforderungen können die Dienste als gleichwertig betrachtet werden. Da \textit{Azure Functions} den Vorteil hat, dass es auch lokal entwickelt und getestet werden kann, wird dieser Dienst ausgewählt. Hierbei ist jedoch die nicht-funktionale Anforderung, dass aufgetretene Fehler leicht nachvollziehbar sein sollen, zu berücksichtigen, welche mit der aktuellen Auswahl nicht erfüllt wird. Diese Problematik kann durch die Ergänzung von \textit{Application Insight} gelöst werden. Dies ist ein Monitoring Dienst, der mit \textit{Azure Functions} verknüpft werden kann. Dadurch steht beim Programmieren der Funktionen ein Logger-Objekt zur Verfügung, welches Informationen oder Fehler an \textit{Application Insights} sendet. Dieses Logging ist über das \textit{Azure Portal} einsehbar. Außerdem können basierend auf den Logs automatische E-Mail-Benachrichtigungen gesendet werden \cite[vgl.][]{satapathi_hands-azure_2021}.
-% adf braucht vms
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-Damit ist das Ergebnis der Evaluation, dass die Dienste \textit{Azure SQL Database}, \textit{Functions}, \textit{Application Insights}, \textit{Machine Learning}, \textit{Purview} und \textit{Power BI} zum Erfüllen der funktionalen Anforderungen eingesetzt werden sollen. 
+\item \textbf{Datenverarbeitung}: Da die Verarbeitungsmöglichkeiten von \textit{T-SQL} und \textit{Power BI} zur Verfügung stehen, wird aktuell keine Verwendung von \ac{aas} als Semantik-Schicht zwischen Datenbank und Reporting vorgesehen. Um fortgeschrittene Analysen mit Python und R zu ermöglichen, soll \textit{Azure Machine Learning} verwendet werden, weil damit die meisten Möglichkeiten zur Verfügung stehen. \textit{Synapse Analytics} würde nur Python unterstützen und die \textit{SQL Managed Instance} ist auf wenige Algorithmen beschränkt \cite{etaati_introduction_2019}.
+\item \textit{\textbf{Reporting}}: Der einzige betrachtete Dienst zum Bereitstellen von Reports ist \textit{Power BI} und wird daher verwendet.
+\item \textit{\textbf{Datengovernance}}: Als Datengovernance-Tool kann \textit{Purview} für die Datenklassifizierung und eine automatische Datenflussdokumentation genutzt werden. Wie Tabelle~\ref{table:eva} zu entnehmen ist, ist \textit{Purview} ebenfalls alternativlos.
+\end{itemize}
+ 
+ Damit ist das Ergebnis der Evaluation, dass die Dienste \textit{Azure SQL Database}, \textit{Functions}, \textit{Application Insights}, \textit{Machine Learning}, \textit{Purview} und \textit{Power BI} im neuen Cloud BI-System eingesetzt werden sollen. Das ist mit Blick auf Tabelle~\ref{table:eva} nicht selbstverständlich, da die vermeintlich am besten bewerteten Dienste, wie \textit{Synpase Analytics}, nicht gewählt wurden. Wie oben jedoch beschrieben wurde, gibt es für die einzelnen Anforderungen jeweils besser geeignete Optionen, die hier bevorzugt wurden. Das hat außerdem den Vorteil, dass eine modulare Infrastruktur entsteht, bei der es vergleichsweise einfach ist, neue Ressourcen hinzuzufügen oder vorhandene auszutauschen. Sollte in Zukunft beispielsweise die Anforderung entstehen, dass unstrukturierte Daten gespeichert werden sollen, könnte das System um einen \textit{Data Lake} ergänzt werden, ohne dass grundlegende Änderungen notwendig sind.
 
 \input{chapters/chapter03/chapter03_3_evaTable}
 \input{chapters/chapter03/chapter03_3_evaTable2}
@@ -72,16 +32,9 @@ Die Grundidee für die neue BI-Architektur wird in Abbildung~\ref{fig:chap03_4_k
 \label{fig:chap03_4_konzeptArchitektur_offen}
 \end{figure}
 
-Das Konzept lässt sich in fünf Aufgabenbereiche einteilen:
-\begin{itemize}
-\item \textbf{Datenintegration}: In \textit{Azure Functions} werden Funktionen implementiert, die sich mit den verschiedenen Quellsystemen verbinden, die Daten extrahieren, transformieren und in die \textit{SQL Database} laden. Passwörter und Schlüssel, die für die Authentifizierung benötigt werden, können dabei aus dem \textit{Key Vault} geladen werden. Bei der Ausführung werden ausführliche Logging-Informationen an \textit{Application Insisghts} gesendet. Beim Loggen eines Errors, wird automatisch eine E-Mail-Benachrichtigung versendet.
-\item \textbf{Speicher} (\ac{dwh}): In die \textit{Azure SQL Database} werden alle Daten aus dem on-premise \ac{dwh} migriert. Damit ist sie der zentrale Speicherort im Cloud BI-System.
-\item \textbf{Reporting}: Reports können zukünftig mit \textit{Power BI} erstellt und geteilt werden. Die verwendeten Daten werden aus dem Cloud \ac{dwh} geladen. 
-\item \textbf{Datengovernance}: \textit{Azure Purview} sammelt Metadaten über die Datenlandschaft und erleichtert damit die Umsetzung eines DSGVO-konformen BI-Systems.
-\item \textbf{Sicherheit}: Mit \textit{Azure Policy} wird verhindert, dass Ressourcen Konfiguration erhalten, die gegen eine Compliance verstoßen würden. Das \ac{aad} ist für die Authentifizierung und Autorisierung zuständig. Durch ein \ac{rbac}-Konzept wird sichergestellt, dass nur berechtige Personen Zugriff auf bestimmte Ressourcen oder Daten haben. 
-\end{itemize}
+Das Konzept sieht die Verwendung von der \textit{Azure SQL Database} als zentralen Speicherort vor. In diese werden alle Daten aus dem on-premise \ac{dwh} migriert. In \textit{Azure Functions} werden Funktionen implementiert, die sich mit den verschiedenen Quellsystemen verbinden, die Daten extrahieren, transformieren und in die \textit{SQL Database} laden. Passwörter und Schlüssel, die für die Authentifizierung benötigt werden, können dabei aus dem \textit{Key Vault} geladen werden. Bei der Ausführung werden ausführliche Logging-Informationen an \textit{Application Insisghts} gesendet. Beim Loggen eines Errors, wird automatisch eine E-Mail-Benachrichtigung versendet. Reports können zukünftig mit \textit{Power BI} erstellt und geteilt werden. Die verwendeten Daten werden aus dem Cloud \ac{dwh} geladen. \textit{Azure Purview} sammelt Metadaten über die Datenlandschaft und erleichtert damit die Umsetzung eines DSGVO-konformen BI-Systems. Mit \textit{Azure Policy} wird verhindert, dass Ressourcen Konfiguration erhalten, die gegen eine Compliance verstoßen würden. Das \ac{aad} ist für die Authentifizierung und Autorisierung zuständig. Durch ein \ac{rbac}-Konzept wird sichergestellt, dass nur berechtige Personen Zugriff auf bestimmte Ressourcen oder Daten haben. 
 
-Diese Architektur ist jedoch noch nicht ausreichend, um den Sicherheitsanforderungen gerecht zu werden, da vorausgesetzt wird, dass alle Ressourcen miteinander kommunizieren können. Dies ist nur der Fall, wenn auf schützende Firewall-Regeln verzichtet wird, was offensichtlich keine Option ist. Stattdessen sollen alle Ressourcen durch eine Firewall gesichert werden und die Kommunikation durch einige notwendige Ergänzungen ermöglicht werden. Das vollständige Konzept für die BI-Architektur, unter Berücksichtigung der Netzwerksicherheit, kann in Abbildung~\ref{fig:chap03_4_konzeptArchitektur} gefunden werden.
+Dieses Konzept ist jedoch noch nicht ausreichend, um den Sicherheitsanforderungen gerecht zu werden, da vorausgesetzt wird, dass alle Ressourcen miteinander kommunizieren können. Dies ist nur der Fall, wenn auf schützende Firewall-Regeln verzichtet wird, was offensichtlich keine Option ist. Stattdessen sollen alle Ressourcen durch eine Firewall gesichert werden und die Kommunikation durch einige notwendige Ergänzungen ermöglicht werden. Das vollständige Konzept für die BI-Architektur, unter Berücksichtigung der Netzwerksicherheit, kann in Abbildung~\ref{fig:chap03_4_konzeptArchitektur} gefunden werden.
  
  \begin{figure}[htbp]
  \centering
