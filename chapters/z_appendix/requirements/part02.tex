@@ -62,8 +62,8 @@
 
 \section{Anforderungen an die Wartbarkeit} \label{sec:anforderungsspezifikation:wartbarkeit}
 
-\subsection{Fehlerquellen identifizieren} \label{sec:anforderungsspezifikation:fehlerquellenIdentifizieren}
-\textbf{Beschreibung}: Aufgetretene Fehler sollen nachvollziehbar sein. Die Fehlerursache sollte möglichst einfach zu identifizieren sein. Zum Beispiel durch das Lesen eines Logfiles.
+\subsection{Protokollierung zum Identifizieren von Fehlerquellen} \label{sec:anforderungsspezifikation:fehlerquellenIdentifizieren}
+\textbf{Beschreibung}: Aufgetretene Fehler sollen nachvollziehbar sein, indem sie in einem Protokoll festgehalten werden. Die Fehlerursache soll damit möglichst einfach zu identifizieren sein.
 \newline \textbf{Begründung}: Damit Fehler möglichst schnell behoben werden können, sollen die Ursachen oder zumindest der Ort, an dem der Fehler aufgetreten ist, einfach auffindbar sein.
 \newline \textbf{Testkriterium}: Es gibt eine Möglichkeit aufgetretene Fehler nachzuvollziehen.
 \newline \textbf{Priorität}: 2
@@ -93,9 +93,9 @@
 \newline \textbf{Testkriterium}: Wenn ein Mitarbeiter versucht auf Daten zuzugreifen, die er wegen seinem Standort nicht sehen darf, wird ihm stattdessen eine Fehlermeldung angezeigt.
 \newline \textbf{Priorität}: 1
 
-\subsection{Löschen aller Kundendaten auf Anfrage} \label{sec:anforderungsspezifikation:löschenKundendaten}
-\textbf{Beschreibung}: Es muss möglich sein alle Daten eines bestimmten Kunden aus dem System zu entfernen.
-\newline \textbf{Begründung}: Kunden haben das Recht auf die Löschung ihrer Daten.
+\subsection{Effizientes löschen aller Kundendaten auf Anfrage} \label{sec:anforderungsspezifikation:löschenKundendaten}
+\textbf{Beschreibung}: Es muss möglich sein, alle Daten eines bestimmten Kunden effizient aus dem System zu entfernen.
+\newline \textbf{Begründung}: Laut DSGVO Art. 17 verfügen Personen über das \textit{Recht auf Vergessenwerden}. Das bedeutet, dass auf Anfrage alle Personendaten gelöscht werden müssen.
 \newline \textbf{Testkriterium}: Nach der Durchführung der Löschung können keine Daten des Kunden mehr im System gefunden werden.
 \newline \textbf{Priorität}: 2
 
