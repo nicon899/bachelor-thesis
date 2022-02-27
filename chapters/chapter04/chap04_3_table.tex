@@ -57,7 +57,7 @@ Anforderungen
 
 \nameref{sec:anforderungsspezifikation:datenanalysePythonUndR}
 &  \xmark % on-premise
-&  (-)\textsuperscript{1} % cloud
+&  (+)\textsuperscript{1} % cloud
 \\ \hline
 
 \nameref{sec:anforderungsspezifikation:reports}
@@ -132,7 +132,7 @@ Anforderungen
 \\ \hline
 
 \nameref{sec:anforderungsspezifikation:langlebigkeit}
-&  \cmark % on-premise
+&  \xmark\textsuperscript{4} % on-premise
 &  \cmark % cloud
 \\\hline
 
@@ -163,7 +163,7 @@ Anforderungen
 
 \nameref{sec:anforderungsspezifikation:löschenKundendaten}
 &  \cmark % on-premise
-&  \cmark\textsuperscript{4} % cloud
+&  \cmark\textsuperscript{5} % cloud
 \\ \hline
 
 \nameref{sec:anforderungsspezifikation:ZugriffMitBetriebsrat}
@@ -178,7 +178,23 @@ Anforderungen
 
 \nameref{sec:anforderungsspezifikation:dsgvo}
 &  \cmark % on-premise
-&  (\cmark)\textsuperscript{5} % cloud
+&  (\cmark)\textsuperscript{6} % cloud
+\\ \hline
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\textbf{Summe erfüllter Anforderungen}
+&  22 % on-premise
+&  22 | (27)\textsuperscript{7} % cloud
+\\ \hline
+
+Erfüllte Funktionale Anforderungen
+&  7 % on-premise
+&  8 | (11)\textsuperscript{7} % cloud
+\\
+
+Erfüllte Nicht-Funktionale Anforderungen
+&  15 % on-premise
+&  14 | (16)\textsuperscript{7} % cloud
 \\ \hline
 \end{longtable}
 
@@ -188,8 +204,12 @@ Anforderungen
 
 \noindent\textsuperscript{3} Die Performance von Datenintegration und Auswertung ist ausreichend, aber mit Power BI Pro sind nur 8 Aktualisierungen pro Tag möglich, oder es müssen lange Ladezeiten mit Direct Query akzeptiert werden.
 
-\noindent\textsuperscript{4} Durch Purview weniger aufwändig, als beim Bestandssystem (siehe Abschnitt~\ref{sec:praktischeUmsetzung:purviewDatengovernance})
+\noindent\textsuperscript{4} Eingesetzte Technologien, wie AngularJS, sind bereits veraltet.
 
-\noindent\textsuperscript{5} Es wurde bei der Konzeption auf die DSGVO-Konformität geachtet. Die Genehmigung durch einen Datenschutzbeauftragten konnte aus zeitlichen Gründen noch nicht erfolgen.
+\noindent\textsuperscript{5} Durch Purview weniger aufwändig, als beim Bestandssystem (siehe Abschnitt~\ref{sec:praktischeUmsetzung:purviewDatengovernance})
+
+\noindent\textsuperscript{6} Es wurde bei der Konzeption auf die DSGVO-Konformität geachtet. Die Bewertung durch einen Datenschutzbeauftragten ist noch ausstehend.
+
+\noindent\textsuperscript{7} Inklusive teilweiser und voraussichtlich erfüllter Anforderungen. 
 
 \end{scriptsize}
