@@ -1,6 +1,15 @@
 \chapter{Fazit} \label{ch:zusammenfassung}
-Diese Arbeit hat sich mit dem Ziel, ein on-premise BI-System in die Azure Cloud zu migrieren, beschäftigt. Dazu wurde durch die Evaluation verschiedener Azure Dienste eine Cloud BI-Architektur entworfen. Diese wurde als Prototyp erstellt und anschließend getestet.
+Diese Arbeit hat sich mit dem strategischen Ziel, ein on-premise BI-System in die Azure Cloud zu migrieren, beschäftigt. Bei der präsentierten Lösung sind drei Herausforderungen besonders hervorzuheben. 
 
-\textit{...}
+Zuerst wurden die zu verwendenden Azure Dienste, aus einer Vielzahl von Möglichkeiten, ausgewählt. Dabei wurden nicht einfach beliebige Dienste gewählt, die eine benötigte Funktionalität bieten, sondern es wurden verschiedene Optionen miteinander verglichen, um eine sinnvolle Auswahl zu treffen. Eine dabei nicht betrachtete Möglichkeit ist die Verwendung von Infrastruktur-Ressourcen, wie eine \ac{vm}, um eine Anwendung zu betreiben, die nicht von Azure angeboten wird.  \textit{...}
 
-% Wichtige Erkenntnis: Anders als in Motivation ist Wartungsaufwand hoch
+Im zweiten Schritt wurde eine Architektur entworfen, die, solange nur die funktionalen Anforderungen berücksichtigt werden, trivial ist. Da die Sicherheit und der Datenschutz zentrale Aspekte darstellen, musste die Architektur um weitere Ressourcen ergänzt werden. Besonders die Kommunikation zwischen den BI-Komponenten, mit gleichzeitigem Schutz durch Firewall-Regeln, erfordert ein komplexeres Gesamtsystem.
+
+Drittes Migrationsprozess
+
+Auswertung
+
+Obwohl das Thema dieser Arbeit eine Migration ist, wurde die neue Architektur unabhängig von diesen Vorhaben entworfen. Erst anschließend wurde ein Konzept für den Migrationsprozess erarbeitet, das möglichst wenig Aufwand verursacht. Durch dieses Vorgehen konnte ein Prototyp für das Cloud-BI-System implementiert werden, der die Anforderungen bereits besser erfüllt als das on-premise BI-System.
+
+\section{Ausblick}
+Eines der größten Schwächen der vorgestellten Lösung ist die Notwendigkeit mindestens zwei \acp{vm} in Azure zu betreiben. Zukünftig wird diese Notwendigkeit voraussichtlich wegfallen, da sowohl \textit{Power BI} als auch \textit{Purview} in einer Vorschauphase bereits die Möglichkeit bieten, direkt auf eine Datenquelle in einem virtuellen Netzwerk zuzugreifen.
