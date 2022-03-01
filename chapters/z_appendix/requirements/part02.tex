@@ -4,7 +4,7 @@
 \textbf{Beschreibung}: Die Reports bieten eine verschiedene Visualisierungsmöglichkeiten. Darunter mindestens: Tabellen, Achsendiagramme und Balkendiagramme.
 \newline \textbf{Begründung}: Für verschiedene Auswertungen sind oft unterschiedliche Visualisierungen am besten geeignet.
 \newline \textbf{Testkriterium}: Es kann ein Report erstellt werden, der die oben genannten Visualisierungen enthält.
-\newline \textbf{Priorität}: 3
+\newline \textbf{Priorität}: 2
 
 \section{Leistungsanforderungen}  \label{sec:anforderungsspezifikation:leistungsanforderungen}
 
@@ -12,34 +12,34 @@
 \textbf{Beschreibung}: Es soll möglich sein, Reports zu erstellen, die einen Stand, der nicht älter als 60 Minuten ist, wiedergeben. Datenintegration, Verarbeitung und Visualisierung dürfen dementsprechend maximal 60 Minuten benötigen.
 \newline \textbf{Begründung}: Damit Auswertungen auf möglichst aktuellen Daten basieren können, müssen die Daten regelmäßig mit ausreichender Geschwindigkeit aktualisiert werden. 
 \newline \textbf{Testkriterium}: Eine Veränderung der Daten in einem Quellsystem ist innerhalb von einer Stunde in einem abhängigen Report zu finden.
-\newline \textbf{Priorität}: 4
+\newline \textbf{Priorität}: 3
 
 \subsection{Schnelle Antwortzeiten der Reports} \label{sec:anforderungsspezifikation:schnelleAntwortzeitenDerReports}
 \textbf{Beschreibung}: Beim Öffnen, oder interagieren mit der Benutzeroberfläche (z.B. Filter auswählen) soll ein Report nicht länger als 30 Sekunden laden.
 \newline \textbf{Begründung}: Langsame Antwortzeiten führen zu einem negativen Benutzererlebnis.
 \newline \textbf{Testkriterium}: Alle Reports können in unter 30 Sekunden geöffnet werden.
-\newline \textbf{Priorität}: 3
+\newline \textbf{Priorität}: 2
 
 \subsection{Datenqualität} \label{sec:anforderungsspezifikation:Datenkonsistenz}
 \textbf{Beschreibung}: Die Konsistenz und Integrität der Daten soll sichergestellt sein.
 \newline \textbf{Begründung}: Inkonsistente oder widersprüchliche Daten würden dazu führen, dass keine sinnvollen Auswertungen mehr möglich sind.
-\newline \textbf{Testkriterium}: Es können keine inkonsistenten Daten gefunden werden.
-\newline \textbf{Priorität}: 1
+\newline \textbf{Testkriterium}: Es können keine inkonsistenten Daten gefunden werden und es existiert ein Mechanismus zum Erhalten der Datenqualität.
+\newline \textbf{Priorität}: 2
 
 \subsection{Das BI-System soll zu über 99,95\% verfügbar sein} \label{sec:anforderungsspezifikation:verfügbarkeit}
 \textbf{Beschreibung}:  Es soll eine Verfügbarkeit von mind. 99,95\% gewährleistet werden. 
 \newline \textbf{Begründung}: Einige Funktionen des BI-Systems werden im Tagesgeschäft benötigt und sollten somit möglichst immer zur Verfügung stehen. Die maximale Ausfallzeit soll eine Stunde pro Woche nicht überschreiten.
 \newline \textbf{Testkriterium}: Alle verwendeten Azure Dienste gewährleisten in ihrer SLA eine Verfügbarkeit von über 99,95\%.
-\newline \textbf{Priorität}: 2
+\newline \textbf{Priorität}: 1
 
 \subsection{Automatische Benachrichtigung bei Fehlern} \label{sec:anforderungsspezifikation:AutomatischeFehlerbehandlung}
 \textbf{Beschreibung}: Bei Eintreten eines Fehlers soll automatisch eine Benachrichtigung verschickt werden. 
 \newline \textbf{Begründung}: Damit das Auftreten eines Fehlers frühzeitig festgestellt wird, sollen zuständige Personen bei Fehlerauftritt benachrichtigt werden.
 \newline \textbf{Testkriterium}: Bei Auftreten eines Fehlers, wird automatisch eine Benachrichtigung versendet.
-\newline \textbf{Priorität}: 3
+\newline \textbf{Priorität}: 2
 
 \subsection{Mindestens 500 GB Speicherkapazität} \label{sec:anforderungsspezifikation:speicherkapazität}
-\textbf{Beschreibung}: Aus dem aktuellen BI-System sollen knapp 500 GB Daten in die Cloud-Lösung übertragen werden.
+\textbf{Beschreibung}: Aus dem aktuellen BI-System sollen bis zu 500 GB Daten in die Cloud-Lösung übertragen werden können.
 \newline \textbf{Begründung}: Damit alle historischen Daten aus dem alten in das neue BI-System übertragen werden können, wird eine Speicherkapazität von mind. 500 GB benötigt.
 \newline \textbf{Testkriterium}: 
 \newline \textbf{Priorität}: 1
@@ -47,7 +47,7 @@
 \subsection[Hinzufügen/Entfernen von Quellsystemen]{Es sollen jederzeit weitere Quellsysteme hinzugefügt/entfernt werden können} \label{sec:anforderungsspezifikation:QuellsystemeÄndern}
 \textbf{Beschreibung}: Das hinzufügen oder entfernen von Quellsystemen soll zu jedem Zeitpunkt möglich sein und darf keine unerwarteten Auswirkungen auf das restliche System haben.
 \newline \textbf{Begründung}: Die Quellsysteme, deren Daten ausgewertet werden sollen, können sich im Laufe der Zeit ändern.
-\newline \textbf{Testkriterium}: Das hinzufügen und entfernen von Quellsystemen ist möglich.
+\newline \textbf{Testkriterium}: Das hinzufügen und entfernen von Quellsystemen ist jederzeit möglich.
 \newline \textbf{Priorität}: 2
 
 \subsection{Automatische Skalierung der Speicherkapazität} \label{sec:anforderungsspezifikation:skalierungDerSpeicherkapazität}
@@ -58,14 +58,14 @@
 
 \subsection{Lebensdauer von mind. 5 Jahren} \label{sec:anforderungsspezifikation:langlebigkeit}
 \textbf{Beschreibung}: Die neue BI-Lösung soll in den nächsten 5 Jahren ohne grundlegende Veränderungen an der Architektur verwendet werden können. Es wird damit auch kein Feature verwendet, dass in den nächsten 5 Jahren abgestellt wird, oder sich noch in der Vorschau befindet.
-\newline \textbf{Priorität}: 3
+\newline \textbf{Priorität}: 2
 
 \section{Anforderungen an die Wartbarkeit} \label{sec:anforderungsspezifikation:wartbarkeit}
 
 \subsection{Protokollierung zum Identifizieren von Fehlerquellen} \label{sec:anforderungsspezifikation:fehlerquellenIdentifizieren}
 \textbf{Beschreibung}: Aufgetretene Fehler sollen nachvollziehbar sein, indem sie in einem Protokoll festgehalten werden. Die Fehlerursache soll damit möglichst einfach zu identifizieren sein.
 \newline \textbf{Begründung}: Damit Fehler möglichst schnell behoben werden können, sollen die Ursachen oder zumindest der Ort, an dem der Fehler aufgetreten ist, einfach auffindbar sein.
-\newline \textbf{Testkriterium}: Es gibt eine Möglichkeit aufgetretene Fehler nachzuvollziehen.
+\newline \textbf{Testkriterium}: Es gibt eine Möglichkeit, aufgetretene Fehler nachzuvollziehen.
 \newline \textbf{Priorität}: 2
 
 \subsection{Einheitliche Technologie} \label{sec:anforderungsspezifikation:einheitlicheTechnologie}
@@ -99,15 +99,16 @@
 \newline \textbf{Testkriterium}: Nach der Durchführung der Löschung können keine Daten des Kunden mehr im System gefunden werden.
 \newline \textbf{Priorität}: 2
 
-\subsection{Zugriff auf bestimmte Personendaten nur über Betriebsrat möglich} \label{sec:anforderungsspezifikation:ZugriffMitBetriebsrat}
+\subsection[Individuelle Auswertungen mit eingeschränkten Zugriff]{Zugriff auf bestimmte Personen- und Leistungsdaten nur über Betriebsrat möglich} \label{sec:anforderungsspezifikation:ZugriffMitBetriebsrat}
 \textbf{Beschreibung}: Das Einsehen von individuellen Mitarbeiterdaten, zum Beispiel über die erbrachte Leistung, ist nur mit expliziter Zustimmung des Betriebsrates möglich.
-\newline \textbf{Begründung}: Der Betriebsrat erlaubt es im Allgemeinen nicht, individuelle Leistungen auszuwerten.
-\newline \textbf{Testkriterium}: Der Zugriff auf individuelle Daten ist nur möglich, wenn dies explizit vom Betriebsrat freigeschaltet wurde. 
+\newline \textbf{Begründung}: Die Auswertung von individuelle Leistungen wird gewünscht, erfordert aber die explizite Zustimmung des Betriebsrates.
+\newline \textbf{Testkriterium}: Auf bestimmte Daten und Auswertungen ist der Zugriff nur möglich, wenn dies explizit für die Person vom Betriebsrat freigeschaltet wurde.
 \newline \textbf{Priorität}: 2
 
 \subsection{Verschlüsselung der Daten} \label{sec:anforderungsspezifikation:verschlüsselung}
 \textbf{Beschreibung}: Alle Daten werden verschlüsselt gespeichert und übertragen.
 \newline \textbf{Begründung}: Sollten unbefugte Zugriff auf das System erhalten, sollen die Daten durch Verschlüsselung weiterhin geschützt sein.
+\newline \textbf{Testkriterium}: Alle verwendeten Dienste verschlüsseln die Daten in Ruhe und während der Übertragung.
 \newline \textbf{Priorität}: 2
 
 \section{Rechtsvorschriften} \label{sec:anforderungsspezifikation:rechtsvorschriften}
