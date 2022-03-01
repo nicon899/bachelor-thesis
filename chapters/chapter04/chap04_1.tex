@@ -57,7 +57,7 @@ Für die Datenintegration aus einem on-premise Quellsystem wird ein Relay erstel
 
  \begin{figure}[htbp]
  \centering
- \includegraphics[width=\textwidth]{gfx/azure/hybridverbindung.pdf}
+ \includegraphics[width=0.76\textwidth]{gfx/azure/hybridverbindung.pdf}
  \caption[Datenintegration über Hybridverbindung]{Funktionsweise der Datenintegration über eine Hybridverbindung: Die Datenbankverbindung von \textit{Functions} wird automatisch an das \textit{Relay} umgeleitet(1). Der \textit{Hybrid Connection Manager} erkennt die Anfrage über einen Listener(2) und führt sie auf der lokalen Datenbank aus(3). Die Antwort der Datenbank wird zurück an das \textit{Relay} gesendet(4). Ein Listener von \textit{Functions} sieht die Antwort und diese wird gelesen(5). \cite[vgl.][]{msdoc_22_func_hybridConn, msdoc_21_hybridConn_protocol}}
 \label{fig:chap04_hybridConn}
 \end{figure}
