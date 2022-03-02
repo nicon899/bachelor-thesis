@@ -3,11 +3,11 @@ Die Ausgangslage für die Migration ist ein on-premise betriebenes BI~=System. D
 \begin{figure}[htbp]
  \centering
  \includegraphics[width=\textwidth]{gfx/aktuelle_onpremise_bi_architektur.png}
- \caption[Aufbau des on-premise BI-Systems]{Aktuelle Architektur des on-premise BI-Systems und Ausgangslage für die Migration in die Cloud \cite{grunwald_business_2009}\cite{humm_architektur_2005}}
+ \caption[Aufbau des on-premise BI-Systems]{Aktuelle Architektur des on-premise BI-Systems und Ausgangslage für die Migration in die Cloud \cite{grunwald_business_2009, humm_architektur_2005}}
 \label{fig:aktuelle_onpremise_bi_architektur}
 \end{figure}
 
-Die einzelnen Schichten werden im Folgenden erläutert \cite{grunwald_business_2009}\cite{kemper_bi-glossar_2008}\cite{humm_architektur_2005}:
+Die einzelnen Schichten werden im Folgenden erläutert \cite{grunwald_business_2009, humm_architektur_2005, kemper_bi-glossar_2008}:
 \begin{itemize}
 \item \textbf{Quellsysteme} sind der Ursprung aller Daten des BI-Systems. Es kann sich hierbei um interne, sowie externe Quellen handeln. Externe Daten könnten beispielsweise von Marktforschungs- oder Partnerunternehmen stammen. Aktuell werden nur interne Datenquellen abgefragt. Darunter zum Beispiel die Projektmanagement-Software Jira und das Codeanalyse-Tool SonarQube.
 \item Die \textbf{Datenintegration} (auch \ac{etl}) ist die Schnittstelle zwischen dem \ac{dwh} und den Quellsystemen. Der \acs{etl}-Prozess beginnt mit dem Extrahieren von operativen Daten aus einem Quellsystem. Darauf folgt eine Transformation, bei der die Daten an syntaktische Anforderungen angepasst werden und semantische Fehler, wenn möglich, behoben werden. Abschließend werden die Daten in das \ac{dwh} zur Speicherung geladen. Für den \acs{etl}-Prozess werden Funktionen vom \textit{Microsoft SQL-Server} und \textit{Powershell-Skripte} genutzt.
